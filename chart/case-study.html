@@ -645,6 +645,84 @@
   @keyframes fadeIn {
     to { opacity: 1; transform: translateY(0); }
   }
+
+  /* ── Interactive Chart Widget ────────────────────────── */
+  .chart-widget {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 32px 0;
+  }
+  .chart-widget-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+  .chart-widget-header .widget-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+  }
+  .chart-widget-header .widget-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+  .chart-widget-header .widget-live {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+  }
+  .chart-widget-header .widget-live::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse-dot 2s infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 4px var(--accent); }
+    50% { opacity: 0.3; box-shadow: none; }
+  }
+  .chart-widget iframe {
+    display: block;
+    width: 100%;
+    height: 500px;
+    border: none;
+    background: #0D0C0B;
+  }
+  .chart-widget-footer {
+    padding: 10px 20px;
+    border-top: 1px solid var(--border);
+    background: var(--bg-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+  }
+  .chart-widget-footer a {
+    color: var(--accent-dim);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .chart-widget-footer a:hover {
+    color: var(--accent);
+  }
+  @media (max-width: 768px) {
+    .chart-widget iframe { height: 360px; }
+  }
 </style>
 </head>
 <body>
@@ -823,6 +901,30 @@
       <tr><td>Mar 2–9</td><td colspan="4" style="color:var(--text-dim)">Gradual decline to $0.0000035</td><td>$2,151</td></tr>
     </tbody>
   </table>
+</section>
+
+<!-- ════════════════════ INTERACTIVE CHART WIDGET ════════════════════ -->
+<section>
+  <div class="section-number">02.5 — Live Price × Tweet Chart</div>
+  <h2>Interactive: every candle, every tweet</h2>
+  <p>
+    This is the real thing. Drag to pan, scroll to zoom, hover over the blue bubbles to see each tweet at the exact price point it was posted. Click a single-tweet bubble to open it on X. Click a cluster to zoom in. Toggle tweet markers on/off. Switch timeframes. All data is live from GeckoTerminal + DexScreener.
+  </p>
+
+  <div class="chart-widget">
+    <div class="chart-widget-header">
+      <div>
+        <div class="widget-label">pump-sdk / SOL</div>
+        <div class="widget-title">Candlestick chart with 68 tweet markers overlaid</div>
+      </div>
+      <div class="widget-live">LIVE</div>
+    </div>
+    <iframe src="chart.html" loading="lazy" title="pump-sdk interactive price chart with tweet markers" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+    <div class="chart-widget-footer">
+      <span>Drag to pan · Scroll to zoom · Hover bubbles for tweets</span>
+      <a href="chart.html" target="_blank">Open fullscreen ↗</a>
+    </div>
+  </div>
 </section>
 
 <!-- ════════════════════ SECTION 3: TIMELINE ════════════════════ -->
