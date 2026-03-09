@@ -178,7 +178,7 @@
     <button class="ctrl-btn active" data-tf="1" data-type="minute">1m</button>
     <button class="ctrl-btn" data-tf="5" data-type="minute">5m</button>
     <button class="ctrl-btn" data-tf="15" data-type="minute">15m</button>
-    <button class="ctrl-btn" data-tf="60" data-type="hour">1h</button>
+    <button class="ctrl-btn" data-tf="1" data-type="hour">1h</button>
     <span class="ctrl-sep"></span>
     <div id="tweet-toggle" class="ctrl-btn" onclick="toggleTweets()">
       <span class="dot"></span>
@@ -932,9 +932,15 @@ async function fetchDexStats() {
 }
 
 async function fetchTokenIcon() {
+  // Icon from DexScreener (pump.fun API has no CORS headers for browser)
   try {
-    const r = await fetch('https://frontend-api-v3.pump.fun/coins/' + MINT);
-    if (r.ok) { const d = await r.json(); document.getElementById('token-icon').src = d.image_uri || ''; }
+    const r = await fetch(DEXSCREENER);
+    if (r.ok) {
+      const d = await r.json();
+      const p = d.pairs?.[0];
+      const url = p?.info?.imageUrl || '';
+      if (url) document.getElementById('token-icon').src = url;
+    }
   } catch {}
 }
 
