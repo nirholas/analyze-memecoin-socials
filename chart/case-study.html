@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How I Reverse-Engineered pump.fun, Made $20K, and Got a j*b Offer — A Data-Driven Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --bg-elevated: #111113;
+    --bg-card: #161619;
+    --bg-card-hover: #1c1c20;
+    --border: #2a2a2f;
+    --border-accent: #3d3d44;
+    --text: #e8e8ed;
+    --text-muted: #8a8a96;
+    --text-dim: #5c5c66;
+    --accent: #00ff88;
+    --accent-dim: #00cc6d;
+    --accent-glow: rgba(0, 255, 136, 0.12);
+    --red: #ff4444;
+    --red-dim: rgba(255, 68, 68, 0.15);
+    --orange: #ff9933;
+    --blue: #3b82f6;
+    --purple: #a855f7;
+    --solana: #9945FF;
+    --solana-green: #14F195;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at 30% 50%, rgba(0,255,136,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 30%, rgba(153,69,255,0.03) 0%, transparent 50%);
+    animation: heroGlow 12s ease-in-out infinite alternate;
+  }
+
+  @keyframes heroGlow {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-3%, 3%); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+    background: var(--bg-elevated);
+  }
+
+  .hero-badge .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto 3rem;
+    line-height: 1.8;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .hero-stat {
+    background: var(--bg-elevated);
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+
+  .hero-stat .value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+
+  .hero-stat .label {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.3rem;
+  }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  section {
+    padding: 5rem 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem;
+    color: var(--text);
+  }
+
+  p {
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  a:hover {
+    border-bottom-color: var(--accent);
+  }
+
+  /* ── Timeline ── */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+    margin: 2rem 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--solana), var(--accent-dim), var(--border));
+  }
+
+  .tl-item {
+    position: relative;
+    padding: 0 0 2.5rem 1.5rem;
+  }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -0.35rem;
+    top: 0.35rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+  }
+
+  .tl-item.major::before {
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+    width: 12px;
+    height: 12px;
+    left: -0.4rem;
+  }
+
+  .tl-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent-dim);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.3rem;
+  }
+
+  .tl-title {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .tl-desc {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .tl-metrics {
+    display: inline-flex;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+  }
+
+  .tl-metrics span {
+    color: var(--text-dim);
+    padding: 0.15rem 0.5rem;
+    background: var(--bg-card);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+
+  .tl-metrics .hot {
+    color: var(--accent);
+    border-color: rgba(0,255,136,0.2);
+    background: rgba(0,255,136,0.05);
+  }
+
+  /* ── Data Cards ── */
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 2rem 0;
+  }
+
+  .data-card {
+    background: var(--bg-card);
+    padding: 1.5rem;
+  }
+
+  .data-card .label {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .data-card .value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .data-card .value.green { color: var(--accent); }
+  .data-card .value.purple { color: var(--purple); }
+  .data-card .value.orange { color: var(--orange); }
+  .data-card .value.blue { color: var(--blue); }
+
+  .data-card .sub {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 0.25rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ── Tables ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.85rem;
+  }
+
+  .data-table th {
+    text-align: left;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+
+  .data-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+  }
+
+  .data-table tr:hover td {
+    background: var(--bg-card);
+  }
+
+  .data-table .highlight {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ── Callout ── */
+  .callout {
+    border-left: 3px solid var(--accent);
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--accent-glow);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .callout p {
+    color: var(--text);
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .callout.purple {
+    border-left-color: var(--purple);
+    background: rgba(168, 85, 247, 0.06);
+  }
+
+  /* ── Code / Mono blocks ── */
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    background: var(--bg-card);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--accent);
+  }
+
+  /* ── Tech Stack Grid ── */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+
+  .tech-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    transition: all 0.2s;
+  }
+
+  .tech-item:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-accent);
+  }
+
+  .tech-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tech-dot.ts { background: #3178c6; }
+  .tech-dot.js { background: #f7df1e; }
+  .tech-dot.py { background: #3776ab; }
+  .tech-dot.sol { background: var(--solana); }
+  .tech-dot.db { background: #336791; }
+  .tech-dot.infra { background: var(--accent); }
+  .tech-dot.ai { background: var(--orange); }
+  .tech-dot.api { background: var(--blue); }
+
+  /* ── Repo Links ── */
+  .repo-grid {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+
+  .repo-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .repo-link:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .repo-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--bg-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  .repo-info .name {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.9rem;
+  }
+
+  .repo-info .desc {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+  }
+
+  /* ── Sentiment ── */
+  .sentiment-bar {
+    display: flex;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1rem 0 0.5rem;
+  }
+
+  .sentiment-bar .bullish { background: var(--accent); }
+  .sentiment-bar .neutral { background: var(--text-dim); }
+  .sentiment-bar .spam { background: var(--orange); }
+
+  .sentiment-legend {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .sentiment-legend span::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    margin-right: 0.4rem;
+    vertical-align: middle;
+  }
+
+  .sentiment-legend .b::before { background: var(--accent); }
+  .sentiment-legend .n::before { background: var(--text-dim); }
+  .sentiment-legend .s::before { background: var(--orange); }
+
+  /* ── Footer ── */
+  footer {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  /* ── X Article Section ── */
+  .x-article {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    margin: 2rem 0;
+  }
+
+  .x-article h4 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+    font-weight: 400;
+  }
+
+  .x-article p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-bottom: 1rem;
+    line-height: 1.75;
+  }
+
+  .x-article .hook {
+    font-size: 1.05rem;
+    color: var(--text);
+    font-weight: 500;
+    border-left: 3px solid var(--accent);
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── Phase Blocks ── */
+  .phase-block {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .phase-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  .phase-tag.bonding { background: rgba(153,69,255,0.15); color: var(--solana); }
+  .phase-tag.dex { background: rgba(0,255,136,0.1); color: var(--accent); }
+  .phase-tag.viral { background: rgba(255,153,51,0.12); color: var(--orange); }
+  .phase-tag.decay { background: var(--red-dim); color: var(--red); }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .container { padding: 0 1.25rem; }
+    .x-article { padding: 2rem 1.5rem; }
+    .tl-item { padding-left: 1.25rem; }
+  }
+
+  /* ── Divider ── */
+  .divider {
+    text-align: center;
+    padding: 3rem 0;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+  }
+
+  /* ── Scroll animations ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════ HERO ════════════════════ -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      CASE STUDY — FEB 26–28, 2026
+    </div>
+    <h1>I reverse-engineered pump.fun's SDK.<br>Someone launched a memecoin.<br>I made <em>$20,000</em> and got a j*b offer.</h1>
+    <p class="hero-sub">
+      A data-driven breakdown of a 48-hour development sprint that went viral on crypto X — with on-chain data, social sentiment analysis, and 100,371 transaction signatures to prove it.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="value">$20K</span>
+        <span class="label">Earnings</span>
+      </div>
+      <div class="hero-stat">
+        <span class="value">142x</span>
+        <span class="label">Peak Multiple</span>
+      </div>
+      <div class="hero-stat">
+        <span class="value">$2.1M</span>
+        <span class="label">Total Volume</span>
+      </div>
+      <div class="hero-stat">
+        <span class="value">100K+</span>
+        <span class="label">Transactions</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ════════════════════ SECTION 1: THE STORY ════════════════════ -->
+<section>
+  <div class="section-number">01 — Origin</div>
+  <h2>One post. One fork. One wild ride.</h2>
+  <p>
+    On February 26, 2026, I (<a href="https://x.com/nichxbt">@nichxbt</a>) posted a single tweet announcing that I had reverse-engineered pump.fun's SDK — the bonding curve smart contract powering the biggest memecoin launchpad on Solana. The full source was <a href="https://github.com/nirholas/pump-fun-sdk">open-sourced on GitHub</a>. As far as anyone could tell, it was the only complete implementation publicly available.
+  </p>
+  <p>
+    Within two hours, someone in the community saw the post and launched a memecoin called <code>$pump-sdk</code> directly on pump.fun, then linked me to claim creator rewards via my GitHub account. The token contract: <a href="https://pump.fun/coin/F4ZHCzizwpop2XS8auuAGQ7LZcUTEwQ22m5sRmB2pump"><code>F4ZH...pump</code></a>.
+  </p>
+  <p>
+    I claimed it. What followed was a 48-hour live development sprint — building, shipping, and posting in real-time — that created a viral feedback loop: <strong>each post drove attention → attention drove the token price → the rising price drew more attention → which fueled more building</strong>. The result: $2.1 million in total trading volume, 100,371 on-chain transactions, a feature on <a href="https://coinmarketcap.com/community/articles/69a0d08faea2e35728f0a2c1/">CoinMarketCap</a>, over 660,000 views across key posts, and a j*b offer from a prominent crypto company.
+  </p>
+
+  <div class="callout">
+    <p><strong>The thesis:</strong> Open-source development, done publicly and paired with real shipping velocity, can create organic virality that no marketing budget can buy. Zero capital was invested — only skill.</p>
+  </div>
+</section>
+
+<!-- ════════════════════ SECTION 2: PRICE DATA ════════════════════ -->
+<section>
+  <div class="section-number">02 — On-Chain Data</div>
+  <h2>The numbers behind the narrative</h2>
+  <p>
+    All figures below are computed from actual OHLCV candle data pulled from DexScreener and GeckoTerminal APIs, and 100,371 on-chain transaction signatures extracted from the Solana blockchain. Nothing is estimated.
+  </p>
+
+  <h3>Token Lifecycle Overview</h3>
+  <div class="data-grid">
+    <div class="data-card">
+      <div class="label">Bonding Curve Entry</div>
+      <div class="value green">$0.0000030</div>
+      <div class="sub">Feb 26, 20:35 UTC</div>
+    </div>
+    <div class="data-card">
+      <div class="label">Graduated to DEX</div>
+      <div class="value green">$0.0000297</div>
+      <div class="sub">Feb 26, 20:54 UTC</div>
+    </div>
+    <div class="data-card">
+      <div class="label">DEX Open Price</div>
+      <div class="value purple">$0.0000345</div>
+      <div class="sub">1.2x graduation premium</div>
+    </div>
+    <div class="data-card">
+      <div class="label">All-Time High</div>
+      <div class="value orange">$0.0004181</div>
+      <div class="sub">142x from BC start</div>
+    </div>
+    <div class="data-card">
+      <div class="label">Day 1 Volume</div>
+      <div class="value">$787,673</div>
+      <div class="sub">Feb 26 (launch day)</div>
+    </div>
+    <div class="data-card">
+      <div class="label">Day 2 Volume</div>
+      <div class="value">$1,287,532</div>
+      <div class="sub">Feb 27 (peak day)</div>
+    </div>
+    <div class="data-card">
+      <div class="label">Total Volume</div>
+      <div class="value green">$2,117,819</div>
+      <div class="sub">Across 12 trading days</div>
+    </div>
+    <div class="data-card">
+      <div class="label">TX Signatures (48h)</div>
+      <div class="value blue">100,371</div>
+      <div class="sub">~35 tx/min average</div>
+    </div>
+  </div>
+
+  <h3>Phase Breakdown</h3>
+
+  <div class="phase-block">
+    <div class="phase-header">
+      <span class="phase-tag bonding">Bonding Curve</span>
+      <span style="color:var(--text-dim); font-size:0.8rem;">20:35 – 20:54 UTC · Feb 26</span>
+    </div>
+    <p style="margin:0; font-size:0.88rem;">
+      The bonding curve completed in <strong>19 minutes</strong>. Entry price: $0.0000030. Exit price: $0.0000297. That's a <strong>10.1x</strong> in under 20 minutes with $33,762 in volume across the bonding curve phase. The curve's high was $0.0000341 before graduation.
+    </p>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header">
+      <span class="phase-tag dex">PumpSwap DEX</span>
+      <span style="color:var(--text-dim); font-size:0.8rem;">20:55 UTC Feb 26 → ATH ~04:00 UTC Feb 27</span>
+    </div>
+    <p style="margin:0; font-size:0.88rem;">
+      Upon graduation to PumpSwap, the token opened at $0.0000345 — a 1.2x premium over the bonding curve exit. Over the next ~8 hours, it climbed to an all-time high of $0.0004181 — a <strong>142x return</strong> from the bonding curve entry. The two peak volume hours were 20:00–21:00 UTC ($264,977) and 21:00–22:00 UTC ($387,559) on launch day.
+    </p>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header">
+      <span class="phase-tag viral">Peak Virality</span>
+      <span style="color:var(--text-dim); font-size:0.8rem;">Feb 27, Day 2</span>
+    </div>
+    <p style="margin:0; font-size:0.88rem;">
+      Day 2 was the volume peak at <strong>$1,287,532</strong> — driven by the WebSocket dashboard post (134 likes, 95K views), the XActions tweet-overlay chart (239 likes, 112K views tagging @frankdegods), and the Telegram bot announcement (414 likes, 72K views). The 03:00–04:00 UTC window alone generated $356,443 in volume.
+    </p>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header">
+      <span class="phase-tag decay">Decay</span>
+      <span style="color:var(--text-dim); font-size:0.8rem;">Feb 28 → Mar 9</span>
+    </div>
+    <p style="margin:0; font-size:0.88rem;">
+      Day 3 volume dropped to $35,993 (a 97% decline from peak). By Day 5 it was $605. Current price as of March 9: $0.0000035 — a 99.2% drawdown from ATH. The token's "half-life" (time to lose 50% from peak) was roughly 8–10 hours. Despite the decline, the token still trades with minimal daily volume.
+    </p>
+  </div>
+
+  <h3>Top Volume Hours</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Time (UTC)</th><th>Volume</th><th>High Price</th><th>Likely Catalyst</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Feb 26, 21:00</td><td class="highlight">$387,559</td><td>$0.0001775</td><td>Front page + "study small accounts" post (469 likes)</td></tr>
+      <tr><td>Feb 26, 20:00</td><td class="highlight">$264,977</td><td>$0.0001514</td><td>Token launch + bonding curve graduation</td></tr>
+      <tr><td>Feb 27, 03:00</td><td class="highlight">$212,800</td><td>$0.0003469</td><td>WebSocket dashboard + XActions chart shipped</td></tr>
+      <tr><td>Feb 27, 04:00</td><td>$143,643</td><td>$0.0004181</td><td>Vanity address generator → ATH reached</td></tr>
+      <tr><td>Feb 26, 22:00</td><td>$92,048</td><td>$0.0001323</td><td>SperaxOS post (244 likes, 70K views)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Daily Volume Summary</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Date</th><th>Open</th><th>High</th><th>Low</th><th>Close</th><th>Volume</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Feb 26</td><td>$0.0000341</td><td>$0.0001775</td><td>$0.0000204</td><td>$0.0000689</td><td class="highlight">$787,673</td></tr>
+      <tr><td>Feb 27</td><td>$0.0000689</td><td class="highlight">$0.0004181</td><td>$0.0000203</td><td>$0.0000222</td><td class="highlight">$1,287,532</td></tr>
+      <tr><td>Feb 28</td><td>$0.0000222</td><td>$0.0000240</td><td>$0.0000090</td><td>$0.0000100</td><td>$35,993</td></tr>
+      <tr><td>Mar 1</td><td>$0.0000100</td><td>$0.0000109</td><td>$0.0000060</td><td>$0.0000077</td><td>$4,470</td></tr>
+      <tr><td>Mar 2–9</td><td colspan="4" style="color:var(--text-dim)">Gradual decline to $0.0000035</td><td>$2,151</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ════════════════════ SECTION 3: TIMELINE ════════════════════ -->
+<section>
+  <div class="section-number">03 — The 48-Hour Sprint</div>
+  <h2>Hour-by-hour: from first post to j*b offer</h2>
+  <p>
+    Every major post is linked. Engagement metrics are actual scraped values from X. Price movements were correlated using timestamped minute-candle data.
+  </p>
+
+  <div class="timeline">
+    <div class="tl-item major">
+      <div class="tl-time">Feb 26, 18:24 UTC — Hour 0</div>
+      <div class="tl-title">The Original Post</div>
+      <div class="tl-desc">"i reverse engineered the pumpfun sdk and pumpswap sdk — afaik the only one on Github"</div>
+      <div class="tl-metrics">
+        <span class="hot">321 likes</span>
+        <span class="hot">157K views</span>
+        <span><a href="https://x.com/nichxbt/status/2027087471683698811" style="color:var(--accent);border:0">link ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item major">
+      <div class="tl-time">Feb 26, 20:35 UTC — Hour 2</div>
+      <div class="tl-title">$pump-sdk Token Created on Pump.fun</div>
+      <div class="tl-desc">Community member launches the token. Bonding curve begins at $0.0000030. I claim creator rewards via GitHub.</div>
+      <div class="tl-metrics">
+        <span>CA: F4ZH...pump</span>
+        <span><a href="https://pump.fun/coin/F4ZHCzizwpop2XS8auuAGQ7LZcUTEwQ22m5sRmB2pump" style="color:var(--accent);border:0">pump.fun ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">Feb 26, 20:54 UTC — Hour 2.5</div>
+      <div class="tl-title">Bonding Curve Graduates to DEX</div>
+      <div class="tl-desc">10.1x in 19 minutes. $33,762 volume through the bonding curve. Opens on PumpSwap at $0.0000345.</div>
+    </div>
+
+    <div class="tl-item major">
+      <div class="tl-time">Feb 26, 21:03 UTC — Hour 2.6</div>
+      <div class="tl-title">"I am on the front page of pump.fun"</div>
+      <div class="tl-desc">Token trending on pump.fun's homepage. The feedback loop begins.</div>
+      <div class="tl-metrics">
+        <span>51 likes</span>
+        <span>2.8K views</span>
+        <span><a href="https://x.com/nichxbt/status/2027127396181365176" style="color:var(--accent);border:0">link ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item major">
+      <div class="tl-time">Feb 26, 21:38 UTC — Hour 3.2</div>
+      <div class="tl-title">"Study small active accounts pushing a token"</div>
+      <div class="tl-desc">Highest-liked single post of the sprint. Commentary on organic vs manufactured attention.</div>
+      <div class="tl-metrics">
+        <span class="hot">469 likes</span>
+        <span class="hot">26K views</span>
+        <span><a href="https://x.com/nichxbt/status/2027138743753871744" style="color:var(--accent);border:0">link ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item major">
+      <div class="tl-time">Feb 26, 21:55 UTC — Hour 3.5</div>
+      <div class="tl-title">SperaxOS × AI Agents Post</div>
+      <div class="tl-desc">"Give AI agents access to money. Manage finances, find yield opportunities. MCP servers for your AI agents to interact with decentralized finance protocols."</div>
+      <div class="tl-metrics">
+        <span class="hot">244 likes</span>
+        <span class="hot">70K views</span>
+        <span><a href="https://x.com/nichxbt/status/2027140474147082543" style="color:var(--accent);border:0">link ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">Feb 26, 22:34 UTC — Hour 4.2</div>
+      <div class="tl-title">pump-sdk Use Cases Thread</div>
+      <div class="tl-desc">"Build crypto tools, monitor memecoin launches, claims, or snipe tokens. We should be saving time with AI."</div>
+      <div class="tl-metrics">
+        <span>20 likes</span>
+        <span>2K views</span>
+        <span><a href="https://x.com/nichxbt/status/2027150323291504698" style="color:var(--accent);border:0">link ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">Feb 26, 22:48 UTC — Hour 4.4</div>
+      <div class="tl-title">Vanity Address Generator Shipped</div>
+      <div class="tl-desc">Solana wallet vanity address generator added to pump-fun-sdk repo.</div>
+      <div class="tl-metrics">
+        <span>34 likes</span>
+        <span>3.9K views</span>
+        <span><a href="https://x.com/nichxbt/status/2027153748393603086" style="color:var(--accent);border:0">link ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item major">
+      <div class="tl-time">Feb 26, 23:01 UTC — Hour 4.6</div>
+      <div class="tl-title">Featured on CoinMarketCap</div>
+      <div class="tl-desc">"pump-fun-sdk: The Reverse-Engineered Pumpfun Bonding Curve SDK Powering the Next Generation of Solana AI Agents"</div>
+      <div class="tl-metrics">
+        <span>31 likes</span>
+        <span>4.6K views</span>
+        <span><a href="https://coinmarketcap.com/community/articles/69a0d08faea2e35728f0a2c1/" style="color:var(--accent);border:0">CMC article ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item major">
+      <div class="tl-time">Feb 27, 00:08 UTC — Hour 5.7</div>
+      <div class="tl-title">Listed on Anthropic's Official MCP Registry</div>
+      <div class="tl-desc">pump-fun-sdk registered as an MCP server on the canonical AI-to-tool integration directory used by Claude, ChatGPT, Cursor, and others.</div>
+      <div class="tl-metrics">
+        <span class="hot">117 likes</span>
+        <span class="hot">16K views</span>
+        <span><a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.nirholas%2Fpump-fun-sdk/versions/1.0.1" style="color:var(--accent);border:0">MCP registry ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">Feb 27, 00:22 UTC — Hour 6</div>
+      <div class="tl-title">OpenClaw / ClawHub Integration</div>
+      <div class="tl-desc">Pump SDK Core skill published on OpenClaw for instruction building and on-chain interaction.</div>
+      <div class="tl-metrics">
+        <span>48 likes</span>
+        <span>4.3K views</span>
+        <span><a href="https://x.com/nichxbt/status/2027177463567224969" style="color:var(--accent);border:0">link ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">Feb 27, 01:23 UTC — Hour 7</div>
+      <div class="tl-title">Fee Claim Monitor Shipped</div>
+      <div class="tl-desc">PumpFun fee claim monitor — watch wallets and get notified when creator fees or cashback are claimed.</div>
+      <div class="tl-metrics">
+        <span class="hot">74 likes</span>
+        <span>11K views</span>
+        <span><a href="https://x.com/nichxbt/status/2027192864061706254" style="color:var(--accent);border:0">link ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item major">
+      <div class="tl-time">Feb 27, 03:27 UTC — Hour 9</div>
+      <div class="tl-title">Real-Time WebSocket Dashboard Deployed</div>
+      <div class="tl-desc">Live PumpFun token tracking with raw WebSockets on Solana. Deployed on Vercel and Railway simultaneously.</div>
+      <div class="tl-metrics">
+        <span class="hot">134 likes</span>
+        <span class="hot">95K views</span>
+        <span><a href="https://pump-fun-websocket.vercel.app/" style="color:var(--accent);border:0">vercel ↗</a></span>
+        <span><a href="https://pump-fun-websocket-production.up.railway.app/charts" style="color:var(--accent);border:0">railway ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">Feb 27, 04:47 UTC — Hour 10.4</div>
+      <div class="tl-title">Browser Vanity Address Generator</div>
+      <div class="tl-desc">Custom Solana vanity addresses — entirely in-browser with multi-threaded workers.</div>
+      <div class="tl-metrics">
+        <span class="hot">123 likes</span>
+        <span>22K views</span>
+        <span><a href="https://x.com/nichxbt/status/2027244165738930609" style="color:var(--accent);border:0">link ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item major">
+      <div class="tl-time">Feb 27, 05:42 UTC — Hour 11.3</div>
+      <div class="tl-title">XActions: Tweet × Price Chart Overlay</div>
+      <div class="tl-desc">"What if you could see every tweet ever posted overlaid on a price chart and instantly know which ones actually moved the candle?" Used the <a href="https://github.com/nirholas/XActions">XActions repo</a> to scrape posts and correlate with price action. Tagged <a href="https://x.com/frankdegods">@frankdegods</a>.</div>
+      <div class="tl-metrics">
+        <span class="hot">239 likes</span>
+        <span class="hot">112K views</span>
+        <span><a href="https://x.com/nichxbt/status/2027257997626638615" style="color:var(--accent);border:0">link ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item major">
+      <div class="tl-time">Feb 27, 08:48 UTC — Hour 14.4</div>
+      <div class="tl-title">Telegram Bot Shipped — 17 Commands</div>
+      <div class="tl-desc">Full PumpFun intelligence bot: /price, bonding curve info, token lookup, wallet tracking. Zero cost, fully on-chain. The highest-engagement post of the entire sprint.</div>
+      <div class="tl-metrics">
+        <span class="hot">414 likes</span>
+        <span class="hot">72K views</span>
+        <span><a href="https://x.com/nichxbt/status/2027304823712817503" style="color:var(--accent);border:0">link ↗</a></span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-time">Feb 27, 20:14 UTC — Hour 25.8</div>
+      <div class="tl-title">Reflection</div>
+      <div class="tl-desc">"I open sourced an entire SDK that I built in public for like 26 hours straight."</div>
+    </div>
+
+    <div class="tl-item major">
+      <div class="tl-time">Feb 28, 23:28 UTC — Hour 53</div>
+      <div class="tl-title">The Recap — 11,000 Users, j*b Offer</div>
+      <div class="tl-desc">"A couple viral posts. 1 sender on @Pumpfun. And a whole lot of community support... brought @SperaxUSD 11,000+ users to SperaxOS." </div>
+      <div class="tl-metrics">
+        <span class="hot">338 likes</span>
+        <span class="hot">64K views</span>
+        <span><a href="https://x.com/nichxbt/status/2027888657970151832" style="color:var(--accent);border:0">link ↗</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════ SECTION 4: SOCIAL ANALYSIS ════════════════════ -->
+<section>
+  <div class="section-number">04 — Social Sentiment</div>
+  <h2>What the community was saying</h2>
+  <p>
+    Using the <a href="https://github.com/nirholas/XActions">XActions</a> browser scraping tools (built during the sprint itself), I collected 147 community tweets mentioning $pump-sdk or pump-sdk across X cashtag searches and keyword searches. Here's the breakdown:
+  </p>
+
+  <div class="data-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="data-card">
+      <div class="label">Unique Accounts</div>
+      <div class="value blue">87</div>
+      <div class="sub">Distinct handles posting</div>
+    </div>
+    <div class="data-card">
+      <div class="label">Bullish Mentions</div>
+      <div class="value green">51</div>
+      <div class="sub">~35% of all mentions</div>
+    </div>
+    <div class="data-card">
+      <div class="label">Total Key Post Views</div>
+      <div class="value orange">661K+</div>
+      <div class="sub">Across 15 viral posts</div>
+    </div>
+  </div>
+
+  <h3>Community Sentiment Breakdown</h3>
+  <div class="sentiment-bar">
+    <div class="bullish" style="width:35%"></div>
+    <div class="neutral" style="width:30%"></div>
+    <div class="spam" style="width:35%"></div>
+  </div>
+  <div class="sentiment-legend">
+    <span class="b">Bullish / Supportive (35%)</span>
+    <span class="n">Neutral / Informational (30%)</span>
+    <span class="s">Alpha Group Spam (35%)</span>
+  </div>
+
+  <p style="margin-top: 1.5rem;">
+    A notable pattern: the majority of "bullish" mentions came from genuine developers and traders who recognized the technical work ("dev reverse engineered all of pumpfun sdk... gud tek"). The spam cluster was almost entirely from copy-paste alpha group promoters posting CAs with inflated gain claims — a parasitic but expected phenomenon in the Solana memecoin ecosystem.
+  </p>
+
+  <div class="callout purple">
+    <p><strong>The viral flywheel:</strong> Post real work → community notices → token price reacts → more eyeballs → ship next thing → repeat. The key insight is that the <em>authenticity</em> of the work (live development, real GitHub commits, deployed products) was the engine — not hype, not paid promotions.</p>
+  </div>
+
+  <h3>Engagement Leaders</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Post</th><th>Likes</th><th>Views</th><th>Type</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>"study small active accounts"</td><td class="highlight">469</td><td>26K</td><td>Commentary</td></tr>
+      <tr><td>Telegram bot (17 commands)</td><td class="highlight">414</td><td>72K</td><td>Product ship</td></tr>
+      <tr><td>Recap: 11K users + j*b offer</td><td class="highlight">338</td><td>64K</td><td>Results</td></tr>
+      <tr><td>Original SDK announcement</td><td class="highlight">321</td><td>157K</td><td>Launch</td></tr>
+      <tr><td>SperaxOS / AI agents</td><td>244</td><td>70K</td><td>Vision</td></tr>
+      <tr><td>XActions tweet × price chart</td><td>239</td><td>112K</td><td>Research tool</td></tr>
+      <tr><td>WebSocket dashboard</td><td>134</td><td>95K</td><td>Product ship</td></tr>
+      <tr><td>Vanity address (browser)</td><td>123</td><td>22K</td><td>Product ship</td></tr>
+      <tr><td>MCP Registry listing</td><td>117</td><td>16K</td><td>Milestone</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ════════════════════ SECTION 5: TECH STACK ════════════════════ -->
+<section>
+  <div class="section-number">05 — Technical Architecture</div>
+  <h2>What was built, and with what</h2>
+
+  <h3>Full Tech Stack</h3>
+  <div class="tech-grid">
+    <div class="tech-item"><span class="tech-dot ts"></span>TypeScript</div>
+    <div class="tech-item"><span class="tech-dot js"></span>JavaScript</div>
+    <div class="tech-item"><span class="tech-dot py"></span>Python</div>
+    <div class="tech-item"><span class="tech-dot sol"></span>Solana / Web3</div>
+    <div class="tech-item"><span class="tech-dot ts"></span>Node.js</div>
+    <div class="tech-item"><span class="tech-dot ts"></span>Next.js</div>
+    <div class="tech-item"><span class="tech-dot infra"></span>WebSocket</div>
+    <div class="tech-item"><span class="tech-dot db"></span>PostgreSQL</div>
+    <div class="tech-item"><span class="tech-dot db"></span>DuckDB</div>
+    <div class="tech-item"><span class="tech-dot infra"></span>Vercel</div>
+    <div class="tech-item"><span class="tech-dot infra"></span>Railway</div>
+    <div class="tech-item"><span class="tech-dot api"></span>GeckoTerminal API</div>
+    <div class="tech-item"><span class="tech-dot api"></span>DexScreener API</div>
+    <div class="tech-item"><span class="tech-dot api"></span>pump.fun API</div>
+    <div class="tech-item"><span class="tech-dot api"></span>Solana RPC</div>
+    <div class="tech-item"><span class="tech-dot api"></span>Jupiter</div>
+    <div class="tech-item"><span class="tech-dot ai"></span>MCP Server</div>
+    <div class="tech-item"><span class="tech-dot ai"></span>AI Agent Tooling</div>
+    <div class="tech-item"><span class="tech-dot sol"></span>Bonding Curves</div>
+    <div class="tech-item"><span class="tech-dot sol"></span>PumpSwap DEX</div>
+  </div>
+
+  <h3>Repos Shipped</h3>
+  <div class="repo-grid">
+    <a href="https://github.com/nirholas/pump-fun-sdk" class="repo-link">
+      <div class="repo-icon">⚡</div>
+      <div class="repo-info">
+        <div class="name">pump-fun-sdk</div>
+        <div class="desc">Core reverse-engineered SDK — bonding curve math, fee sharing, token incentives, MCP server</div>
+      </div>
+    </a>
+    <a href="https://github.com/nirholas/pump-swap-sdk" class="repo-link">
+      <div class="repo-icon">🔄</div>
+      <div class="repo-info">
+        <div class="name">pump-swap-sdk</div>
+        <div class="desc">PumpSwap DEX SDK — trade execution after bonding curve graduation</div>
+      </div>
+    </a>
+    <a href="https://github.com/nirholas/XActions" class="repo-link">
+      <div class="repo-icon">🔍</div>
+      <div class="repo-info">
+        <div class="name">XActions</div>
+        <div class="desc">X scraping tools — cashtag search, profile scraping, sentiment analysis, used for this case study</div>
+      </div>
+    </a>
+    <a href="https://github.com/nirholas/analyze-memecoin-socials" class="repo-link">
+      <div class="repo-icon">📊</div>
+      <div class="repo-info">
+        <div class="name">analyze-memecoin-socials</div>
+        <div class="desc">Research data, chart visualizations, price × tweet overlays</div>
+      </div>
+    </a>
+  </div>
+
+  <h3>Live Deployments</h3>
+  <div class="repo-grid">
+    <a href="https://pump-fun-websocket.vercel.app/" class="repo-link">
+      <div class="repo-icon">🟢</div>
+      <div class="repo-info">
+        <div class="name">pump-fun-websocket.vercel.app</div>
+        <div class="desc">Main WebSocket dashboard — real-time token launches</div>
+      </div>
+    </a>
+    <a href="https://pump-fun-websocket.vercel.app/trades" class="repo-link">
+      <div class="repo-icon">📈</div>
+      <div class="repo-info">
+        <div class="name">pump-fun-websocket.vercel.app/trades</div>
+        <div class="desc">Live trades feed</div>
+      </div>
+    </a>
+    <a href="https://pump-fun-websocket-production.up.railway.app/charts" class="repo-link">
+      <div class="repo-icon">🚂</div>
+      <div class="repo-info">
+        <div class="name">pump-fun-websocket...railway.app/charts</div>
+        <div class="desc">Charts deployment on Railway</div>
+      </div>
+    </a>
+    <a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.nirholas%2Fpump-fun-sdk/versions/1.0.1" class="repo-link">
+      <div class="repo-icon">🤖</div>
+      <div class="repo-info">
+        <div class="name">MCP Registry — pump-fun-sdk v1.0.1</div>
+        <div class="desc">Official Model Context Protocol server for AI agent integration</div>
+      </div>
+    </a>
+  </div>
+
+  <h3>Developer Velocity</h3>
+  <p>
+    In 26 continuous hours of live development, the following was shipped to production: a core SDK with bonding curve math and instruction builders, a PumpSwap DEX SDK, a fee claim monitor, a real-time WebSocket dashboard (deployed to both Vercel and Railway), a Solana vanity address generator (both CLI and browser versions), a 17-command Telegram bot, an MCP server registered on the official registry, X scraping tools with sentiment analysis, and a tweet-overlay price chart. The code spanned TypeScript, JavaScript, and Python, with PostgreSQL and DuckDB for data storage.
+  </p>
+</section>
+
+<!-- ════════════════════ SECTION 6: ECONOMICS ════════════════════ -->
+<section>
+  <div class="section-number">06 — Economics</div>
+  <h2>The ROI of building in public</h2>
+
+  <div class="data-grid" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="data-card">
+      <div class="label">Personal Earnings</div>
+      <div class="value green">$20,000</div>
+      <div class="sub">Creator rewards + token appreciation</div>
+    </div>
+    <div class="data-card">
+      <div class="label">Capital Invested</div>
+      <div class="value">$0</div>
+      <div class="sub">Pure skill → money conversion</div>
+    </div>
+    <div class="data-card">
+      <div class="label">Total Volume Generated</div>
+      <div class="value purple">$2,117,819</div>
+      <div class="sub">Across 12 trading days</div>
+    </div>
+    <div class="data-card">
+      <div class="label">New Users Driven</div>
+      <div class="value orange">11,000+</div>
+      <div class="sub">To SperaxOS platform</div>
+    </div>
+  </div>
+
+  <p style="margin-top: 1.5rem;">
+    The creator reward mechanism on pump.fun allowed me to earn from the token's trading activity without having invested any capital. Every trade generated a small fee that flowed back to the claimed creator wallet. Combined with early token appreciation, this produced $20,000 in total earnings from what was essentially a side-effect of open-source development.
+  </p>
+  <p>
+    Beyond the direct financial outcome, the sprint drove 11,000+ new users to SperaxOS, generated a CoinMarketCap feature article, produced 4 open-source repositories that continue to serve the developer community, and culminated in a j*b offer from a well established cryptocurrency company.
+  </p>
+</section>
+
+<!-- ════════════════════ SECTION 7: METHODOLOGY ════════════════════ -->
+<section>
+  <div class="section-number">07 — Research Methodology</div>
+  <h2>How this case study was built</h2>
+  <p>
+    This case study is itself a product of the tools built during the sprint. Here's the data collection pipeline:
+  </p>
+
+  <h3>Price Data Collection</h3>
+  <p>
+    OHLCV data was fetched at multiple granularities using custom TypeScript and Python scripts (<code>fetch-pump-sdk-history.ts</code>, <code>fetch-launch-window.ts</code>, <code>fetch-pump-sdk-1m-ohlcv.py</code>) hitting the DexScreener and GeckoTerminal APIs with automatic fallback. This produced 12 daily candles, 159 hourly candles, 2,524 minute candles (full lifetime), and 20 bonding-curve-phase candles. Bonding curve data was sourced separately from pump.fun's own trade records.
+  </p>
+
+  <h3>On-Chain Data</h3>
+  <p>
+    100,371 transaction signatures for the first 48 hours were extracted from the Solana blockchain using RPC calls, stored in CSV with block time, slot, and signature hash for each transaction.
+  </p>
+
+  <h3>Social Data Collection</h3>
+  <p>
+    All 198 of my own posts (including replies) were scraped using the <a href="https://github.com/nirholas/XActions">XActions</a> browser console scripts (<code>scrape-profile-with-replies.js</code>). Community mentions were gathered via <code>x-cashtag-scraper.js</code> with date filtering, producing 147 community tweets from 87 unique accounts. Sentiment was scored based on keyword matching (bullish indicators: "moon", "lfg", "early", "x gain", "profit", "cooking"; spam indicators: "DM for", "alpha group", "copy trade").
+  </p>
+
+  <h3>Correlation Analysis</h3>
+  <p>
+    Post timestamps were overlaid on minute-candle price data to identify which posts likely catalyzed which price movements. The interactive <code>tweetcharts.html</code> visualization renders this as a scatter plot. The <code>social-sentiment.html</code> dashboard aggregates all social signals alongside price action.
+  </p>
+</section>
+
+<!-- ════════════════════ SECTION 8: LESSONS ════════════════════ -->
+<section>
+  <div class="section-number">08 — Lessons</div>
+  <h2>What worked and why</h2>
+
+  <p><strong>Ship, don't pitch.</strong> Every post that performed well announced something that was already live and deployed — not a roadmap, not a coming-soon. The Telegram bot post (414 likes) included "17 commands. Zero cost. Fully on-chain." The WebSocket post (134 likes, 95K views) linked directly to a running deployment. People engage with results, not promises.</p>
+
+  <p><strong>The feedback loop is real, but fragile.</strong> The viral cycle of post → price → attention → post sustained itself for roughly 14 hours of intense building (hours 0–14 of the sprint). After that, the energy had to come from somewhere else. When development paused, so did the momentum. The token's half-life from ATH was 8–10 hours.</p>
+
+  <p><strong>Open source is the ultimate trust signal.</strong> In an ecosystem plagued by rugs and scams, having verifiable GitHub commits, a real repo with real code, and a registered MCP server made the difference between "another memecoin" and "a developer story worth following."</p>
+
+  <p><strong>Data tells the story better than you can.</strong> The XActions tweet × price chart overlay — showing exactly which post moved which candle — was the most compelling piece of content (239 likes, 112K views). Meta-analysis of your own virality is itself viral.</p>
+
+  <p><strong>Zero capital invested.</strong> This entire outcome — $20,000, a j*b offer, 11,000 users for SperaxOS, multiple open-source tools — was generated purely from development skill and the willingness to build in public. No bought followers, no paid promotions, no initial capital at risk.</p>
+</section>
+
+<!-- ════════════════════ DIVIDER ════════════════════ -->
+<div class="divider">· · ·</div>
+
+<!-- ════════════════════ X ARTICLE VERSION ════════════════════ -->
+<section id="x-article">
+  <div class="section-number">X ARTICLE VERSION</div>
+  <h2>Optimized for X's article format</h2>
+  <p>Copy-pasteable version below, designed for maximum engagement on X Articles.</p>
+
+  <div class="x-article">
+    <div class="hook">
+      I reverse-engineered pump.fun's SDK. Someone launched a memecoin about it. I made $20K and got a j*b offer. Here's the full breakdown with on-chain data, 100K+ transactions, and every post mapped to the price chart.
+    </div>
+
+    <h4>Day 0 — The Post That Started It All</h4>
+    <p>
+      Feb 26, 2026. I pushed what I believe was the only complete reverse-engineered pump.fun SDK to GitHub — bonding curve math, instruction builders, fee sharing, the works. I posted it on X. <a href="https://x.com/nichxbt/status/2027087471683698811">321 likes. 157K views.</a>
+    </p>
+    <p>
+      Two hours later, someone launched a memecoin called $pump-sdk on pump.fun and linked me to claim creator rewards via my GitHub. Token: <a href="https://pump.fun/coin/F4ZHCzizwpop2XS8auuAGQ7LZcUTEwQ22m5sRmB2pump">F4ZH...pump</a>.
+    </p>
+    <p>I claimed it. Then I started building.</p>
+
+    <h4>The Numbers</h4>
+    <p>
+      The bonding curve completed in 19 minutes. 10x. $33K volume. Graduated to PumpSwap DEX. Opened at $0.0000345. Over the next 8 hours it hit an ATH of $0.0004181 — <strong>142x from bonding curve start</strong>. Day 1 volume: $788K. Day 2: $1.29M. Total: <strong>$2.1M in trading volume</strong>. 100,371 on-chain transactions in the first 48 hours.
+    </p>
+
+    <h4>What I Shipped in 26 Hours</h4>
+    <p>
+      <a href="https://github.com/nirholas/pump-fun-sdk">pump-fun-sdk</a> — the core reverse-engineered SDK. <a href="https://github.com/nirholas/pump-swap-sdk">pump-swap-sdk</a> — PumpSwap DEX SDK. A real-time WebSocket dashboard deployed on <a href="https://pump-fun-websocket.vercel.app/">Vercel</a> and <a href="https://pump-fun-websocket-production.up.railway.app/charts">Railway</a>. An MCP server registered on <a href="https://registry.modelcontextprotocol.io/v0.1/servers/io.github.nirholas%2Fpump-fun-sdk/versions/1.0.1">Anthropic's official registry</a>. A Solana vanity address generator. A 17-command Telegram bot. A fee claim monitor. Plus <a href="https://github.com/nirholas/XActions">XActions</a> — X scraping tools I used to chart my own posts against the price action and tag <a href="https://x.com/frankdegods">@frankdegods</a> with the analysis.
+    </p>
+    <p>
+      Stack: TypeScript, JavaScript, Python, Node.js, Next.js, WebSocket, PostgreSQL, DuckDB, Vercel, Railway, Solana RPC, Jupiter, GeckoTerminal, DexScreener, pump.fun API, MCP.
+    </p>
+
+    <h4>The Viral Flywheel</h4>
+    <p>
+      Every time I shipped something and posted it, the token pumped. The pump drew eyeballs. The eyeballs watched me ship the next thing. Post → price → attention → post. The <a href="https://x.com/nichxbt/status/2027304823712817503">Telegram bot post hit 414 likes and 72K views</a>. The <a href="https://x.com/nichxbt/status/2027257997626638615">tweet × price overlay chart hit 239 likes and 112K views</a>. The <a href="https://x.com/nichxbt/status/2027224007486194094">WebSocket dashboard: 134 likes, 95K views</a>.
+    </p>
+
+    <h4>The Outcome</h4>
+    <p>
+      $20,000 earned — zero capital invested. Featured on <a href="https://coinmarketcap.com/community/articles/69a0d08faea2e35728f0a2c1/">CoinMarketCap</a>. 11,000+ new users driven to SperaxOS. 4 open-source repos that devs still use today. 87 unique accounts discussing the project.
+    </p>
+    <p>
+      And then i was offered to help build with a well known blockchain and crypto company.
+    </p>
+    <p>
+      <strong>The lesson:</strong> In crypto, shipping real things in public — with real code, real deploys, and real data — is the most underrated marketing strategy that exists. No budget required. Just skill and conviction.
+    </p>
+    <p>
+      All repos, data, and tools are open source. Links in this article. Go build.
+    </p>
+  </div>
+</section>
+
+<!-- ════════════════════ FOOTER ════════════════════ -->
+<footer>
+  <p style="margin-bottom: 0.5rem;">
+    <a href="https://x.com/nichxbt">@nichxbt</a> · <a href="https://github.com/nirholas/pump-fun-sdk">GitHub</a> · March 2026
+  </p>
+  <p>Built with real data. 100,371 transactions don't lie.</p>
+</footer>
+
+</div><!-- /container -->
+
+</body>
+</html>
