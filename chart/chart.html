@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
-<title>pump-sdk — Tweet × Price</title>
-<meta name="description" content="pump-sdk token price with @nichxbt tweet markers. See how tweets correlate with price action on Solana.">
+<title>Tweet × Price Chart</title>
+<meta name="description" content="Overlay X/Twitter posts on any Solana token chart. See how tweets correlate with price action.">
 <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
 <style>
   :root {
@@ -14,8 +14,8 @@
     --green: #22c55e; --red: #ef4444; --blue: #3b82f6; --yellow: #f59e0b;
     --border: rgba(255,255,255,0.08);
     --positive: #22C55E; --negative: #EF4444;
-    --candle-up: rgba(94,186,162,0.35); --candle-down: rgba(216,126,136,0.35);
-    --candle-border-up: rgba(94,186,162,0.48); --candle-border-down: rgba(216,126,136,0.48);
+    --candle-up: #26a69a; --candle-down: #ef5350;
+    --candle-border-up: #26a69a; --candle-border-down: #ef5350;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif; overflow: hidden; }
@@ -98,58 +98,95 @@
   /* ── Help ────────────────────────────────────────────────────── */
   #help-text { position: absolute; bottom: 8px; left: 8px; z-index: 20; font-size: 9px; color: #52525B; user-select: none; }
 
-  /* ── Tweet Feed Panel ───────────────────────────────────────── */
-  #feed-panel {
-    position: fixed; top: 48px; right: 0; bottom: 0; width: 380px;
-    background: var(--surface1); border-left: 1px solid var(--border);
-    z-index: 50; transform: translateX(100%); transition: transform 0.25s ease;
-    display: flex; flex-direction: column;
-  }
-  #feed-panel.open { transform: translateX(0); }
-  #feed-header {
-    padding: 10px 14px; border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; gap: 8px; flex-shrink: 0;
-  }
-  #feed-header .nich-avatar { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--blue); }
-  #feed-header .nich-name { font-weight: 700; font-size: 13px; }
-  #feed-header .nich-handle { color: var(--muted); font-size: 11px; }
-  #feed-close {
-    margin-left: auto; background: none; border: 1px solid var(--border);
-    color: var(--muted); width: 28px; height: 28px; border-radius: 5px;
-    cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s;
-  }
-  #feed-close:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
-  #feed-body { flex: 1; overflow-y: auto; }
-  #feed-body .timeline-placeholder {
-    padding: 20px; text-align: center; color: var(--muted); font-size: 12px;
-  }
-  /* Feed toggle button in controls */
-  .feed-btn { position: relative; }
-  .feed-btn .feed-dot {
-    width: 7px; height: 7px; border-radius: 50%; background: #1DA1F2;
-    box-shadow: 0 0 6px rgba(29,161,242,0.5); display: inline-block;
-  }
-  .feed-btn.off .feed-dot { background: var(--muted); box-shadow: none; }
-  /* Nich avatar in header */
+  /* Avatar in header */
   .nich-header-avatar { width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--blue); margin-left: 4px; }
+
+  /* ── Setup overlay ───────────────────────────────────────────── */
+  #setup-overlay {
+    position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.85);
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(8px);
+  }
+  #setup-overlay.hidden { display: none; }
+  .setup-card {
+    background: var(--surface1); border: 1px solid var(--border); border-radius: 16px;
+    padding: 32px; max-width: 480px; width: 90%;
+  }
+  .setup-card h1 { font-size: 24px; margin-bottom: 4px; }
+  .setup-card p { color: var(--muted); font-size: 13px; margin-bottom: 24px; line-height: 1.5; }
+  .setup-field { margin-bottom: 16px; }
+  .setup-field label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--secondary); margin-bottom: 6px; }
+  .setup-field input {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 14px; color: var(--text); font-size: 14px;
+    font-family: 'SF Mono','Fira Code', monospace; outline: none; transition: border-color 0.15s;
+  }
+  .setup-field input::placeholder { color: var(--muted); font-size: 12px; font-family: inherit; }
+  .setup-field input:focus { border-color: var(--blue); }
+  .setup-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .setup-submit {
+    width: 100%; padding: 12px; background: var(--blue); border: none; color: #fff;
+    font-size: 14px; font-weight: 600; border-radius: 8px; cursor: pointer;
+    transition: opacity 0.15s; margin-top: 8px;
+  }
+  .setup-submit:hover { opacity: 0.9; }
+  .setup-demo { text-align: center; margin-top: 12px; }
+  .setup-demo a { color: var(--muted); font-size: 11px; text-decoration: underline; cursor: pointer; }
 
   @media (max-width: 768px) {
     .header-right .stat { display: none; }
     .links { display: none; }
     #legend { display: none; }
-    #feed-panel { width: 100%; }
+    .setup-row { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
+<!-- Setup overlay — shows when no token param is provided -->
+<div id="setup-overlay" class="hidden">
+  <div class="setup-card">
+    <h1>📈 Tweet × Price</h1>
+    <p>Overlay any X account's posts onto a Solana token chart. See how social activity correlates with price action in real time.</p>
+    <form id="setup-form">
+      <div class="setup-field">
+        <label>Token Contract Address</label>
+        <input type="text" id="input-token" placeholder="F4ZHCziz...RmB2pump" required spellcheck="false">
+      </div>
+      <div class="setup-row">
+        <div class="setup-field">
+          <label>Pool Address (optional)</label>
+          <input type="text" id="input-pool" placeholder="Auto-detected from DexScreener" spellcheck="false">
+        </div>
+        <div class="setup-field">
+          <label>X Handle</label>
+          <input type="text" id="input-handle" placeholder="nichxbt" spellcheck="false">
+        </div>
+      </div>
+      <div class="setup-row">
+        <div class="setup-field">
+          <label>Avatar URL (optional)</label>
+          <input type="text" id="input-avatar" placeholder="https://..." spellcheck="false">
+        </div>
+        <div class="setup-field">
+          <label>Tweets JSON URL (optional)</label>
+          <input type="text" id="input-tweets" placeholder="https://...tweets.json" spellcheck="false">
+        </div>
+      </div>
+      <button type="submit" class="setup-submit">Load Chart →</button>
+    </form>
+    <div class="setup-demo">
+      <a id="demo-link">or view pump-sdk × @nichxbt demo</a>
+    </div>
+  </div>
+</div>
+
 <!-- Header -->
 <div id="header">
   <div class="token-info">
-    <img class="token-icon" id="token-icon" src="" alt="pump-sdk" onerror="this.style.display='none'">
-    <span class="token-name">pump-sdk</span>
-    <span class="token-pair">/ SOL</span>
+    <img class="token-icon" id="token-icon" src="" alt="token" onerror="this.style.display='none'">
+    <span class="token-name" id="token-name">Loading...</span>
+    <span class="token-pair" id="token-pair">/ SOL</span>
   </div>
   <span id="live-price" class="up">—</span>
   <span id="price-change" class="up">—</span>
@@ -159,12 +196,8 @@
     <div class="stat"><span class="stat-label">Liq</span><span class="stat-value" id="stat-liq">—</span></div>
     <div class="stat"><span class="stat-label">Txns 1h</span><span class="stat-value" id="stat-txns">—</span></div>
     <div class="status-dot"></div>
-    <img class="nich-header-avatar" src="nich.jpg" alt="nich" onerror="this.style.display='none'">
-    <div class="links">
-      <a href="https://pump.fun/coin/F4ZHCzizwpop2XS8auuAGQ7LZcUTEwQ22m5sRmB2pump" target="_blank">pump.fun</a>
-      <a href="https://dexscreener.com/solana/AS5KLCFs4HVYPebV8MNt2YzD2Fs2jgb5F2p3xXjxm9Aj" target="_blank">DexScreener</a>
-      <a href="https://x.com/nichxbt" target="_blank">@nichxbt</a>
-    </div>
+    <img class="nich-header-avatar" id="header-avatar" src="" alt="" onerror="this.style.display='none'">
+    <div class="links" id="header-links"></div>
   </div>
 </div>
 
@@ -189,11 +222,7 @@
     <button class="ctrl-btn" onclick="jumpFirst()">First Tweet</button>
     <button class="ctrl-btn" onclick="jumpAll()">All Time</button>
     <button class="ctrl-btn" onclick="jumpLast()">Last Tweet</button>
-    <span class="ctrl-sep"></span>
-    <button class="ctrl-btn feed-btn" id="feed-toggle-btn" onclick="toggleFeed()">
-      <span class="feed-dot"></span>
-      <span>Feed</span>
-    </button>
+
   </div>
 
   <!-- Legend -->
@@ -206,33 +235,13 @@
   <div id="help-text">Drag to pan · Scroll to zoom</div>
 </div>
 
-<!-- Tweet Feed Panel -->
-<div id="feed-panel">
-  <div id="feed-header">
-    <img class="nich-avatar" src="nich.jpg" alt="nich" onerror="this.style.display='none'">
-    <div>
-      <div class="nich-name">nich</div>
-      <div class="nich-handle">@nichxbt</div>
-    </div>
-    <button id="feed-close" onclick="toggleFeed()">&times;</button>
-  </div>
-  <div id="feed-body">
-    <a class="twitter-timeline"
-       href="https://twitter.com/nichxbt"
-       data-theme="dark"
-       data-chrome="noheader nofooter noborders transparent"
-       data-tweet-limit="20"
-       data-dnt="true">
-      Loading @nichxbt tweets...
-    </a>
-  </div>
-</div>
+
 
 <!-- Tooltip -->
 <div id="tweet-tooltip">
   <div class="tt-header">
     <img class="tt-avatar" id="tt-avatar" src="" alt="">
-    <div><div class="tt-name">@nichxbt</div><div class="tt-time" id="tt-time"></div></div>
+    <div><div class="tt-name" id="tt-name">@—</div><div class="tt-time" id="tt-time"></div></div>
   </div>
   <div class="tt-text" id="tt-text"></div>
   <div class="tt-stats" id="tt-stats"></div>
@@ -240,15 +249,21 @@
 
 <script>
 // ════════════════════════════════════════════════════════════════════════════
-// pump-sdk Tweet × Price Chart
-// Ported from rohunvora/tweet-price-charts (Chart.tsx)
-// Canvas overlay markers, clustering, gap lines with glow, adaptive zoom
-// Data: GeckoTerminal OHLCV + DexScreener live + embedded tweets
+// Tweet × Price Chart — Dynamic configuration
+// Supports URL params: ?token=<CA>&pool=<POOL>&handle=<X_HANDLE>&avatar=<URL>&tweets=<JSON_URL>
+// Falls back to pump-sdk / @nichxbt defaults
 // ════════════════════════════════════════════════════════════════════════════
 
-const MINT = 'F4ZHCzizwpop2XS8auuAGQ7LZcUTEwQ22m5sRmB2pump';
-const POOL = 'AS5KLCFs4HVYPebV8MNt2YzD2Fs2jgb5F2p3xXjxm9Aj';
-const GECKO = 'https://api.geckoterminal.com/api/v2/networks/solana/pools/' + POOL;
+const PARAMS = new URLSearchParams(window.location.search);
+
+const MINT = PARAMS.get('token') || 'F4ZHCzizwpop2XS8auuAGQ7LZcUTEwQ22m5sRmB2pump';
+let POOL = PARAMS.get('pool') || 'AS5KLCFs4HVYPebV8MNt2YzD2Fs2jgb5F2p3xXjxm9Aj';
+const X_HANDLE = PARAMS.get('handle') || 'nichxbt';
+const AVATAR_URL = PARAMS.get('avatar') || 'nich.jpg';
+const TWEETS_URL = PARAMS.get('tweets') || ''; // External JSON URL for tweets (optional)
+const NETWORK = PARAMS.get('network') || 'solana';
+
+let GECKO = `https://api.geckoterminal.com/api/v2/networks/${NETWORK}/pools/${POOL}`;
 const DEXSCREENER = 'https://api.dexscreener.com/latest/dex/tokens/' + MINT;
 
 const MARKER_COLOR = '#3B82F6';
@@ -451,12 +466,12 @@ function initChart() {
 
   // Candlestick series — muted teal/coral palette (the stage, not the star)
   candleSeries = chart.addCandlestickSeries({
-    upColor: 'rgba(94,186,162,0.35)',
-    downColor: 'rgba(216,126,136,0.35)',
-    borderUpColor: 'rgba(94,186,162,0.48)',
-    borderDownColor: 'rgba(216,126,136,0.48)',
-    wickUpColor: 'rgba(94,186,162,0.35)',
-    wickDownColor: 'rgba(216,126,136,0.35)',
+    upColor: '#26a69a',
+    downColor: '#ef5350',
+    borderUpColor: '#26a69a',
+    borderDownColor: '#ef5350',
+    wickUpColor: '#26a69a',
+    wickDownColor: '#ef5350',
   });
 
   // Volume histogram
@@ -515,7 +530,7 @@ function initChart() {
   // Resize
   window.addEventListener('resize', () => {
     const newH = window.innerHeight - 48;
-    const newW = feedOpen ? window.innerWidth - 380 : window.innerWidth;
+    const newW = window.innerWidth;
     area.style.height = newH + 'px';
     area.style.width = newW + 'px';
     container.style.height = newH + 'px';
@@ -527,7 +542,7 @@ function initChart() {
   // Load avatar
   const img = new Image();
   img.crossOrigin = 'anonymous';
-  img.src = 'nich.jpg';
+  img.src = AVATAR_URL;
   img.onload = () => { avatarImg = img; drawMarkers(); };
 }
 
@@ -565,7 +580,7 @@ function drawMarkers() {
   const zoomFactor = Math.min(1, Math.max(0.4, 86400 * 7 / visibleSeconds));
   const bubbleSize = Math.round(24 + 16 * zoomFactor);
   const bubbleRadius = bubbleSize / 2;
-  const clusterThreshold = bubbleSize + 8;
+  const clusterThreshold = bubbleSize * 0.6;
   const timeFontSize = Math.round(8 + 4 * zoomFactor);
   const pctFontSize = Math.round(9 + 4 * zoomFactor);
   const labelSpacing = Math.round(9 + 4 * zoomFactor);
@@ -784,7 +799,7 @@ function drawGlowLine(ctx, x1, y1, x2, y2, color, magnitude) {
     ctx.strokeStyle = 'transparent'; ctx.stroke();
   });
   ctx.shadowColor = hex + '40'; ctx.shadowBlur = 4;
-  ctx.strokeStyle = hex + 'CC'; ctx.stroke();
+  ctx.strokeStyle = hex + '90'; ctx.stroke();
   ctx.restore();
 }
 
@@ -893,7 +908,7 @@ async function loadTimeframe(type, agg) {
   candleSeries.setData(data.map(c => ({ time: c.time, open: c.open, high: c.high, low: c.low, close: c.close })));
   volumeSeries.setData(data.map(c => ({
     time: c.time, value: c.volume,
-    color: c.close >= c.open ? 'rgba(94,186,162,0.12)' : 'rgba(216,126,136,0.1)',
+    color: c.close >= c.open ? 'rgba(38,166,154,0.25)' : 'rgba(239,83,80,0.25)',
   })));
 
   chart.timeScale().fitContent();
@@ -914,6 +929,14 @@ async function fetchDexStats() {
     const d = await r.json();
     const p = d.pairs?.[0];
     if (!p) return;
+
+    // Auto-resolve pool address from DexScreener if not explicitly provided
+    if (!PARAMS.has('pool') && p.pairAddress) {
+      POOL = p.pairAddress;
+      GECKO = `https://api.geckoterminal.com/api/v2/networks/${NETWORK}/pools/${POOL}`;
+    }
+
+    populateHeader(p);
     const price = parseFloat(p.priceUsd) || 0;
     const change = p.priceChange?.h1 || 0;
     const up = change >= 0;
@@ -956,49 +979,89 @@ document.querySelectorAll('.ctrl-btn[data-tf]').forEach(btn => {
 });
 
 // ══════════════════════════════════════════════════════════════════════════
-// Init
+// Setup form — show overlay when user visits bare URL (no ?token= param)
 // ══════════════════════════════════════════════════════════════════════════
+const IS_CUSTOM = PARAMS.has('token');
+
+if (!IS_CUSTOM) {
+  document.getElementById('setup-overlay').classList.remove('hidden');
+}
+
+document.getElementById('demo-link').addEventListener('click', () => {
+  document.getElementById('setup-overlay').classList.add('hidden');
+});
+
+document.getElementById('setup-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const token = document.getElementById('input-token').value.trim();
+  if (!token) return;
+  const params = new URLSearchParams();
+  params.set('token', token);
+  const pool = document.getElementById('input-pool').value.trim();
+  const handle = document.getElementById('input-handle').value.trim();
+  const avatar = document.getElementById('input-avatar').value.trim();
+  const tweets = document.getElementById('input-tweets').value.trim();
+  if (pool) params.set('pool', pool);
+  if (handle) params.set('handle', handle);
+  if (avatar) params.set('avatar', avatar);
+  if (tweets) params.set('tweets', tweets);
+  window.location.search = params.toString();
+});
+
 // ══════════════════════════════════════════════════════════════════════════
-// Tweet Feed Panel
+// Init — Dynamic header population + optional external tweet loading
 // ══════════════════════════════════════════════════════════════════════════
-let feedOpen = false;
-let widgetsLoaded = false;
+async function loadExternalTweets() {
+  if (!TWEETS_URL) return;
+  try {
+    const r = await fetch(TWEETS_URL);
+    const data = await r.json();
+    const items = Array.isArray(data) ? data : data.tweets || [];
+    items.forEach(t => {
+      tweetEvents.push({
+        timestamp: Math.floor(new Date(t.ts || t.timestamp || t.created_at).getTime() / 1000),
+        text: t.text || t.content || '',
+        likes: parseInt(t.likes) || 0,
+        views: t.views || '0',
+        url: t.url || '',
+        price_at_tweet: null,
+      });
+    });
+    tweetEvents.sort((a, b) => a.timestamp - b.timestamp);
+    document.getElementById('tweet-count').textContent = tweetEvents.length;
+  } catch (e) { console.warn('Failed to load external tweets:', e); }
+}
 
-function toggleFeed() {
-  feedOpen = !feedOpen;
-  const panel = document.getElementById('feed-panel');
-  const btn = document.getElementById('feed-toggle-btn');
-  panel.classList.toggle('open', feedOpen);
-  btn.classList.toggle('active', feedOpen);
+function populateHeader(pair) {
+  const name = pair?.baseToken?.name || MINT.slice(0, 8);
+  const symbol = pair?.baseToken?.symbol || '???';
+  const quoteSymbol = pair?.quoteToken?.symbol || 'SOL';
+  document.getElementById('token-name').textContent = symbol.toLowerCase();
+  document.getElementById('token-pair').textContent = `/ ${quoteSymbol}`;
+  document.title = `${symbol} — Tweet × Price`;
 
-  // Load Twitter widgets.js on first open (no API key needed)
-  if (feedOpen && !widgetsLoaded) {
-    widgetsLoaded = true;
-    const s = document.createElement('script');
-    s.src = 'https://platform.twitter.com/widgets.js';
-    s.async = true;
-    s.charset = 'utf-8';
-    document.head.appendChild(s);
-  } else if (feedOpen && window.twttr?.widgets) {
-    // Re-render if already loaded
-    window.twttr.widgets.load(document.getElementById('feed-body'));
-  }
+  // Avatar
+  document.getElementById('header-avatar').src = AVATAR_URL;
 
-  // Resize chart to make room
-  setTimeout(() => {
-    const w = feedOpen ? window.innerWidth - 380 : window.innerWidth;
-    const area = document.getElementById('chart-area');
-    const container = document.getElementById('chart-container');
-    area.style.width = w + 'px';
-    container.style.width = w + 'px';
-    chart.resize(w, window.innerHeight - 48);
-    requestAnimationFrame(() => requestAnimationFrame(drawMarkers));
-  }, 300);
+  // Tooltip name
+  document.getElementById('tt-name').textContent = `@${X_HANDLE}`;
+
+  // Build dynamic links
+  const links = document.getElementById('header-links');
+  links.innerHTML = '';
+  const addLink = (label, url) => {
+    const a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.textContent = label;
+    links.appendChild(a);
+  };
+  if (NETWORK === 'solana') addLink('pump.fun', `https://pump.fun/coin/${MINT}`);
+  addLink('DexScreener', `https://dexscreener.com/${NETWORK}/${POOL}`);
+  addLink(`@${X_HANDLE}`, `https://x.com/${X_HANDLE}`);
 }
 
 (async function init() {
   initChart();
-  await Promise.all([fetchTokenIcon(), fetchDexStats()]);
+  const [, dexData] = await Promise.all([fetchTokenIcon(), fetchDexStats(), loadExternalTweets()]);
   await loadTimeframe('minute', 1);
   setInterval(fetchDexStats, 10000);
   setInterval(() => loadTimeframe(currentTf.type, currentTf.agg), 30000);
