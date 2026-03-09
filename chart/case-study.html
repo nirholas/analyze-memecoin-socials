@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How I Reverse-Engineered pump.fun, Made $20K, and Got a j*b Offer — A Data-Driven Case Study</title>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 <style>
   :root {
     --bg: #0a0a0b;
@@ -723,6 +724,207 @@
   @media (max-width: 768px) {
     .chart-widget iframe { height: 360px; }
   }
+
+  /* ── Chart.js Sections ── */
+  .cjs-section {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .cjs-section .cjs-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+  .cjs-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  @media (max-width: 768px) {
+    .cjs-row { grid-template-columns: 1fr; }
+  }
+  .cjs-section canvas {
+    max-height: 340px;
+  }
+
+  /* ── Press Cards ── */
+  .press-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .press-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border-left: 4px solid var(--accent);
+    transition: all 0.2s;
+  }
+  .press-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-accent);
+    border-left-color: var(--accent);
+  }
+  .press-card .press-source {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+  .press-card .press-name {
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .press-card .press-reach {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .press-card .press-quote {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-bottom: 0.8rem;
+    font-style: italic;
+  }
+  .press-card .press-link {
+    font-size: 0.8rem;
+    color: var(--accent-dim);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .press-card .press-link:hover {
+    color: var(--accent);
+  }
+  .press-card.pink { border-left-color: var(--purple); }
+  .press-card.yellow { border-left-color: var(--orange); }
+  .press-card.cyan { border-left-color: var(--blue); }
+
+  /* ── GitHub Stats ── */
+  .gh-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .gh-stat {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    text-align: center;
+  }
+  .gh-stat .gh-val {
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 0.25rem;
+  }
+  .gh-stat .gh-label {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Holder Analytics ── */
+  .holder-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+  .holder-stat {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .holder-stat .h-val {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .holder-stat .h-label {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 0.15rem;
+  }
+  .pool-info {
+    display: grid;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+  }
+  .pool-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .pool-row .pool-key {
+    color: var(--text-dim);
+  }
+  .pool-row .pool-val {
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+  }
+  .audit-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+  }
+  .audit-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .audit-badge.safe {
+    background: rgba(0, 255, 136, 0.1);
+    color: var(--accent);
+  }
+  .audit-badge.warn {
+    background: rgba(255, 153, 51, 0.1);
+    color: var(--orange);
+  }
+
+  /* ── Links Grid ── */
+  .links-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 1.5rem 0;
+  }
+  .links-flex a {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+  }
+  .links-flex a:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+  }
 </style>
 </head>
 <body>
@@ -924,6 +1126,52 @@
       <span>Drag to pan · Scroll to zoom · Hover bubbles for tweets</span>
       <a href="chart.html" target="_blank">Open fullscreen ↗</a>
     </div>
+  </div>
+</section>
+
+<!-- ════════════════════ SECTION 02.7: INTERACTIVE ANALYTICS ════════════════════ -->
+<section>
+  <div class="section-number">02.7 — Interactive Analytics</div>
+  <h2>Charts that tell the full story</h2>
+  <p>
+    Seven interactive Chart.js visualizations built from real data: 461 five-minute candles, 68 tweets with engagement metrics, 207 transaction frequency buckets, and sentiment/category breakdowns. All data is embedded — no API calls needed.
+  </p>
+
+  <div class="cjs-section">
+    <div class="cjs-title">Price Action + Tweet Timeline (μ$)</div>
+    <canvas id="cjsPriceChart" height="300"></canvas>
+  </div>
+
+  <div class="cjs-row">
+    <div class="cjs-section">
+      <div class="cjs-title">Trading Volume (USD)</div>
+      <canvas id="cjsVolumeChart" height="250"></canvas>
+    </div>
+    <div class="cjs-section">
+      <div class="cjs-title">Transaction Frequency (tx / 5min)</div>
+      <canvas id="cjsTxChart" height="250"></canvas>
+    </div>
+  </div>
+
+  <div class="cjs-row">
+    <div class="cjs-section">
+      <div class="cjs-title">Tweet Sentiment Distribution</div>
+      <canvas id="cjsSentimentChart" height="250"></canvas>
+    </div>
+    <div class="cjs-section">
+      <div class="cjs-title">Tweet Categories</div>
+      <canvas id="cjsCategoryChart" height="250"></canvas>
+    </div>
+  </div>
+
+  <div class="cjs-section">
+    <div class="cjs-title">Posting Frequency by Hour</div>
+    <canvas id="cjsHourlyChart" height="200"></canvas>
+  </div>
+
+  <div class="cjs-section">
+    <div class="cjs-title">Tweet Engagement vs Token Price</div>
+    <canvas id="cjsScatterChart" height="300"></canvas>
   </div>
 </section>
 
@@ -1191,6 +1439,53 @@
   </table>
 </section>
 
+<!-- ════════════════════ SECTION 04.5: PRESS & EXTERNAL MENTIONS ════════════════════ -->
+<section>
+  <div class="section-number">04.5 — Press & External Mentions</div>
+  <h2>Who picked up the story</h2>
+  <p>
+    Within 48 hours of launch, the pump-sdk story was amplified by major crypto accounts and media outlets — none of which were paid or solicited.
+  </p>
+
+  <div class="press-grid">
+    <div class="press-card pink">
+      <div class="press-source">
+        <span class="press-name">Mario Nawfal / @RoundtableSpace</span>
+        <span class="press-reach">3.1M followers</span>
+      </div>
+      <p class="press-quote">"SOMEONE REVERSE ENGINEERED PUMPFUN & HAS BUILT A REAL TIME PUMPFUN TOKEN TRACKER — Every new launch, every trade, whale alerts, all streaming live the second it hits Solana."</p>
+      <a class="press-link" href="https://x.com/RoundtableSpace/status/2027417189918064915" target="_blank" rel="noopener noreferrer">View Tweet →</a>
+    </div>
+    <div class="press-card yellow">
+      <div class="press-source">
+        <span class="press-name">CoinMarketCap</span>
+        <span class="press-reach">Community Feature</span>
+      </div>
+      <p class="press-quote">Featured community article covering the pump-sdk project, its viral launch, and the reverse-engineering story behind it.</p>
+      <a class="press-link" href="https://coinmarketcap.com/community/articles/69a0d08faea2e35728f0a2c1/" target="_blank" rel="noopener noreferrer">Read Article →</a>
+    </div>
+    <div class="press-card cyan">
+      <div class="press-source">
+        <span class="press-name">@SeekrTrending</span>
+        <span class="press-reach">Viral Trend Tracker</span>
+      </div>
+      <p class="press-quote">Crypto trend tracker picked up the story and shared it across their audience, driving a second wave of attention.</p>
+      <a class="press-link" href="https://x.com/SeekrTrending" target="_blank" rel="noopener noreferrer">View Profile →</a>
+    </div>
+    <div class="press-card">
+      <div class="press-source">
+        <span class="press-name">@DegenXpress & BEEXO APP</span>
+        <span class="press-reach">Crypto Community</span>
+      </div>
+      <p class="press-quote">Community accounts amplified the pump-sdk story across their networks, contributing to the viral flywheel on Day 2.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><strong>Total organic reach:</strong> The Mario Nawfal tweet alone brought 3.1M potential impressions. Combined with CoinMarketCap's audience and the community amplification, the story reached an estimated 5M+ eyeballs — all without spending a single dollar on promotion.</p>
+  </div>
+</section>
+
 <!-- ════════════════════ SECTION 5: TECH STACK ════════════════════ -->
 <section>
   <div class="section-number">05 — Technical Architecture</div>
@@ -1290,6 +1585,62 @@
   </p>
 </section>
 
+<!-- ════════════════════ SECTION 05.5: GITHUB IMPACT ════════════════════ -->
+<section>
+  <div class="section-number">05.5 — GitHub Impact</div>
+  <h2>The open-source footprint</h2>
+  <p>
+    Everything shipped during the sprint was pushed to public GitHub repositories in real time — the ultimate trust signal in an ecosystem of closed-source rugs.
+  </p>
+
+  <div class="gh-stats">
+    <div class="gh-stat">
+      <div class="gh-val" style="color:var(--purple)">67</div>
+      <div class="gh-label">Public Repositories</div>
+    </div>
+    <div class="gh-stat">
+      <div class="gh-val" style="color:var(--blue)">133</div>
+      <div class="gh-label">GitHub Followers</div>
+    </div>
+    <div class="gh-stat">
+      <div class="gh-val" style="color:var(--accent)">3,471</div>
+      <div class="gh-label">Commits (pump-fun-sdk)</div>
+    </div>
+    <div class="gh-stat">
+      <div class="gh-val" style="color:var(--orange)">192</div>
+      <div class="gh-label">Total Stars (4 repos)</div>
+    </div>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Repository</th><th>Stars</th><th>Forks</th><th>Language</th><th>Commits</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://github.com/nirholas/pump-fun-sdk" target="_blank" rel="noopener noreferrer">pump-fun-sdk</a></td>
+        <td class="highlight">⭐ 58</td><td>🍴 22</td><td>Rust</td><td class="highlight">3,471</td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/nirholas/XActions" target="_blank" rel="noopener noreferrer">XActions</a></td>
+        <td class="highlight">⭐ 96</td><td>🍴 15</td><td>HTML</td><td>—</td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/nirholas/pump-swap-sdk" target="_blank" rel="noopener noreferrer">pump-swap-sdk</a></td>
+        <td>⭐ 16</td><td>🍴 9</td><td>TypeScript</td><td>—</td>
+      </tr>
+      <tr>
+        <td><a href="https://github.com/nirholas/analyze-memecoin-socials" target="_blank" rel="noopener noreferrer">analyze-memecoin-socials</a></td>
+        <td>⭐ 2</td><td>🍴 0</td><td>Python</td><td>—</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="color: var(--text-dim); font-size: 0.82rem; margin-top: 0.75rem;">
+    Other notable repos by @nirholas: crypto-vision (⭐61), free-crypto-news (⭐60), agenti (⭐40), bnb-chain-toolkit (⭐24), UCAI (⭐23), universal-crypto-mcp (⭐21)
+  </p>
+</section>
+
 <!-- ════════════════════ SECTION 6: ECONOMICS ════════════════════ -->
 <section>
   <div class="section-number">06 — Economics</div>
@@ -1324,6 +1675,112 @@
   <p>
     Beyond the direct financial outcome, the sprint drove 11,000+ new users to SperaxOS, generated a CoinMarketCap feature article, produced 4 open-source repositories that continue to serve the developer community, and culminated in a j*b offer from a well established cryptocurrency company.
   </p>
+</section>
+
+<!-- ════════════════════ SECTION 06.5: HOLDER ANALYTICS ════════════════════ -->
+<section>
+  <div class="section-number">06.5 — Holder Analytics</div>
+  <h2>Who held, who traded, who profited</h2>
+  <p>
+    On-chain holder data from Day 10, showing wallet composition, concentration, and the top holders ranked by P&L.
+  </p>
+
+  <div class="holder-stats">
+    <div class="holder-stat"><div class="h-val" style="color:var(--blue)">500</div><div class="h-label">Holders</div></div>
+    <div class="holder-stat"><div class="h-val" style="color:var(--orange)">30.9%</div><div class="h-label">Top 10 Concentration</div></div>
+    <div class="holder-stat"><div class="h-val" style="color:var(--purple)">$13.36</div><div class="h-label">Mcap / Holder</div></div>
+    <div class="holder-stat"><div class="h-val" style="color:var(--accent)">0.1%</div><div class="h-label">Insiders</div></div>
+    <div class="holder-stat"><div class="h-val" style="color:var(--red)">3.6%</div><div class="h-label">Phishing</div></div>
+    <div class="holder-stat"><div class="h-val" style="color:var(--orange)">15.1%</div><div class="h-label">Bundler</div></div>
+    <div class="holder-stat"><div class="h-val" style="color:var(--blue)">22.8%</div><div class="h-label">Bot / Degen</div></div>
+    <div class="holder-stat"><div class="h-val" style="color:var(--accent)">0%</div><div class="h-label">Rug Risk</div></div>
+  </div>
+
+  <div class="cjs-row">
+    <div class="cjs-section">
+      <div class="cjs-title">Holder Composition (500 wallets)</div>
+      <canvas id="cjsHolderChart" height="280"></canvas>
+    </div>
+    <div class="cjs-section">
+      <div class="cjs-title">Top 100 Holder Stats</div>
+      <div class="data-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="data-card"><div class="label">Top 100 Owned</div><div class="value" style="font-size:1.1rem;color:var(--text-dim)">&lt;0.01%</div></div>
+        <div class="data-card"><div class="label">Avg Cost</div><div class="value" style="font-size:1.1rem;color:var(--red)">$0.0₄495 (-86.5%)</div></div>
+        <div class="data-card"><div class="label">Avg Sold</div><div class="value" style="font-size:1.1rem;color:var(--red)">$0.0₄783 (-91.5%)</div></div>
+        <div class="data-card"><div class="label">Avg Hold Duration</div><div class="value" style="font-size:1.1rem;color:var(--blue)">23h</div></div>
+        <div class="data-card"><div class="label">Avg SOL Balance</div><div class="value" style="font-size:1.1rem;color:var(--orange)">88.37 SOL</div></div>
+        <div class="data-card"><div class="label">Smart Money Wallets</div><div class="value" style="font-size:1.1rem;color:var(--accent)">21</div></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Top Holders — Ranked by P&L</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>#</th><th>Name</th><th>SOL Bal</th><th>Bought</th><th>Sold</th><th>P&L</th><th>P&L %</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Arez</td><td>14.69</td><td>$276</td><td>$2.13K</td><td class="highlight" style="color:var(--accent)">+$1,854</td><td style="color:var(--accent)">+660%</td></tr>
+      <tr><td>2</td><td>Spuno</td><td>0.187</td><td>$987</td><td>$1.68K</td><td style="color:var(--accent)">+$663</td><td style="color:var(--accent)">+65%</td></tr>
+      <tr><td>3</td><td>Decu</td><td>383.5</td><td>$255</td><td>$558</td><td style="color:var(--accent)">+$298</td><td style="color:var(--accent)">+114%</td></tr>
+      <tr><td>4</td><td>4uCT...GhQG</td><td>18.05</td><td>$51</td><td>$262</td><td style="color:var(--accent)">+$211</td><td style="color:var(--accent)">+408%</td></tr>
+      <tr><td>5</td><td>Dex</td><td>49.6</td><td>$541</td><td>$700</td><td style="color:var(--accent)">+$151</td><td style="color:var(--accent)">+28%</td></tr>
+      <tr><td>6</td><td>tobx</td><td>290.5</td><td>$203</td><td>$296</td><td style="color:var(--accent)">+$89</td><td style="color:var(--accent)">+43%</td></tr>
+      <tr><td>7</td><td>nyhrox</td><td>137.9</td><td>$1.46K</td><td>$1.57K</td><td style="color:var(--accent)">+$79</td><td style="color:var(--accent)">+5%</td></tr>
+      <tr><td>8</td><td>rachaelsacks</td><td>1.71</td><td>$17</td><td>$36</td><td style="color:var(--accent)">+$19</td><td style="color:var(--accent)">+114%</td></tr>
+      <tr><td>9</td><td>1King Forever</td><td>0</td><td>$0.83</td><td>$0.64</td><td style="color:var(--red)">-$0.19</td><td style="color:var(--red)">-23%</td></tr>
+      <tr><td>10</td><td>Lowskii</td><td>0.789</td><td>$126</td><td>$126</td><td style="color:var(--red)">-$3.59</td><td style="color:var(--red)">-3%</td></tr>
+      <tr><td>11</td><td>bihoz</td><td>75.05</td><td>$175</td><td>$168</td><td style="color:var(--red)">-$10.6</td><td style="color:var(--red)">-6%</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Pool & Token Audit</h3>
+  <div class="cjs-row">
+    <div class="cjs-section">
+      <div class="cjs-title">Pump AMM Pool Info</div>
+      <div class="pool-info">
+        <div class="pool-row"><span class="pool-key">Total Liquidity</span><span class="pool-val">$7.31K (43.08 SOL)</span></div>
+        <div class="pool-row"><span class="pool-key">Pair</span><span class="pool-val">pump-sdk / SOL</span></div>
+        <div class="pool-row"><span class="pool-key">Pool Address</span><span class="pool-val"><a href="https://dexscreener.com/solana/AS5KLCFs4HVYPebV8MNt2YzD2Fs2jgb5F2p3xXjxm9Aj" target="_blank" rel="noopener noreferrer" style="color:var(--blue)">AS5K...m9Aj</a></span></div>
+        <div class="pool-row"><span class="pool-key">Liq / Initial</span><span class="pool-val">43.08 / 84.99 SOL <span style="color:var(--red)">(-49.3%)</span></span></div>
+        <div class="pool-row"><span class="pool-key">Token Value</span><span class="pool-val">$3.61K</span></div>
+        <div class="pool-row"><span class="pool-key">SOL Value</span><span class="pool-val">$3.66K</span></div>
+      </div>
+    </div>
+    <div class="cjs-section">
+      <div class="cjs-title">Token & Dev Audit</div>
+      <div class="pool-info">
+        <div class="pool-row"><span class="pool-key">Market Cap</span><span class="pool-val">$6.68K</span></div>
+        <div class="pool-row"><span class="pool-key">Total Supply</span><span class="pool-val">999.8M</span></div>
+        <div class="pool-row"><span class="pool-key">Token Created</span><span class="pool-val">Feb 26, 2026 12:35 UTC</span></div>
+        <div class="pool-row"><span class="pool-key">Pool Created</span><span class="pool-val">Feb 26, 2026 12:54 UTC</span></div>
+        <div class="pool-row"><span class="pool-key">DEV Wallet</span><span class="pool-val">DFq5...PYFJ (6.45 SOL)</span></div>
+        <div class="pool-row"><span class="pool-key">Dex Paid</span><span class="pool-val">$548 <span style="background:var(--bg-card);padding:2px 6px;border-radius:4px;font-size:0.7rem">CTO</span></span></div>
+      </div>
+      <div class="audit-badges">
+        <span class="audit-badge safe">NoMint</span>
+        <span class="audit-badge safe">No Blacklist</span>
+        <span class="audit-badge safe">🔥 100% Burnt</span>
+        <span class="audit-badge safe">0% Rug</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>Key Links</h3>
+  <div class="links-flex">
+    <a href="https://x.com/nichxbt/status/2027087471683698811" target="_blank" rel="noopener noreferrer">Original Post</a>
+    <a href="https://x.com/RoundtableSpace/status/2027417189918064915" target="_blank" rel="noopener noreferrer">Mario Nawfal Tweet</a>
+    <a href="https://github.com/nirholas/pump-fun-sdk" target="_blank" rel="noopener noreferrer">pump-fun-sdk Repo</a>
+    <a href="https://github.com/nirholas/pump-swap-sdk" target="_blank" rel="noopener noreferrer">pump-swap-sdk Repo</a>
+    <a href="https://github.com/nirholas/XActions" target="_blank" rel="noopener noreferrer">XActions Repo</a>
+    <a href="https://pump-fun-websocket.vercel.app/" target="_blank" rel="noopener noreferrer">WebSocket Dashboard</a>
+    <a href="https://pump-fun-websocket.vercel.app/trades" target="_blank" rel="noopener noreferrer">Live Trades</a>
+    <a href="https://www.geckoterminal.com/solana/pools/AS5KLCFs4HVYPebV8MNt2YzD2Fs2jgb5F2p3xXjxm9Aj" target="_blank" rel="noopener noreferrer">GeckoTerminal Pool</a>
+    <a href="https://dexscreener.com/solana/AS5KLCFs4HVYPebV8MNt2YzD2Fs2jgb5F2p3xXjxm9Aj" target="_blank" rel="noopener noreferrer">DexScreener</a>
+    <a href="https://registry.modelcontextprotocol.io/?q=nirholas" target="_blank" rel="noopener noreferrer">MCP Registry</a>
+    <a href="https://coinmarketcap.com/community/articles/69a0d08faea2e35728f0a2c1/" target="_blank" rel="noopener noreferrer">CoinMarketCap Article</a>
+    <a href="https://pump.fun/coin/F4ZHCzizwpop2XS8auuAGQ7LZcUTEwQ22m5sRmB2pump" target="_blank" rel="noopener noreferrer">pump.fun Token</a>
+  </div>
 </section>
 
 <!-- ════════════════════ SECTION 7: METHODOLOGY ════════════════════ -->
@@ -1437,6 +1894,184 @@
 </footer>
 
 </div><!-- /container -->
+
+<!-- ════════════════════ CHART.JS INITIALIZATION ════════════════════ -->
+<script>
+// Chart.js defaults — match case-study design language
+Chart.defaults.color = '#8a8a96';
+Chart.defaults.borderColor = '#2a2a2f';
+Chart.defaults.font.family = '"JetBrains Mono", "DM Sans", monospace';
+
+const priceLabels = ["2026-02-26 20:55:00","2026-02-26 21:00:00","2026-02-26 21:05:00","2026-02-26 21:10:00","2026-02-26 21:15:00","2026-02-26 21:20:00","2026-02-26 21:25:00","2026-02-26 21:30:00","2026-02-26 21:35:00","2026-02-26 21:40:00","2026-02-26 21:45:00","2026-02-26 21:50:00","2026-02-26 21:55:00","2026-02-26 22:00:00","2026-02-26 22:05:00","2026-02-26 22:10:00","2026-02-26 22:15:00","2026-02-26 22:20:00","2026-02-26 22:25:00","2026-02-26 22:30:00","2026-02-26 22:35:00","2026-02-26 22:40:00","2026-02-26 22:45:00","2026-02-26 22:50:00","2026-02-26 22:55:00","2026-02-26 23:00:00","2026-02-26 23:05:00","2026-02-26 23:10:00","2026-02-26 23:15:00","2026-02-26 23:20:00","2026-02-26 23:25:00","2026-02-26 23:30:00","2026-02-26 23:35:00","2026-02-26 23:40:00","2026-02-26 23:45:00","2026-02-26 23:50:00","2026-02-26 23:55:00","2026-02-27 00:00:00","2026-02-27 00:05:00","2026-02-27 00:10:00","2026-02-27 00:15:00","2026-02-27 00:20:00","2026-02-27 00:25:00","2026-02-27 00:30:00","2026-02-27 00:35:00","2026-02-27 00:40:00","2026-02-27 00:45:00","2026-02-27 00:50:00","2026-02-27 00:55:00","2026-02-27 01:00:00","2026-02-27 01:05:00","2026-02-27 01:10:00","2026-02-27 01:15:00","2026-02-27 01:20:00","2026-02-27 01:25:00","2026-02-27 01:30:00","2026-02-27 01:35:00","2026-02-27 01:40:00","2026-02-27 01:45:00","2026-02-27 01:50:00","2026-02-27 01:55:00","2026-02-27 02:00:00","2026-02-27 02:05:00","2026-02-27 02:10:00","2026-02-27 02:15:00","2026-02-27 02:22:00","2026-02-27 02:27:00","2026-02-27 02:33:00","2026-02-27 02:38:00","2026-02-27 02:43:00","2026-02-27 02:48:00","2026-02-27 02:54:00","2026-02-27 02:59:00","2026-02-27 03:04:00","2026-02-27 03:09:00","2026-02-27 03:14:00","2026-02-27 03:19:00","2026-02-27 03:24:00","2026-02-27 03:29:00","2026-02-27 03:34:00","2026-02-27 03:39:00","2026-02-27 03:44:00","2026-02-27 03:49:00","2026-02-27 03:54:00","2026-02-27 03:59:00","2026-02-27 04:04:00","2026-02-27 04:09:00","2026-02-27 04:14:00","2026-02-27 04:19:00","2026-02-27 04:24:00","2026-02-27 04:29:00","2026-02-27 04:34:00","2026-02-27 04:39:00","2026-02-27 04:44:00","2026-02-27 04:49:00","2026-02-27 04:54:00","2026-02-27 04:59:00","2026-02-27 05:04:00","2026-02-27 05:09:00","2026-02-27 05:14:00","2026-02-27 05:19:00","2026-02-27 05:24:00","2026-02-27 05:29:00","2026-02-27 05:34:00","2026-02-27 05:39:00","2026-02-27 05:44:00","2026-02-27 05:49:00","2026-02-27 05:54:00","2026-02-27 05:59:00","2026-02-27 06:04:00","2026-02-27 06:09:00","2026-02-27 06:14:00","2026-02-27 06:19:00","2026-02-27 06:24:00","2026-02-27 06:29:00","2026-02-27 06:34:00","2026-02-27 06:39:00","2026-02-27 06:44:00","2026-02-27 06:49:00","2026-02-27 06:54:00","2026-02-27 06:59:00","2026-02-27 07:04:00","2026-02-27 07:09:00","2026-02-27 07:14:00","2026-02-27 07:19:00","2026-02-27 07:24:00","2026-02-27 07:29:00","2026-02-27 07:34:00","2026-02-27 07:39:00","2026-02-27 07:44:00","2026-02-27 07:49:00","2026-02-27 07:54:00","2026-02-27 07:59:00","2026-02-27 08:04:00","2026-02-27 08:09:00","2026-02-27 08:14:00","2026-02-27 08:19:00","2026-02-27 08:24:00","2026-02-27 08:29:00","2026-02-27 08:34:00","2026-02-27 08:39:00","2026-02-27 08:44:00","2026-02-27 08:49:00","2026-02-27 08:54:00","2026-02-27 08:59:00","2026-02-27 09:04:00","2026-02-27 09:09:00","2026-02-27 09:14:00","2026-02-27 09:19:00","2026-02-27 09:24:00","2026-02-27 09:29:00","2026-02-27 09:34:00","2026-02-27 09:39:00","2026-02-27 09:44:00","2026-02-27 09:49:00","2026-02-27 09:54:00","2026-02-27 09:59:00","2026-02-27 10:04:00","2026-02-27 10:09:00","2026-02-27 10:14:00","2026-02-27 10:19:00","2026-02-27 10:24:00","2026-02-27 10:29:00","2026-02-27 10:34:00","2026-02-27 10:39:00","2026-02-27 10:44:00","2026-02-27 10:49:00","2026-02-27 10:54:00","2026-02-27 10:59:00","2026-02-27 11:04:00","2026-02-27 11:09:00","2026-02-27 11:14:00","2026-02-27 11:19:00","2026-02-27 11:24:00","2026-02-27 11:29:00","2026-02-27 11:34:00","2026-02-27 11:39:00","2026-02-27 11:44:00","2026-02-27 11:49:00","2026-02-27 11:55:00","2026-02-27 12:00:00","2026-02-27 12:06:00","2026-02-27 12:11:00","2026-02-27 12:16:00","2026-02-27 12:21:00","2026-02-27 12:26:00","2026-02-27 12:31:00","2026-02-27 12:36:00","2026-02-27 12:41:00","2026-02-27 12:46:00","2026-02-27 12:51:00","2026-02-27 12:56:00","2026-02-27 13:01:00","2026-02-27 13:06:00","2026-02-27 13:11:00","2026-02-27 13:16:00","2026-02-27 13:21:00","2026-02-27 13:26:00","2026-02-27 13:31:00","2026-02-27 13:36:00","2026-02-27 13:41:00","2026-02-27 13:46:00","2026-02-27 13:51:00","2026-02-27 13:56:00","2026-02-27 14:02:00","2026-02-27 14:07:00","2026-02-27 14:12:00","2026-02-27 14:17:00","2026-02-27 14:22:00","2026-02-27 14:27:00","2026-02-27 14:32:00","2026-02-27 14:37:00","2026-02-27 14:42:00","2026-02-27 14:47:00","2026-02-27 14:52:00","2026-02-27 14:57:00","2026-02-27 15:02:00","2026-02-27 15:08:00","2026-02-27 15:13:00","2026-02-27 15:20:00","2026-02-27 15:25:00","2026-02-27 15:30:00","2026-02-27 15:36:00","2026-02-27 15:41:00","2026-02-27 15:46:00","2026-02-27 15:51:00","2026-02-27 15:56:00","2026-02-27 16:01:00","2026-02-27 16:06:00","2026-02-27 16:11:00","2026-02-27 16:16:00","2026-02-27 16:21:00","2026-02-27 16:26:00","2026-02-27 16:31:00","2026-02-27 16:36:00","2026-02-27 16:41:00","2026-02-27 16:46:00","2026-02-27 16:51:00","2026-02-27 16:56:00","2026-02-27 17:02:00","2026-02-27 17:07:00","2026-02-27 17:12:00","2026-02-27 17:17:00","2026-02-27 17:22:00","2026-02-27 17:27:00","2026-02-27 17:32:00","2026-02-27 17:37:00","2026-02-27 17:42:00","2026-02-27 17:47:00","2026-02-27 17:52:00","2026-02-27 17:57:00","2026-02-27 18:02:00","2026-02-27 18:07:00","2026-02-27 18:12:00","2026-02-27 18:17:00","2026-02-27 18:22:00","2026-02-27 18:27:00","2026-02-27 18:32:00","2026-02-27 18:37:00","2026-02-27 18:42:00","2026-02-27 18:47:00","2026-02-27 18:52:00","2026-02-27 18:57:00","2026-02-27 19:02:00","2026-02-27 19:07:00","2026-02-27 19:12:00","2026-02-27 19:17:00","2026-02-27 19:22:00","2026-02-27 19:27:00","2026-02-27 19:32:00","2026-02-27 19:37:00","2026-02-27 19:42:00","2026-02-27 19:47:00","2026-02-27 19:52:00","2026-02-27 19:57:00","2026-02-27 20:03:00","2026-02-27 20:08:00","2026-02-27 20:14:00","2026-02-27 20:19:00","2026-02-27 20:25:00","2026-02-27 20:30:00","2026-02-27 20:35:00","2026-02-27 20:41:00","2026-02-27 20:46:00","2026-02-27 20:54:00","2026-02-27 20:59:00","2026-02-27 21:04:00","2026-02-27 21:09:00","2026-02-27 21:14:00","2026-02-27 21:19:00","2026-02-27 21:24:00","2026-02-27 21:29:00","2026-02-27 21:34:00","2026-02-27 21:39:00","2026-02-27 21:44:00","2026-02-27 21:49:00","2026-02-27 21:54:00","2026-02-27 21:59:00","2026-02-27 22:06:00","2026-02-27 22:11:00","2026-02-27 22:16:00","2026-02-27 22:21:00","2026-02-27 22:26:00","2026-02-27 22:31:00","2026-02-27 22:36:00","2026-02-27 22:41:00","2026-02-27 22:46:00","2026-02-27 22:52:00","2026-02-27 22:57:00","2026-02-27 23:02:00","2026-02-27 23:09:00","2026-02-27 23:16:00","2026-02-27 23:21:00","2026-02-27 23:27:00","2026-02-27 23:33:00","2026-02-27 23:38:00","2026-02-27 23:44:00","2026-02-27 23:49:00","2026-02-27 23:54:00","2026-02-28 00:00:00","2026-02-28 00:06:00","2026-02-28 00:12:00","2026-02-28 00:18:00","2026-02-28 00:24:00","2026-02-28 00:29:00","2026-02-28 00:34:00","2026-02-28 00:39:00","2026-02-28 00:44:00","2026-02-28 00:49:00","2026-02-28 00:57:00","2026-02-28 01:04:00","2026-02-28 01:09:00","2026-02-28 01:16:00","2026-02-28 01:22:00","2026-02-28 01:28:00","2026-02-28 01:33:00","2026-02-28 01:38:00","2026-02-28 01:44:00","2026-02-28 01:50:00","2026-02-28 02:03:00","2026-02-28 02:08:00","2026-02-28 02:13:00","2026-02-28 02:18:00","2026-02-28 02:23:00","2026-02-28 02:29:00","2026-02-28 02:37:00","2026-02-28 02:42:00","2026-02-28 02:47:00","2026-02-28 02:59:00","2026-02-28 03:11:00","2026-02-28 03:19:00","2026-02-28 03:32:00","2026-02-28 03:42:00","2026-02-28 03:51:00","2026-02-28 04:05:00","2026-02-28 04:13:00","2026-02-28 04:22:00","2026-02-28 04:29:00","2026-02-28 04:38:00","2026-02-28 04:43:00","2026-02-28 04:54:00","2026-02-28 05:06:00","2026-02-28 05:11:00","2026-02-28 05:17:00","2026-02-28 05:24:00","2026-02-28 05:30:00","2026-02-28 05:36:00","2026-02-28 05:47:00","2026-02-28 05:53:00","2026-02-28 05:58:00","2026-02-28 06:03:00","2026-02-28 06:10:00","2026-02-28 06:15:00","2026-02-28 06:20:00","2026-02-28 06:28:00","2026-02-28 06:35:00","2026-02-28 06:41:00","2026-02-28 06:47:00","2026-02-28 06:54:00","2026-02-28 07:02:00","2026-02-28 07:07:00","2026-02-28 07:22:00","2026-02-28 07:35:00","2026-02-28 07:46:00","2026-02-28 07:55:00","2026-02-28 08:03:00","2026-02-28 08:13:00","2026-02-28 08:18:00","2026-02-28 08:26:00","2026-02-28 08:33:00","2026-02-28 08:55:00","2026-02-28 09:16:00","2026-02-28 09:36:00","2026-02-28 09:58:00","2026-02-28 10:05:00","2026-02-28 10:18:00","2026-02-28 10:29:00","2026-02-28 10:42:00","2026-02-28 10:53:00","2026-02-28 11:19:00","2026-02-28 11:42:00","2026-02-28 11:55:00","2026-02-28 12:19:00","2026-02-28 12:41:00","2026-02-28 13:04:00","2026-02-28 13:20:00","2026-02-28 13:45:00","2026-02-28 13:53:00","2026-02-28 14:03:00","2026-02-28 14:25:00","2026-02-28 14:46:00","2026-02-28 14:59:00","2026-02-28 15:11:00","2026-02-28 15:31:00","2026-02-28 15:36:00","2026-02-28 15:48:00","2026-02-28 15:56:00","2026-02-28 16:10:00","2026-02-28 16:26:00","2026-02-28 16:34:00","2026-02-28 16:45:00","2026-02-28 17:03:00","2026-02-28 17:30:00","2026-02-28 17:51:00","2026-02-28 18:21:00","2026-02-28 18:42:00","2026-02-28 19:33:00","2026-02-28 19:44:00","2026-02-28 19:51:00","2026-02-28 20:21:00","2026-02-28 20:51:00"];
+const priceValues = [66.22,115.06,76.19,82.18,98.16,103.41,66.83,55.52,34.84,31.74,51.47,70.98,72.85,86.22,89.18,93.44,89.90,103.01,127.35,102.81,84.61,101.61,69.06,68.37,101.37,88.93,104.69,96.36,89.45,115.77,101.18,111.21,80.97,86.26,85.68,84.07,74.53,57.65,78.27,95.33,120.72,117.37,93.71,76.65,93.54,103.92,97.71,90.27,96.18,87.95,110.57,119.53,161.78,155.52,144.92,167.56,162.30,157.39,126.73,132.05,139.11,136.37,139.88,126.29,126.17,133.74,136.63,132.28,119.47,96.15,109.85,100.0,110.07,100.95,102.66,88.34,59.71,79.05,81.38,72.90,199.67,288.97,240.43,286.56,300.13,349.95,290.39,294.35,268.86,246.35,255.96,226.90,304.37,259.13,259.75,234.86,284.75,291.09,267.77,267.02,268.04,286.17,263.54,262.24,322.98,274.74,309.77,262.48,274.23,278.38,261.15,267.76,233.31,267.94,258.39,234.08,225.47,272.77,273.76,277.66,314.84,273.66,238.57,230.36,270.31,224.26,205.92,221.54,233.06,225.39,218.58,224.08,224.54,223.72,217.86,203.79,206.0,223.03,215.05,205.61,155.49,162.92,157.55,178.81,164.27,163.32,177.03,194.29,199.49,199.56,181.82,180.39,183.14,174.04,183.0,180.22,178.81,182.33,219.44,218.53,232.68,236.53,229.20,216.30,170.62,180.87,198.58,199.54,170.76,158.74,163.34,161.54,153.86,139.66,148.63,155.0,154.89,150.08,146.19,160.76,176.02,163.48,164.99,168.05,183.57,190.48,218.57,237.27,206.87,193.91,206.40,208.68,215.20,220.31,205.59,211.61,185.19,179.74,164.82,210.19,219.57,209.11,192.04,189.07,190.50,174.67,187.27,198.03,195.55,185.90,206.91,208.25,202.76,179.04,215.96,209.87,213.60,204.62,180.94,181.03,196.28,195.21,201.15,228.40,244.14,252.11,251.48,261.92,239.15,233.13,227.87,200.91,190.37,202.81,188.16,223.36,229.50,194.49,195.95,193.90,191.27,187.12,173.46,149.96,134.37,140.82,130.26,156.69,160.78,170.17,162.02,145.23,137.91,136.13,131.02,127.76,137.82,122.95,110.18,93.47,75.13,96.63,93.41,102.79,98.89,95.17,100.84,95.01,83.32,88.95,86.91,81.80,83.58,76.94,74.26,72.56,78.56,87.79,87.22,84.17,86.0,77.0,71.04,74.37,72.88,70.08,68.55,70.02,73.08,72.83,62.03,52.63,50.99,52.63,46.62,48.19,47.18,46.59,47.10,44.14,50.13,46.13,43.12,37.81,33.42,33.41,33.51,35.48,32.11,31.06,30.48,28.47,25.70,23.51,27.45,25.64,25.99,21.58,22.59,21.73,22.68,21.94,21.64,20.72,19.10,17.74,19.51,17.26,19.03,18.85,18.45,18.08,17.35,16.66,17.63,15.98,17.88,19.90,19.20,18.70,17.96,17.04,16.04,16.35,17.08,15.96,15.21,15.60,15.38,14.96,17.57,16.61,16.15,16.48,15.91,14.74,14.91,15.66,16.67,16.51,15.53,16.05,16.64,17.08,16.37,15.44,16.69,16.38,15.70,14.75,15.04,15.96,16.67,16.45,16.18,15.97,15.77,15.67,15.18,15.30,15.15,15.24,15.31,15.21,14.69,14.63,13.85,14.13,14.25,14.32,13.66,14.06,14.11,13.26,12.26,12.12,11.51,11.25,12.98,12.67,12.14,11.17,12.12,10.82,9.97,9.29,10.77,11.11,11.01,11.25,13.62,13.41,14.25,14.97,15.63,15.30,14.54,12.90,15.80,16.78,16.87,15.36,14.29,13.55,13.66,12.32,12.39,13.20,11.24,11.37,11.56];
+const volumeValues = [61795,30540,13425,5950,7695,2700,4632,2944,3881,773,779,1577,800,2393,3144,625,973,507,4116,923,4150,689,2385,2342,384,169,1183,1045,1981,4041,502,412,416,538,332,865,331,2015,31,357,1795,1218,199,1835,253,479,159,211,40,389,391,231,9557,6790,222,548,786,325,1305,88,115,572,183,70,828,268,117,99,232,1223,673,797,1927,101,86,289,2100,1650,102,189,10998,14210,1038,13101,673,1778,1967,1381,1529,622,2476,1620,1602,1020,1353,118,2655,1106,921,1509,655,9,145,761,508,721,151,217,940,123,551,118,507,469,427,151,226,177,627,226,1297,521,5286,937,80,1070,570,233,1505,1678,868,150,406,56,344,998,135,360,296,107,2109,1166,320,167,2492,123,101,3156,548,360,1094,854,314,317,226,33,51,274,910,1671,577,213,186,147,841,405,29,33,846,1037,802,74,111,50,511,1462,96,165,369,698,540,42,410,90,225,294,783,415,646,900,181,348,0,1180,2,1543,832,481,1610,98,9,51,359,219,449,963,72,1127,637,569,564,273,7,944,511,642,216,1839,47,102,270,19,285,4386,6796,412,372,1782,219,693,22,1460,381,6,427,2383,126,1473,2070,45,214,455,363,1823,1761,24,683,777,1978,140,5,194,319,451,300,1014,123,228,1727,637,2124,3223,291,399,719,372,59,492,27,276,361,110,245,791,34,1862,159,1092,39,29,59,165,471,5,398,849,266,68,387,290,116,809,1211,387,27,276,235,185,144,6,5,280,274,130,273,158,129,47,166,328,77,9,216,438,491,40,49,116,75,31,121,191,8,1,251,41,89,18,60,2,17,29,19,47,40,20,156,30,97,19,6,127,251,3,157,0,1,6,0,19,26,17,43,2,2,12,2,205,39,2,60,1,59,45,130,20,2,1,0,1,2,49,2,13,0,2,2,73,6,1,32,98,0,1,90,28,1,128,6,36,440,3,12,128,10,1,52,2,37,66,14,12,75,8,33,16,49,46,47,126,11,9,0,116,63,98,9,23,122,49,2,18,64,40,5,19,1,0,0,20,94];
+const tweetData = [{"x":1772139506,"y":113.94,"likes":0,"views":0,"text":"are token locks still a thing like ive been building","sentiment":"positive","r":4},{"x":1772139604,"y":115.06,"likes":21,"views":2100,"text":"claim","sentiment":"positive","r":4.2},{"x":1772139722,"y":96.64,"likes":19,"views":805,"text":"i pushed $GCR for a year to 13m so like can we run this back","sentiment":"positive","r":4},{"x":1772139808,"y":87.40,"likes":51,"views":2500,"text":"i am on the front page of pumpfun","sentiment":"positive","r":5.0},{"x":1772139843,"y":89.95,"likes":6,"views":415,"text":"screenshot it when im number 1 please","sentiment":"neutral","r":4},{"x":1772139929,"y":76.19,"likes":7,"views":174,"text":"on it","sentiment":"neutral","r":4},{"x":1772139987,"y":48.90,"likes":6,"views":346,"text":"@Ga__ke nihao fine shyt","sentiment":"neutral","r":4},{"x":1772140046,"y":62.33,"likes":3,"views":108,"text":"im trying they dont make it very user friendly yet","sentiment":"neutral","r":4},{"x":1772140058,"y":68.85,"likes":12,"views":457,"text":"wait","sentiment":"neutral","r":4},{"x":1772140081,"y":68.85,"likes":22,"views":2300,"text":"@a1lon9 @Pumpfun i have a cook","sentiment":"positive","r":4.6},{"x":1772140143,"y":81.16,"likes":2,"views":189,"text":"no legit if someone sends me a link i will","sentiment":"neutral","r":4},{"x":1772140208,"y":82.18,"likes":3,"views":108,"text":"easy bet","sentiment":"neutral","r":4},{"x":1772140221,"y":82.18,"likes":5,"views":130,"text":"is 100% buy back standard","sentiment":"neutral","r":4},{"x":1772140250,"y":87.49,"likes":9,"views":343,"text":"i want a dev buy back candle larger than gake candle","sentiment":"neutral","r":4},{"x":1772140327,"y":105.86,"likes":27,"views":1700,"text":"someone record this candle","sentiment":"positive","r":4},{"x":1772140538,"y":83.17,"likes":58,"views":5100,"text":"(media)","sentiment":"positive","r":10.2},{"x":1772140959,"y":82.84,"likes":18,"views":1600,"text":"aight i downloaded the app","sentiment":"positive","r":4},{"x":1772141143,"y":62.44,"likes":12,"views":263,"text":"i claimed","sentiment":"positive","r":4},{"x":1772141314,"y":50.79,"likes":18,"views":1300,"text":"this is crazy but like how high is $PUMP again","sentiment":"positive","r":4},{"x":1772141511,"y":44.26,"likes":0,"views":0,"text":"pump-sdk is actually so crazy if you think about it","sentiment":"positive","r":4},{"x":1772141726,"y":34.84,"likes":0,"views":120,"text":"would you?","sentiment":"neutral","r":4},{"x":1772141778,"y":34.10,"likes":52,"views":2200,"text":"you little shits better listen here","sentiment":"positive","r":4.4},{"x":1772141844,"y":35.05,"likes":0,"views":0,"text":"thanks","sentiment":"neutral","r":4},{"x":1772141904,"y":34.45,"likes":0,"views":0,"text":"thank you. let's build a community","sentiment":"positive","r":4},{"x":1772141923,"y":32.10,"likes":331,"views":16000,"text":"study small active accounts pushing a token","sentiment":"positive","r":25},{"x":1772142016,"y":31.74,"likes":6,"views":116,"text":"sure","sentiment":"neutral","r":4},{"x":1772142128,"y":67.18,"likes":3,"views":223,"text":"hey","sentiment":"neutral","r":4},{"x":1772142499,"y":76.17,"likes":0,"views":0,"text":"wait you have me thinking — i have a telegram claim bot","sentiment":"positive","r":4},{"x":1772142552,"y":70.32,"likes":5,"views":85,"text":"i aint finna go back to jail","sentiment":"negative","r":4},{"x":1772142617,"y":70.98,"likes":9,"views":181,"text":"allow me to cook check this out one sec","sentiment":"positive","r":4},{"x":1772142926,"y":72.85,"likes":80,"views":7800,"text":"Give AI agents access to money. MCP servers for your AI agents","sentiment":"positive","r":15.6},{"x":1772142965,"y":75.03,"likes":33,"views":1600,"text":"WE WILL INTEGRATE PUMP-SDK","sentiment":"positive","r":4},{"x":1772143034,"y":69.10,"likes":27,"views":1900,"text":"it took me what felt like an hour to figure out how to claim","sentiment":"positive","r":4},{"x":1772143209,"y":86.22,"likes":12,"views":246,"text":"if you sign up for Pump Fun SDK where pump-fun-sdk will be i","sentiment":"positive","r":4},{"x":1772143405,"y":85.66,"likes":5,"views":488,"text":"how about we do things differently than all these other projects","sentiment":"positive","r":4},{"x":1772143462,"y":94.04,"likes":20,"views":1400,"text":"omg... this is why we do this","sentiment":"positive","r":4},{"x":1772143546,"y":95.24,"likes":23,"views":1700,"text":"with the pump-fun-sdk you can definitely claim and forward","sentiment":"positive","r":4},{"x":1772143638,"y":87.16,"likes":2,"views":74,"text":"me you and shaw — let's lead by example. it's time","sentiment":"neutral","r":4},{"x":1772143777,"y":93.44,"likes":0,"views":0,"text":"exactly — my agents already on it","sentiment":"neutral","r":4},{"x":1772143886,"y":102.23,"likes":4,"views":104,"text":"buying a domain, paying for hosting, running the project","sentiment":"neutral","r":4},{"x":1772144165,"y":87.58,"likes":0,"views":0,"text":"i am looking for projects to collaborate with","sentiment":"positive","r":4},{"x":1772144296,"y":83.91,"likes":14,"views":773,"text":"seriously even if you launched for fun and have no motion","sentiment":"positive","r":4},{"x":1772144412,"y":103.01,"likes":1,"views":58,"text":"you still owe me $100","sentiment":"neutral","r":4},{"x":1772144462,"y":117.56,"likes":0,"views":92,"text":"no pump-fun-sdk is the one — we don't do pvp here","sentiment":"neutral","r":4},{"x":1772144637,"y":111.35,"likes":2,"views":148,"text":"let's show them how to build in public with the pump-fun-sdk","sentiment":"positive","r":4},{"x":1772144776,"y":114.96,"likes":0,"views":0,"text":"pump-sdk the official @Pumpfun source code reverse engineered","sentiment":"neutral","r":4},{"x":1772145186,"y":97.91,"likes":17,"views":1600,"text":"Want to run AI agents 24/7?","sentiment":"positive","r":4},{"x":1772145274,"y":84.61,"likes":18,"views":1600,"text":"With the pump-sdk you can build crypto tools","sentiment":"positive","r":4},{"x":1772146090,"y":80.97,"likes":0,"views":0,"text":"added solana wallet vanity address generator","sentiment":"neutral","r":4},{"x":1772146249,"y":83.54,"likes":0,"views":0,"text":"what's your github @ ? ill add you as contributor","sentiment":"neutral","r":4},{"x":1772146877,"y":94.39,"likes":0,"views":0,"text":"pump-fun-sdk: The Reverse-Engineered Pumpfun Bonding Curve SDK","sentiment":"neutral","r":4},{"x":1772147878,"y":83.63,"likes":10,"views":428,"text":"bullish","sentiment":"positive","r":4},{"x":1772149197,"y":86.26,"likes":9,"views":1700,"text":"not enough will scoop dips","sentiment":"negative","r":4},{"x":1772149640,"y":90.12,"likes":3,"views":338,"text":"the agents are cooking check the repo its nuts","sentiment":"positive","r":4},{"x":1772150881,"y":91.10,"likes":75,"views":8800,"text":"pump-fun-sdk is now listed on @AnthropicAI's official MCP Registry","sentiment":"positive","r":17.6},{"x":1772151008,"y":95.33,"likes":14,"views":617,"text":"TypeScript/Rust SDK for the Pump protocol on Solana","sentiment":"positive","r":4},{"x":1772151745,"y":99.15,"likes":31,"views":2300,"text":"Pump SDK Core — Instruction Building","sentiment":"positive","r":4.6},{"x":1772151767,"y":96.26,"likes":10,"views":619,"text":"The skill's declared requirements and runtime instructions","sentiment":"neutral","r":4},{"x":1772152225,"y":76.65,"likes":0,"views":0,"text":"crypto tools are so fun to build","sentiment":"positive","r":4},{"x":1772155758,"y":174.58,"likes":5,"views":117,"text":"correct","sentiment":"neutral","r":4},{"x":1772155830,"y":168.67,"likes":9,"views":261,"text":"soon — have something really exciting planned","sentiment":"positive","r":4},{"x":1772162842,"y":80.65,"likes":24,"views":1100,"text":"Real-time PumpFun token tracking — built with raw WebSockets","sentiment":"positive","r":4},{"x":1772163647,"y":189.25,"likes":1,"views":95,"text":"spent the last couple of months working on it","sentiment":"neutral","r":4},{"x":1772164507,"y":293.88,"likes":11,"views":202,"text":"omg remotion + pump-sdk — watch this","sentiment":"neutral","r":4},{"x":1772164918,"y":361.70,"likes":2,"views":51,"text":"(media)","sentiment":"neutral","r":4},{"x":1772165089,"y":324.34,"likes":4,"views":25,"text":"i think people will be scared to see how long i can go","sentiment":"negative","r":4},{"x":1772167648,"y":257.98,"likes":0,"views":0,"text":"Generate custom Solana vanity addresses","sentiment":"neutral","r":4},{"x":1772167956,"y":236.63,"likes":0,"views":0,"text":"not sure why the agents prefer the terminal look","sentiment":"neutral","r":4}];
+const txLabels = [1772208120,1772208420,1772208720,1772209020,1772209320,1772209620,1772209920,1772210220,1772210520,1772210820,1772211120,1772211420,1772211720,1772212020,1772212320,1772212620,1772212920,1772213220,1772213520,1772213820,1772214120,1772214420,1772214720,1772215020,1772215320,1772215620,1772215920,1772216220,1772216520,1772216820,1772217120,1772217420,1772217720,1772218020,1772218320,1772218620,1772218920,1772219220,1772219520,1772219820,1772220120,1772220420,1772220720,1772221020,1772221320,1772221620,1772221920,1772222220,1772222580,1772222880,1772223180,1772223480,1772223780,1772224140,1772224440,1772224800,1772225100,1772225520,1772225880,1772226180,1772226480,1772226780,1772227080,1772227380,1772227680,1772227980,1772228280,1772228580,1772228880,1772229180,1772229480,1772229900,1772230200,1772230500,1772230800,1772231100,1772231400,1772231700,1772232000,1772232300,1772232660,1772232960,1772233260,1772233560,1772234040,1772234340,1772234640,1772234940,1772235300,1772235600,1772235960,1772236260,1772236560,1772236860,1772237160,1772237520,1772237820,1772238180,1772238480,1772238780,1772239080,1772239380,1772239680,1772240040,1772240520,1772240880,1772241300,1772241660,1772242020,1772242320,1772242620,1772242920,1772243280,1772244060,1772244420,1772244720,1772245020,1772245320,1772245680,1772245980,1772246460,1772246760,1772247480,1772247900,1772248680,1772249100,1772250060,1772250540,1772251380,1772251800,1772252160,1772252820,1772253240,1772253660,1772254080,1772254920,1772255340,1772255640,1772256060,1772256480,1772256840,1772257380,1772257860,1772258160,1772258460,1772258760,1772259180,1772259480,1772259960,1772260380,1772260740,1772261100,1772261520,1772262000,1772262300,1772263020,1772263500,1772264640,1772265060,1772265600,1772266140,1772266560,1772267040,1772267400,1772268480,1772269860,1772270700,1772272080,1772272920,1772273520,1772274240,1772275020,1772275740,1772276880,1772278560,1772279340,1772280780,1772282160,1772282700,1772284080,1772285580,1772286540,1772287140,1772288160,1772289360,1772290080,1772290860,1772292120,1772292780,1772293380,1772293800,1772294460,1772295240,1772296200,1772296680,1772297460,1772299020,1772300100,1772301360,1772303040,1772304060,1772305080,1772307540,1772308140,1772309520,1772310720];
+const txValues = [144,433,453,1066,1358,71,21,7,48,13,2712,40,12,15,16,32,1884,3355,871,580,500,151,100,295,6,13,6,23,35,20,20,347,116,548,566,95,96,294,51,39,140,279,77,46,99,5,11,3,107,4,3,5,2,8,59,3,7,5,2,4,2,14,6,65,9,75,9,4,16,1,2,1,2,6,4,6,1295,13,1,5,2,6,4,4,21,4,2,3,5,2,139,4,4,3,5,5,5,5,11,4,1,2,9,4,1,1,2,2,1,12,4,4,1,2,1,2,7,5,2,3,2,1,1,2,3,2,3,1,1,2,1,1,1,1,2,1,3,1,1,3,1,1,4,4,2,1,2,3,1,2,3,1,1,2,1,1,1,1,2,2,1,2,1,2,2,1,1,1,1,1,2,1,2,1,2,1,1,2,2,1,1,1,3,1,5,2,3,1,1,1,2,1,1,4,2,1,1,1,1,5,2,3,3,1,1,1];
+const sentLabels = ["positive","neutral","negative"];
+const sentValues = [36,29,3];
+const catLabels = ["technical","market","community","milestone","conversation","deployment"];
+const catValues = [30,29,11,13,26,1];
+const hLabels = ["2026-02-26T20","2026-02-26T21","2026-02-26T22","2026-02-26T23","2026-02-27T00","2026-02-27T01","2026-02-27T03","2026-02-27T04"];
+const hValues = [1,32,17,4,5,2,3,4];
+
+// === 1. Price + Tweet Markers ===
+new Chart(document.getElementById('cjsPriceChart'), {
+  type: 'line',
+  data: {
+    labels: priceLabels,
+    datasets: [{
+      label: 'Price (μ$)',
+      data: priceValues,
+      borderColor: '#a855f7',
+      backgroundColor: 'rgba(168,85,247,0.08)',
+      fill: true, tension: 0.3, pointRadius: 0, borderWidth: 2
+    },{
+      label: 'Tweets',
+      data: tweetData.map((t,i) => ({x: priceLabels[Math.floor(i*priceLabels.length/tweetData.length)], y: t.y})),
+      type: 'scatter',
+      backgroundColor: tweetData.map(t => t.sentiment==='positive'?'#00ff88':t.sentiment==='negative'?'#ff4444':'#8a8a96'),
+      pointRadius: tweetData.map(t => Math.max(4, Math.min(18, t.views/800)))
+    }]
+  },
+  options: {
+    responsive: true,
+    interaction: {mode:'index',intersect:false},
+    plugins: {
+      tooltip: {callbacks: {label: function(ctx){if(ctx.datasetIndex===1){const tw=tweetData[ctx.dataIndex];return tw?[tw.text,'Views: '+tw.views.toLocaleString()+' | Likes: '+tw.likes]:'';}return 'Price: '+ctx.parsed.y.toFixed(1)+'μ$';}}},
+      legend: {display:true,position:'top',labels:{color:'#e8e8ed'}}
+    },
+    scales: {
+      x: {display:true,ticks:{maxTicksLimit:10,maxRotation:45,color:'#5c5c66',font:{size:9}},grid:{display:false}},
+      y: {display:true,title:{display:true,text:'Price (μ$)',color:'#8a8a96'},grid:{color:'rgba(42,42,47,0.5)'}}
+    }
+  }
+});
+
+// === 2. Volume ===
+new Chart(document.getElementById('cjsVolumeChart'), {
+  type: 'bar',
+  data: {
+    labels: priceLabels,
+    datasets: [{label:'Volume (USD)',data:volumeValues,backgroundColor:'rgba(59,130,246,0.6)',borderRadius:2}]
+  },
+  options: {
+    responsive: true,
+    plugins: {legend:{display:false}},
+    scales: {
+      x: {display:true,ticks:{maxTicksLimit:8,color:'#5c5c66',font:{size:9}},grid:{display:false}},
+      y: {display:true,grid:{color:'rgba(42,42,47,0.5)'}}
+    }
+  }
+});
+
+// === 3. TX Frequency ===
+new Chart(document.getElementById('cjsTxChart'), {
+  type: 'line',
+  data: {
+    labels: txLabels.map(t => new Date(t*1000).toISOString().slice(11,16)),
+    datasets: [{label:'Transactions / 5min',data:txValues,borderColor:'#06b6d4',backgroundColor:'rgba(6,182,212,0.08)',fill:true,tension:0.4,pointRadius:0,borderWidth:1.5}]
+  },
+  options: {
+    responsive: true,
+    plugins: {legend:{display:false}},
+    scales: {
+      x: {display:true,ticks:{maxTicksLimit:8,color:'#5c5c66',font:{size:9}},grid:{display:false}},
+      y: {display:true,grid:{color:'rgba(42,42,47,0.5)'}}
+    }
+  }
+});
+
+// === 4. Sentiment Doughnut ===
+new Chart(document.getElementById('cjsSentimentChart'), {
+  type: 'doughnut',
+  data: {
+    labels: sentLabels,
+    datasets: [{data:sentValues,backgroundColor:['#00ff88','#8a8a96','#ff4444'],borderWidth:0}]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {position:'bottom',labels:{color:'#e8e8ed',padding:12}},
+      tooltip: {callbacks:{label:ctx=>`${ctx.label}: ${ctx.raw} (${(ctx.raw/68*100).toFixed(0)}%)`}}
+    }
+  }
+});
+
+// === 5. Category Bar ===
+new Chart(document.getElementById('cjsCategoryChart'), {
+  type: 'bar',
+  data: {
+    labels: catLabels,
+    datasets: [{label:'Tweets',data:catValues,backgroundColor:['#a855f7','#3b82f6','#8a8a96','#eab308','#ec4899','#06b6d4'],borderRadius:6}]
+  },
+  options: {
+    responsive: true,
+    indexAxis: 'y',
+    plugins: {legend:{display:false}},
+    scales: {
+      x: {grid:{color:'rgba(42,42,47,0.5)'}},
+      y: {grid:{display:false},ticks:{color:'#e8e8ed'}}
+    }
+  }
+});
+
+// === 6. Hourly Posting ===
+new Chart(document.getElementById('cjsHourlyChart'), {
+  type: 'bar',
+  data: {
+    labels: hLabels.map(h => h.slice(11)+':00 UTC'),
+    datasets: [{label:'Tweets',data:hValues,backgroundColor:hValues.map(v=>v>20?'#a855f7':v>10?'#3b82f6':'#2a2a2f'),borderColor:'#a855f7',borderWidth:1,borderRadius:6}]
+  },
+  options: {
+    responsive: true,
+    plugins: {legend:{display:false}},
+    scales: {
+      x: {grid:{display:false},ticks:{color:'#e8e8ed'}},
+      y: {grid:{color:'rgba(42,42,47,0.5)'},beginAtZero:true}
+    }
+  }
+});
+
+// === 7. Scatter: Engagement vs Price ===
+new Chart(document.getElementById('cjsScatterChart'), {
+  type: 'scatter',
+  data: {
+    datasets: [{
+      label: 'Tweet (size = views)',
+      data: tweetData.filter(t=>t.views>0).map(t=>({x:t.views,y:t.y})),
+      backgroundColor: tweetData.filter(t=>t.views>0).map(t=>t.sentiment==='positive'?'rgba(0,255,136,0.7)':t.sentiment==='negative'?'rgba(255,68,68,0.7)':'rgba(138,138,150,0.5)'),
+      pointRadius: tweetData.filter(t=>t.views>0).map(t=>Math.max(5,Math.min(20,Math.sqrt(t.likes)*2)))
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      tooltip: {callbacks:{label:function(ctx){const tw=tweetData.filter(t=>t.views>0)[ctx.dataIndex];return tw?[tw.text,'Views: '+tw.views.toLocaleString()+' | Price: '+tw.y.toFixed(1)+'μ$']:'';}}}
+    },
+    scales: {
+      x: {title:{display:true,text:'Views',color:'#8a8a96'},grid:{color:'rgba(42,42,47,0.5)'}},
+      y: {title:{display:true,text:'Token Price (μ$)',color:'#8a8a96'},grid:{color:'rgba(42,42,47,0.5)'}}
+    }
+  }
+});
+
+// === 8. Holder Composition Doughnut ===
+new Chart(document.getElementById('cjsHolderChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Fresh Wallets','BC Owners','Smart Money','KOL','Snipers','Insiders','DEV','Tracking','Other'],
+    datasets: [{data:[32,27,21,11,9,7,7,5,381],backgroundColor:['#00ff88','#a855f7','#3b82f6','#ec4899','#f97316','#ff4444','#eab308','#06b6d4','#1c1c20'],borderWidth:0}]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {position:'right',labels:{color:'#e8e8ed',padding:12,usePointStyle:true,font:{size:11}}},
+      tooltip: {callbacks:{label:function(ctx){return `${ctx.label}: ${ctx.raw} (${(ctx.raw/500*100).toFixed(1)}%)`;}}}
+    }
+  }
+});
+</script>
 
 </body>
 </html>
