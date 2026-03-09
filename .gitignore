@@ -44,3 +44,8 @@ reports/
 /analysis/
 
 .vercel
+
+# Allow chart visualization and research data
+!web/chart.html
+!/data/pump-sdk-*.json
+!/data/pump-sdk-*.csv
