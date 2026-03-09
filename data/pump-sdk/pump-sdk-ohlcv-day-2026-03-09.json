@@ -1,0 +1,203 @@
+{
+  "meta": {
+    "mint": "F4ZHCzizwpop2XS8auuAGQ7LZcUTEwQ22m5sRmB2pump",
+    "network": "solana",
+    "timeframe": "day",
+    "aggregate": 1,
+    "fetchedAt": "2026-03-09T14:00:42.238Z",
+    "totalCandles": 12,
+    "pool": {
+      "address": "AS5KLCFs4HVYPebV8MNt2YzD2Fs2jgb5F2p3xXjxm9Aj",
+      "dex": "pumpswap",
+      "baseName": "pump-sdk",
+      "baseSymbol": "pump-sdk",
+      "quoteName": "Wrapped SOL",
+      "quoteSymbol": "SOL",
+      "priceUsd": "0.000003508",
+      "liquidity": 5203.01,
+      "volume24h": 21.06,
+      "fdv": 3508,
+      "pairUrl": "https://dexscreener.com/solana/as5klcfs4hvypebv8mnt2yzd2fs2jgb5f2p3xxjxm9aj"
+    }
+  },
+  "snapshot": {
+    "chainId": "solana",
+    "dexId": "pumpswap",
+    "url": "https://dexscreener.com/solana/as5klcfs4hvypebv8mnt2yzd2fs2jgb5f2p3xxjxm9aj",
+    "pairAddress": "AS5KLCFs4HVYPebV8MNt2YzD2Fs2jgb5F2p3xXjxm9Aj",
+    "baseToken": {
+      "address": "F4ZHCzizwpop2XS8auuAGQ7LZcUTEwQ22m5sRmB2pump",
+      "name": "pump-sdk",
+      "symbol": "pump-sdk"
+    },
+    "quoteToken": {
+      "address": "So11111111111111111111111111111111111111112",
+      "name": "Wrapped SOL",
+      "symbol": "SOL"
+    },
+    "priceNative": "0.00000004235",
+    "priceUsd": "0.000003508",
+    "txns": {
+      "m5": {
+        "buys": 0,
+        "sells": 0
+      },
+      "h1": {
+        "buys": 0,
+        "sells": 0
+      },
+      "h6": {
+        "buys": 0,
+        "sells": 0
+      },
+      "h24": {
+        "buys": 0,
+        "sells": 6
+      }
+    },
+    "volume": {
+      "h24": 21.06,
+      "h6": 0,
+      "h1": 0,
+      "m5": 0
+    },
+    "priceChange": {
+      "h24": -0.73
+    },
+    "liquidity": {
+      "usd": 5203.01,
+      "base": 736814218,
+      "quote": 31.5989
+    },
+    "fdv": 3508,
+    "marketCap": 3508,
+    "pairCreatedAt": 1772139267000,
+    "info": {
+      "imageUrl": "https://cdn.dexscreener.com/cms/images/6kptg9q2F92_rGCb?width=800&height=800&quality=90",
+      "header": "https://cdn.dexscreener.com/cms/images/SGPXqPqaKPqCm4Fy?width=1500&height=500&quality=90",
+      "openGraph": "https://cdn.dexscreener.com/token-images/og/solana/F4ZHCzizwpop2XS8auuAGQ7LZcUTEwQ22m5sRmB2pump?timestamp=1773064800000",
+      "websites": [
+        {
+          "url": "https://pumpsdk.com/",
+          "label": "Website"
+        }
+      ],
+      "socials": [
+        {
+          "url": "https://x.com/i/communities/2027127717372543251",
+          "type": "twitter"
+        }
+      ]
+    }
+  },
+  "candles": [
+    {
+      "timestamp": "2026-02-26T00:00:00.000Z",
+      "unix": 1772064000,
+      "open": 0.00003409597968911996,
+      "high": 0.0001774598776784747,
+      "low": 0.000020393533321798524,
+      "close": 0.00006888263817681911,
+      "volume": 787673.4520505266
+    },
+    {
+      "timestamp": "2026-02-27T00:00:00.000Z",
+      "unix": 1772150400,
+      "open": 0.00006888263817681911,
+      "high": 0.0004180799625806705,
+      "low": 0.000020326335210623756,
+      "close": 0.000022198784314364228,
+      "volume": 1287531.6376416704
+    },
+    {
+      "timestamp": "2026-02-28T00:00:00.000Z",
+      "unix": 1772236800,
+      "open": 0.000022198784314364228,
+      "high": 0.000023974265538337647,
+      "low": 0.000009034062500129834,
+      "close": 0.000009957745038443994,
+      "volume": 35993.37999509013
+    },
+    {
+      "timestamp": "2026-03-01T00:00:00.000Z",
+      "unix": 1772323200,
+      "open": 0.000009957745038443994,
+      "high": 0.00001091769229845855,
+      "low": 0.000005985932299640601,
+      "close": 0.000007688742717539715,
+      "volume": 4469.861818785844
+    },
+    {
+      "timestamp": "2026-03-02T00:00:00.000Z",
+      "unix": 1772409600,
+      "open": 0.000007688742717539715,
+      "high": 0.00000785232202139715,
+      "low": 0.000006757576416504326,
+      "close": 0.000007497079734781128,
+      "volume": 605.1074385138252
+    },
+    {
+      "timestamp": "2026-03-03T00:00:00.000Z",
+      "unix": 1772496000,
+      "open": 0.000007497079734781128,
+      "high": 0.000007497079734781128,
+      "low": 0.000005277034000225586,
+      "close": 0.000005354752363176953,
+      "volume": 570.1141431194128
+    },
+    {
+      "timestamp": "2026-03-04T00:00:00.000Z",
+      "unix": 1772582400,
+      "open": 0.000005354752363176953,
+      "high": 0.000005394544100868636,
+      "low": 0.000005124095598957316,
+      "close": 0.000005162828677859806,
+      "volume": 235.80821260782156
+    },
+    {
+      "timestamp": "2026-03-05T00:00:00.000Z",
+      "unix": 1772668800,
+      "open": 0.000005162828677859806,
+      "high": 0.000005252546343256887,
+      "low": 0.000004487519092041895,
+      "close": 0.00000464152151078196,
+      "volume": 198.37760588717924
+    },
+    {
+      "timestamp": "2026-03-06T00:00:00.000Z",
+      "unix": 1772755200,
+      "open": 0.00000464152151078196,
+      "high": 0.000004706732498027498,
+      "low": 0.000004104292090345986,
+      "close": 0.000004121029869117858,
+      "volume": 251.40268066010356
+    },
+    {
+      "timestamp": "2026-03-07T00:00:00.000Z",
+      "unix": 1772841600,
+      "open": 0.000004121029869117858,
+      "high": 0.000004121029869117858,
+      "low": 0.000003640412910746054,
+      "close": 0.000003640412910746054,
+      "volume": 265.02780925454016
+    },
+    {
+      "timestamp": "2026-03-08T00:00:00.000Z",
+      "unix": 1772928000,
+      "open": 0.000003640412910746054,
+      "high": 0.000003640412910746054,
+      "low": 0.0000034783558292500905,
+      "close": 0.0000034783558292500905,
+      "volume": 24.48797037936975
+    },
+    {
+      "timestamp": "2026-03-09T00:00:00.000Z",
+      "unix": 1773014400,
+      "open": 0.0000034783558292500905,
+      "high": 0.000003508718927736062,
+      "low": 0.0000034783558292500905,
+      "close": 0.000003508718927736062,
+      "volume": 0.4166957339906358
+    }
+  ]
+}
