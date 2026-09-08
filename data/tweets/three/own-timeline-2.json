@@ -1,0 +1,363 @@
+{
+  "profile": "i",
+  "profileUrl": "https://x.com/i",
+  "scrapedAt": "2026-06-15T06:02:27.952Z",
+  "duration": "4.00s",
+  "totalTweets": 12,
+  "statistics": {
+    "totalTweets": 12,
+    "totalLikes": 78,
+    "totalRetweets": 39,
+    "totalReplies": 18,
+    "avgLikes": 7,
+    "avgRetweets": 3,
+    "tweetsWithMedia": 4,
+    "retweets": 0,
+    "replies": 0,
+    "topHashtags": {},
+    "topMentions": {
+      "@coinbase": 1
+    },
+    "allUrls": []
+  },
+  "tweets": [
+    {
+      "id": "2065968567250833412",
+      "url": "https://x.com/trythreews/status/2065968567250833412",
+      "text": "awesome ",
+      "timestamp": "2026-06-14T01:24:24.000Z",
+      "displayTime": "Jun 13",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "3",
+        "views": "71"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:02:15.939Z"
+    },
+    {
+      "id": "2064379301026546126",
+      "url": "https://x.com/trythreews/status/2064379301026546126",
+      "text": "I am pretty sure they post them and then block me so i cannot see the posts. You can't delete someone elses posts, you can only hide them. But you can't hide them if you can't see them. Please DM me any posts that are still visible and I will hide them. These people operate",
+      "timestamp": "2026-06-09T16:09:14.000Z",
+      "displayTime": "Jun 9",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "",
+        "views": "5"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:02:15.939Z"
+    },
+    {
+      "id": "2060483585094877618",
+      "url": "https://x.com/trythreews/status/2060483585094877618",
+      "text": "",
+      "timestamp": "2026-05-29T22:09:03.000Z",
+      "displayTime": "May 29",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "4",
+        "views": "167"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:02:15.939Z"
+    },
+    {
+      "id": "2058683319181877299",
+      "url": "https://x.com/trythreews/status/2058683319181877299",
+      "text": "best community ever ",
+      "timestamp": "2026-05-24T22:55:26.000Z",
+      "displayTime": "May 24",
+      "metrics": {
+        "replies": "",
+        "retweets": "1",
+        "likes": "0",
+        "views": "107"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:02:15.939Z"
+    },
+    {
+      "id": "2053515024887607616",
+      "url": "https://x.com/trythreews/status/2053515024887607616",
+      "text": "Thanks for the support!",
+      "timestamp": "2026-05-10T16:38:29.000Z",
+      "displayTime": "May 10",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "",
+        "views": "8"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:02:15.939Z"
+    },
+    {
+      "id": "2051767377688506520",
+      "url": "https://x.com/trythreews/status/2051767377688506520",
+      "text": "adding it to the X community, all support is welcomed and we didn't want anybody to miss the opportunity to contribute",
+      "timestamp": "2026-05-05T20:53:57.000Z",
+      "displayTime": "May 5",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "",
+        "views": ""
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:02:15.939Z"
+    },
+    {
+      "id": "2051690803203105230",
+      "url": "https://x.com/trythreews/status/2051690803203105230",
+      "text": "Extremely grateful for Coinbase sharing our project and allowing more than 100 million users worldwide a smooth onboarding experience to the $THREE community \n\nSend, receive, trade, and store $THREE using \n\n@coinbase",
+      "timestamp": "2026-05-05T15:49:40.000Z",
+      "displayTime": "May 5",
+      "metrics": {
+        "replies": "7",
+        "retweets": "16",
+        "likes": "50",
+        "views": "5.2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@coinbase"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:02:15.939Z"
+    },
+    {
+      "id": "2051020611728916912",
+      "url": "https://x.com/trythreews/status/2051020611728916912",
+      "text": "GM everyone!\n\nTest out the new features and let me know what you guys think!\n\nContinuing to ship, more updates to come today",
+      "timestamp": "2026-05-03T19:26:34.000Z",
+      "displayTime": "May 3",
+      "metrics": {
+        "replies": "4",
+        "retweets": "9",
+        "likes": "0",
+        "views": "1.9K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:02:15.940Z"
+    },
+    {
+      "id": "2050229144676675999",
+      "url": "https://x.com/trythreews/status/2050229144676675999",
+      "text": "http://\nthree.ws is live\n\nCreate 3D AI agent avatars on-chain.\n\nThey can talk, remember you, show emotions, and use different skills. You can even mint them onchain, so they actually belong to you.\n\nAgents get their own identity, history, and reputation that no one can",
+      "timestamp": "2026-05-01T15:01:34.000Z",
+      "displayTime": "May 1",
+      "metrics": {
+        "replies": "4",
+        "retweets": "6",
+        "likes": "17",
+        "views": "1.2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:02:15.940Z"
+    },
+    {
+      "id": "2049777957082931528",
+      "url": "https://x.com/trythreews/status/2049777957082931528",
+      "text": "",
+      "timestamp": "2026-04-30T09:08:42.000Z",
+      "displayTime": "Apr 30",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "0",
+        "views": "150"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:02:17.941Z"
+    },
+    {
+      "id": "2049765915575914834",
+      "url": "https://x.com/trythreews/status/2049765915575914834",
+      "text": "meeting with Google Cloud team for Google Cloud for Web3 Startups partnership \n\nmore compute incoming",
+      "timestamp": "2026-04-30T08:20:51.000Z",
+      "displayTime": "Apr 30",
+      "metrics": {
+        "replies": "2",
+        "retweets": "7",
+        "likes": "0",
+        "views": "2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:02:17.942Z"
+    },
+    {
+      "id": "2049411665968709888",
+      "url": "https://x.com/trythreews/status/2049411665968709888",
+      "text": "thank you for the support ",
+      "timestamp": "2026-04-29T08:53:12.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "4",
+        "views": "1.6K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:02:17.942Z"
+    }
+  ]
+}

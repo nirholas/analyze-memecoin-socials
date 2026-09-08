@@ -1,0 +1,1989 @@
+{
+  "profile": "i",
+  "profileUrl": "https://x.com/i",
+  "scrapedAt": "2026-06-15T06:02:03.402Z",
+  "duration": "6.01s",
+  "totalTweets": 69,
+  "statistics": {
+    "totalTweets": 69,
+    "totalLikes": 613,
+    "totalRetweets": 148,
+    "totalReplies": 230,
+    "avgLikes": 9,
+    "avgRetweets": 2,
+    "tweetsWithMedia": 16,
+    "retweets": 0,
+    "replies": 0,
+    "topHashtags": {
+      "#1": 4
+    },
+    "topMentions": {
+      "@trythreews": 2,
+      "@coincomms": 1,
+      "@producthunt": 1,
+      "@anthropicai": 1,
+      "@pulsemcp": 1,
+      "@dappradar": 1,
+      "@grok": 1
+    },
+    "allUrls": []
+  },
+  "tweets": [
+    {
+      "id": "2066366680784409032",
+      "url": "https://x.com/nichxbt/status/2066366680784409032",
+      "text": "Haha during college, my roommate was a rugby player. Nice guy, def was hard bodied \n\nWonder if he's still holding his BTC",
+      "timestamp": "2026-06-15T03:46:22.000Z",
+      "displayTime": "2h",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "1",
+        "views": "18"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:45.379Z"
+    },
+    {
+      "id": "2066352255381729558",
+      "url": "https://x.com/nichxbt/status/2066352255381729558",
+      "text": "this is football!",
+      "timestamp": "2026-06-15T02:49:03.000Z",
+      "displayTime": "3h",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "3",
+        "views": "78"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:45.380Z"
+    },
+    {
+      "id": "2066313985331470594",
+      "url": "https://x.com/nichxbt/status/2066313985331470594",
+      "text": "sure, ill build out a transparent real time tracking dashboard which surfaces all the user analytics in one place. you see exactly whats being tracked as its happening, live numbers updating in front of you. ill wire it to the data that i see so its honest about whats going on,",
+      "timestamp": "2026-06-15T00:16:59.000Z",
+      "displayTime": "5h",
+      "metrics": {
+        "replies": "1",
+        "retweets": "3",
+        "likes": "18",
+        "views": "778"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:45.380Z"
+    },
+    {
+      "id": "2066299555277418717",
+      "url": "https://x.com/nichxbt/status/2066299555277418717",
+      "text": "2k people in X community, if you have any other platforms you'd like me to set up for the community to connect please let me know. i think a lot of people would be surprised to see our site and platform analytics. they are way higher than i expected when starting this project.",
+      "timestamp": "2026-06-14T23:19:38.000Z",
+      "displayTime": "6h",
+      "metrics": {
+        "replies": "3",
+        "retweets": "",
+        "likes": "0",
+        "views": "372"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:45.380Z"
+    },
+    {
+      "id": "2066295548240666991",
+      "url": "https://x.com/nichxbt/status/2066295548240666991",
+      "text": "did you read what i just posted",
+      "timestamp": "2026-06-14T23:03:43.000Z",
+      "displayTime": "6h",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "",
+        "views": "24"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:45.380Z"
+    },
+    {
+      "id": "2066294864724308443",
+      "url": "https://x.com/nichxbt/status/2066294864724308443",
+      "text": "great to see more people generating 3d avatars with our new text-to-3d feature in forge.\n\nthis marks a step in the right direction in putting powerful creation tools directly in the hands of everyone. \nwe built forge entirely from the ground up over the past months as one of the",
+      "timestamp": "2026-06-14T23:01:00.000Z",
+      "displayTime": "7h",
+      "metrics": {
+        "replies": "26",
+        "retweets": "0",
+        "likes": "0",
+        "views": "9.2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:45.380Z"
+    },
+    {
+      "id": "2065969253485023665",
+      "url": "https://x.com/nichxbt/status/2065969253485023665",
+      "text": "yesss pls post your creations i wanna see",
+      "timestamp": "2026-06-14T01:27:08.000Z",
+      "displayTime": "Jun 13",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "4",
+        "views": "251"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:45.380Z"
+    },
+    {
+      "id": "2065968316238414243",
+      "url": "https://x.com/nichxbt/status/2065968316238414243",
+      "text": "love it !!",
+      "timestamp": "2026-06-14T01:23:25.000Z",
+      "displayTime": "Jun 13",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "4",
+        "views": "180"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:45.380Z"
+    },
+    {
+      "id": "2065936737759846492",
+      "url": "https://x.com/nichxbt/status/2065936737759846492",
+      "text": "can't even express how excited i was to ship Text → 3D but notis on \n@trythreews\n because we have some very exciting announcements to share with everyone and while i want to wait (weekend, a lot of people offline) i think i will share anyways. stay tuned",
+      "timestamp": "2026-06-13T23:17:56.000Z",
+      "displayTime": "Jun 13",
+      "metrics": {
+        "replies": "18",
+        "retweets": "0",
+        "likes": "0",
+        "views": "5.1K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@trythreews"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:45.380Z"
+    },
+    {
+      "id": "2065936257583317093",
+      "url": "https://x.com/nichxbt/status/2065936257583317093",
+      "text": "glad to see the community enjoying the new Text → 3D feature ",
+      "timestamp": "2026-06-13T23:16:01.000Z",
+      "displayTime": "Jun 13",
+      "metrics": {
+        "replies": "12",
+        "retweets": "0",
+        "likes": "0",
+        "views": "7.3K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:45.380Z"
+    },
+    {
+      "id": "2063137268723057116",
+      "url": "https://x.com/nichxbt/status/2063137268723057116",
+      "text": "",
+      "timestamp": "2026-06-06T05:53:50.000Z",
+      "displayTime": "Jun 5",
+      "metrics": {
+        "replies": "50",
+        "retweets": "0",
+        "likes": "0",
+        "views": "55K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:47.381Z"
+    },
+    {
+      "id": "2062111294283730963",
+      "url": "https://x.com/nichxbt/status/2062111294283730963",
+      "text": "have an entire co-marketing campaign with ibm coming :) dw",
+      "timestamp": "2026-06-03T09:56:59.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "10",
+        "retweets": "34",
+        "likes": "70",
+        "views": "16K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:47.381Z"
+    },
+    {
+      "id": "2060483206651281804",
+      "url": "https://x.com/nichxbt/status/2060483206651281804",
+      "text": "If you see this and can spare a couple seconds to help us become the top community on Coin Communities, your time matters and can make a huge difference for us. \n\nJoin the $three \n@coincomms\n\n\n\nhttps://\ncoincommunities.org/communities/Fe\nMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump\n…",
+      "timestamp": "2026-05-29T22:07:33.000Z",
+      "displayTime": "May 29",
+      "metrics": {
+        "replies": "5",
+        "retweets": "6",
+        "likes": "57",
+        "views": "11K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@coincomms"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:47.381Z"
+    },
+    {
+      "id": "2060222002242420982",
+      "url": "https://x.com/nichxbt/status/2060222002242420982",
+      "text": "I just realized we are at 264 followers in less than 1 day on ProductHunt\n\nGuys we might actually hit #1 spot on ProductHunt\n\nThere's still time to upvote and comment\n\n\nhttps://\nproducthunt.com/products/three\n-ws-2?launch=three-ws\n…\n\nThank you for everyone supporting us.",
+      "timestamp": "2026-05-29T04:49:37.000Z",
+      "displayTime": "May 28",
+      "metrics": {
+        "replies": "8",
+        "retweets": "6",
+        "likes": "50",
+        "views": "5.2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [
+          "#1"
+        ],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:47.381Z"
+    },
+    {
+      "id": "2060190882499051577",
+      "url": "https://x.com/nichxbt/status/2060190882499051577",
+      "text": "amazing",
+      "timestamp": "2026-05-29T02:45:57.000Z",
+      "displayTime": "May 28",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "4",
+        "views": "81"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:47.382Z"
+    },
+    {
+      "id": "2060189509518803181",
+      "url": "https://x.com/nichxbt/status/2060189509518803181",
+      "text": "this is still just a concept in the making not at all complete but would love to hear opinions. willing to scrap it completely if it's not what the community likes. your voice matters. let me know :)",
+      "timestamp": "2026-05-29T02:40:30.000Z",
+      "displayTime": "May 28",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "2",
+        "views": "168"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:47.382Z"
+    },
+    {
+      "id": "2060187391206576337",
+      "url": "https://x.com/nichxbt/status/2060187391206576337",
+      "text": "Every part of the site is becoming interactive / 3D\n\nIt only makes sense for a 3D based infra and framework to showcase all features on the site\n\nOur project is built in public, everything is open source. If you have something you have been building and want to contribute to the",
+      "timestamp": "2026-05-29T02:32:05.000Z",
+      "displayTime": "May 28",
+      "metrics": {
+        "replies": "",
+        "retweets": "0",
+        "likes": "0",
+        "views": "314"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:47.382Z"
+    },
+    {
+      "id": "2060186881636422038",
+      "url": "https://x.com/nichxbt/status/2060186881636422038",
+      "text": "HUGE revamp coming to the landing page + dashboard \n\nI have completely renovated the site making the entire site more user friendly + tons of new features to be announced over the next couple of days.\n\nWill be pushing these new features to the site \nhttp://\nthree.ws",
+      "timestamp": "2026-05-29T02:30:03.000Z",
+      "displayTime": "May 28",
+      "metrics": {
+        "replies": "11",
+        "retweets": "0",
+        "likes": "0",
+        "views": "12K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:47.382Z"
+    },
+    {
+      "id": "2060179230445720052",
+      "url": "https://x.com/nichxbt/status/2060179230445720052",
+      "text": "It's a pretty well known fact that ProductHunt launches are botted. There's paid services, just as there are with botted followers, likes, etc. \n\nWe are taking the organic approach because we do things properly around here. Let's do everything we can to show up and get #1!",
+      "timestamp": "2026-05-29T01:59:39.000Z",
+      "displayTime": "May 28",
+      "metrics": {
+        "replies": "",
+        "retweets": "1",
+        "likes": "5",
+        "views": "92"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [
+          "#1"
+        ],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:47.382Z"
+    },
+    {
+      "id": "2060178868305326413",
+      "url": "https://x.com/nichxbt/status/2060178868305326413",
+      "text": "We still have plenty of time to make it to #1 spot on ProductHunt, I need everyone in full force helping to spread our page and share thoughts on the page what you like, dislike, anything you can to help us get the word out!\n\n\nhttps://\nproducthunt.com/products/three\n-ws-2?launch=three-ws\n…",
+      "timestamp": "2026-05-29T01:58:13.000Z",
+      "displayTime": "May 28",
+      "metrics": {
+        "replies": "1",
+        "retweets": "21",
+        "likes": "44",
+        "views": "7K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [
+          "#1"
+        ],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:47.382Z"
+    },
+    {
+      "id": "2059894866663067997",
+      "url": "https://x.com/nichxbt/status/2059894866663067997",
+      "text": "Product Hunt link is here  ",
+      "timestamp": "2026-05-28T07:09:41.000Z",
+      "displayTime": "May 28",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "2",
+        "views": "99"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:47.382Z"
+    },
+    {
+      "id": "2059894706210009277",
+      "url": "https://x.com/nichxbt/status/2059894706210009277",
+      "text": "We are officially LIVE and we are going for the #1 spot on \n@ProductHunt\n \n\nI cannot technically ask you to upvote but check out the page if you haven't already. \n\nWe have been building the very first on-chain 3D avatars equipped with LLM brains (Claude + multi-provider), memory,",
+      "timestamp": "2026-05-28T07:09:03.000Z",
+      "displayTime": "May 28",
+      "metrics": {
+        "replies": "10",
+        "retweets": "7",
+        "likes": "29",
+        "views": "2.5K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [
+          "#1"
+        ],
+        "mentions": [
+          "@ProductHunt"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:47.382Z"
+    },
+    {
+      "id": "2058681452292956492",
+      "url": "https://x.com/nichxbt/status/2058681452292956492",
+      "text": "Karim!! you're the best!! thank you for your support always. love to see you on the TL ",
+      "timestamp": "2026-05-24T22:48:01.000Z",
+      "displayTime": "May 24",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "1",
+        "views": "64"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2058681353689035056",
+      "url": "https://x.com/nichxbt/status/2058681353689035056",
+      "text": "thank you Mr_OK ",
+      "timestamp": "2026-05-24T22:47:37.000Z",
+      "displayTime": "May 24",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "1",
+        "views": "40"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2058681272441119181",
+      "url": "https://x.com/nichxbt/status/2058681272441119181",
+      "text": "thank you very much!!",
+      "timestamp": "2026-05-24T22:47:18.000Z",
+      "displayTime": "May 24",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "1",
+        "views": "45"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2058447024094429440",
+      "url": "https://x.com/nichxbt/status/2058447024094429440",
+      "text": "gm please give the \nhttp://\nthree.ws page a \"like\" to boost our ecosystem support algo on Jupiter. thanks \n\n\nhttps://\nverified.jup.ag/dashboard/FeMb\nDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump\n…",
+      "timestamp": "2026-05-24T07:16:29.000Z",
+      "displayTime": "May 24",
+      "metrics": {
+        "replies": "4",
+        "retweets": "10",
+        "likes": "53",
+        "views": "7.9K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2057791141127569600",
+      "url": "https://x.com/nichxbt/status/2057791141127569600",
+      "text": "Our MCP Server was just pushed to the official @AnthropicAI MCP Registry\n\nOur complete 3D AI agent toolkit is now seamlessly integrated and ready for immediate use in Claude and any MCP client\n\nCreate your 3D agent, give it an LLM brain (memory + emotions + tool use), a real",
+      "timestamp": "2026-05-22T11:50:14.000Z",
+      "displayTime": "May 22",
+      "metrics": {
+        "replies": "5",
+        "retweets": "0",
+        "likes": "0",
+        "views": "2.7K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@AnthropicAI"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2056562578026062236",
+      "url": "https://x.com/nichxbt/status/2056562578026062236",
+      "text": "the crazy thing is that it was made from only 3 images. left side, front, and right side. images from Google. imagine what we can do with ML training. i don't think people understand what's coming with $200k Google Cloud credit runway we have...",
+      "timestamp": "2026-05-19T02:28:22.000Z",
+      "displayTime": "May 18",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "2",
+        "views": "42"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2056553610721566974",
+      "url": "https://x.com/nichxbt/status/2056553610721566974",
+      "text": "It's coming and best believe the believers will be rewarded. Just like every project. Early believers are always rewarded the most. We are still very early and we are still in heavy builder mode and haven't begun pushing at full max capacity. Bringing on more people to help build",
+      "timestamp": "2026-05-19T01:52:44.000Z",
+      "displayTime": "May 18",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "7",
+        "views": "148"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2056546131174420533",
+      "url": "https://x.com/nichxbt/status/2056546131174420533",
+      "text": "it's time.",
+      "timestamp": "2026-05-19T01:23:01.000Z",
+      "displayTime": "May 18",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "",
+        "views": "74"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2056546117006024791",
+      "url": "https://x.com/nichxbt/status/2056546117006024791",
+      "text": "it's time.",
+      "timestamp": "2026-05-19T01:22:57.000Z",
+      "displayTime": "May 18",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "1",
+        "views": "72"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2056546030649483420",
+      "url": "https://x.com/nichxbt/status/2056546030649483420",
+      "text": "it's time.",
+      "timestamp": "2026-05-19T01:22:37.000Z",
+      "displayTime": "May 18",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "2",
+        "views": "112"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2056546021254320392",
+      "url": "https://x.com/nichxbt/status/2056546021254320392",
+      "text": "it's time.",
+      "timestamp": "2026-05-19T01:22:34.000Z",
+      "displayTime": "May 18",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "",
+        "views": "82"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2056546010487509020",
+      "url": "https://x.com/nichxbt/status/2056546010487509020",
+      "text": "it's time.",
+      "timestamp": "2026-05-19T01:22:32.000Z",
+      "displayTime": "May 18",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "3",
+        "views": "100"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2056545905281749145",
+      "url": "https://x.com/nichxbt/status/2056545905281749145",
+      "text": "Lock it in Karim ",
+      "timestamp": "2026-05-19T01:22:07.000Z",
+      "displayTime": "May 18",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "1",
+        "views": "82"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2056545722351468601",
+      "url": "https://x.com/nichxbt/status/2056545722351468601",
+      "text": "LFGGG ",
+      "timestamp": "2026-05-19T01:21:23.000Z",
+      "displayTime": "May 18",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "1",
+        "views": "108"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2056545565983543772",
+      "url": "https://x.com/nichxbt/status/2056545565983543772",
+      "text": "",
+      "timestamp": "2026-05-19T01:20:46.000Z",
+      "displayTime": "May 18",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "",
+        "views": "97"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2056545251729551780",
+      "url": "https://x.com/nichxbt/status/2056545251729551780",
+      "text": "No. And I am tired of the blackmail. We are staying on Solana.",
+      "timestamp": "2026-05-19T01:19:31.000Z",
+      "displayTime": "May 18",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "3",
+        "views": "114"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2056520240864129049",
+      "url": "https://x.com/nichxbt/status/2056520240864129049",
+      "text": "let's cook",
+      "timestamp": "2026-05-18T23:40:08.000Z",
+      "displayTime": "May 18",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "5",
+        "views": "152"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2056519593079030267",
+      "url": "https://x.com/nichxbt/status/2056519593079030267",
+      "text": "it's time to initiate the raids. we need to start making 3D avatars for influencers and start flooding the TL with animated funny videos with their 3D avatars. get ready, it's time to really ramp things up.",
+      "timestamp": "2026-05-18T23:37:33.000Z",
+      "displayTime": "May 18",
+      "metrics": {
+        "replies": "14",
+        "retweets": "9",
+        "likes": "0",
+        "views": "5.5K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2055792551299547522",
+      "url": "https://x.com/nichxbt/status/2055792551299547522",
+      "text": "I think we are at the point where it's time to hire some moderators to keep this community clean and actively engaged with the many exciting things we have planned. \n\nI took some time to think about what we need to do with this community and I am fully prepared to take the",
+      "timestamp": "2026-05-16T23:28:33.000Z",
+      "displayTime": "May 16",
+      "metrics": {
+        "replies": "9",
+        "retweets": "7",
+        "likes": "49",
+        "views": "2.2K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2054543224996610329",
+      "url": "https://x.com/nichxbt/status/2054543224996610329",
+      "text": "yup and if you are following the Github you will notice some really exciting agent actions which we will eventually announce\n\nX announcements are like hundreds of commits behind. another reason to understand code",
+      "timestamp": "2026-05-13T12:44:11.000Z",
+      "displayTime": "May 13",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "",
+        "views": "28"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2054495343547662595",
+      "url": "https://x.com/nichxbt/status/2054495343547662595",
+      "text": "AI agents are stuck as text in a box. No body, no wallet, no way to earn. \nhttp://\nthree.ws fixes that. \n\nHere’s the technical architecture overview of what was just shipped.\n\nAgents earn while they work.\n\nPay-per-call via x402. Every MCP tool call triggers a signed SPL",
+      "timestamp": "2026-05-13T09:33:55.000Z",
+      "displayTime": "May 13",
+      "metrics": {
+        "replies": "5",
+        "retweets": "8",
+        "likes": "24",
+        "views": "2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:49.384Z"
+    },
+    {
+      "id": "2053385083873292722",
+      "url": "https://x.com/nichxbt/status/2053385083873292722",
+      "text": "Agent Builder Live ++ Improved Studio Design ++ LLM Chat Upgrade\n\nAgents are now payable, tradeable, discoverable.\n— agents are payable (x402 + CDP)\n — agents are tradeable (\nhttp://\npump.fun v2)\n — agents are discoverable (/.well-known/x402.json)\n — agents react with",
+      "timestamp": "2026-05-10T08:02:08.000Z",
+      "displayTime": "May 10",
+      "metrics": {
+        "replies": "",
+        "retweets": "1",
+        "likes": "7",
+        "views": "774"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2053385017322271045",
+      "url": "https://x.com/nichxbt/status/2053385017322271045",
+      "text": "http://\nthree.ws is heating up since our MCP Server went live and displayed in @PulseMCP\n\nPulseMCP is a leading community resource and hub for the Model Context Protocol (MCP) ecosystem, offering a curated directory of MCP servers, clients, and tools to help AI models",
+      "timestamp": "2026-05-10T08:01:52.000Z",
+      "displayTime": "May 10",
+      "metrics": {
+        "replies": "",
+        "retweets": "3",
+        "likes": "13",
+        "views": "898"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@PulseMCP"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2053384916180844624",
+      "url": "https://x.com/nichxbt/status/2053384916180844624",
+      "text": "Submitted \nhttp://\nthree.ws to \n@DappRadar",
+      "timestamp": "2026-05-10T08:01:28.000Z",
+      "displayTime": "May 10",
+      "metrics": {
+        "replies": "",
+        "retweets": "5",
+        "likes": "24",
+        "views": "889"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@DappRadar"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2052274277320474898",
+      "url": "https://x.com/nichxbt/status/2052274277320474898",
+      "text": " awesome i can't wait to see it and let me know how i can make it easier for you to integrate things with the project",
+      "timestamp": "2026-05-07T06:28:11.000Z",
+      "displayTime": "May 6",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "1",
+        "views": "35"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2051762380686946592",
+      "url": "https://x.com/nichxbt/status/2051762380686946592",
+      "text": "Hello hello! We've gained a lot of new friends and i love to see it! Great to see everyone getting along as well.\n\nPlease, always share feedback about \nhttp://\nthree.ws. The good, the bad, the ugly, the beautiful. All of it helps me understand how to improve the user",
+      "timestamp": "2026-05-05T20:34:06.000Z",
+      "displayTime": "May 5",
+      "metrics": {
+        "replies": "6",
+        "retweets": "13",
+        "likes": "52",
+        "views": "2.8K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2051295900719583472",
+      "url": "https://x.com/nichxbt/status/2051295900719583472",
+      "text": "i am quite fortunate to be able to ship in long sprints being this is my full-time thing. and yeah its not for everyone, you need to be able to manage your diet and exercise and be strict with certain things. def not traditional way of going about things but my doc said its okay",
+      "timestamp": "2026-05-04T13:40:28.000Z",
+      "displayTime": "May 4",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "",
+        "views": "34"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2051293014937788891",
+      "url": "https://x.com/nichxbt/status/2051293014937788891",
+      "text": "it would be more but my Claude credits ran out and i've been paying $20 here $20 there ended up spending about $120 on top of the $200/month Claude Code Max plan \n\nMy weekly resets in a couple minutes here then it's time to finalize some exciting features ",
+      "timestamp": "2026-05-04T13:29:00.000Z",
+      "displayTime": "May 4",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "2",
+        "views": "80"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2050588979389694435",
+      "url": "https://x.com/nichxbt/status/2050588979389694435",
+      "text": "im reposting because i forgot to add the \n@trythreews\n x account lol 1 sec",
+      "timestamp": "2026-05-02T14:51:25.000Z",
+      "displayTime": "May 2",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "",
+        "views": "1"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@trythreews"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2050587689196634422",
+      "url": "https://x.com/nichxbt/status/2050587689196634422",
+      "text": "Co-marketing blog post should arrive soon!\n\n\nhttp://\nthree.ws on Alibaba Cloud Marketplace \n\n\nhttps://\nmarketplace.alibabacloud.com/store/3247293.\nhtml?spm=a3c0i.29891717.0.0.14b825db0OizTL\n…",
+      "timestamp": "2026-05-02T14:46:17.000Z",
+      "displayTime": "May 2",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "2",
+        "views": "27"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2050479144983765033",
+      "url": "https://x.com/nichxbt/status/2050479144983765033",
+      "text": "",
+      "timestamp": "2026-05-02T07:34:58.000Z",
+      "displayTime": "May 2",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "",
+        "views": "6"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2050450163081359428",
+      "url": "https://x.com/nichxbt/status/2050450163081359428",
+      "text": "i will",
+      "timestamp": "2026-05-02T05:39:49.000Z",
+      "displayTime": "May 1",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "1",
+        "views": "52"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2050164617096380776",
+      "url": "https://x.com/nichxbt/status/2050164617096380776",
+      "text": "i think so yes",
+      "timestamp": "2026-05-01T10:45:09.000Z",
+      "displayTime": "May 1",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "",
+        "views": "69"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2050164595009204228",
+      "url": "https://x.com/nichxbt/status/2050164595009204228",
+      "text": "true? \n@grok",
+      "timestamp": "2026-05-01T10:45:04.000Z",
+      "displayTime": "May 1",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "",
+        "views": "81"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@grok"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2050151512345837603",
+      "url": "https://x.com/nichxbt/status/2050151512345837603",
+      "text": "",
+      "timestamp": "2026-05-01T09:53:05.000Z",
+      "displayTime": "May 1",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "1",
+        "views": "63"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2050151470499311752",
+      "url": "https://x.com/nichxbt/status/2050151470499311752",
+      "text": "yes",
+      "timestamp": "2026-05-01T09:52:55.000Z",
+      "displayTime": "May 1",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "",
+        "views": "32"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2050146228441424020",
+      "url": "https://x.com/nichxbt/status/2050146228441424020",
+      "text": "just wait until the full vision is alive. 100% going viral. just wait",
+      "timestamp": "2026-05-01T09:32:05.000Z",
+      "displayTime": "May 1",
+      "metrics": {
+        "replies": "2",
+        "retweets": "",
+        "likes": "4",
+        "views": "200"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2050008010685390957",
+      "url": "https://x.com/nichxbt/status/2050008010685390957",
+      "text": "bc in the crypto world, even just talking about price or $ amount makes people feel uneasy but its cloud compute, and we are hoping to partner with Alibaba Cloud as well. I am going to put out some info explaining why we need so much cloud compute and AI credits. it will help",
+      "timestamp": "2026-05-01T00:22:51.000Z",
+      "displayTime": "Apr 30",
+      "metrics": {
+        "replies": "2",
+        "retweets": "",
+        "likes": "2",
+        "views": "81"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2050007159354929466",
+      "url": "https://x.com/nichxbt/status/2050007159354929466",
+      "text": "thank you!! we need X mods to clean up those links people keep spamming. will be shipping for the next 24-36hours (i have a weird sleep schedule) \n\noh and i am applying for more cloud compute from Alibaba Cloud (we need as much as possible)",
+      "timestamp": "2026-05-01T00:19:28.000Z",
+      "displayTime": "Apr 30",
+      "metrics": {
+        "replies": "4",
+        "retweets": "",
+        "likes": "8",
+        "views": "108"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.387Z"
+    },
+    {
+      "id": "2049985014549594578",
+      "url": "https://x.com/nichxbt/status/2049985014549594578",
+      "text": "SO SICK!!!!!",
+      "timestamp": "2026-04-30T22:51:29.000Z",
+      "displayTime": "Apr 30",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "1",
+        "views": "17"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:51.388Z"
+    },
+    {
+      "id": "2049620731382923311",
+      "url": "https://x.com/nichxbt/status/2049620731382923311",
+      "text": "awesome thanks  back to building then",
+      "timestamp": "2026-04-29T22:43:57.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "1",
+        "views": "35"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:53.390Z"
+    },
+    {
+      "id": "2049387387667583234",
+      "url": "https://x.com/nichxbt/status/2049387387667583234",
+      "text": "it makes sense that as this gains more attention, we're going to need $ for compute.\n\nso let me tell you what the compute is actually for.\n\nthe vision is simple: an engine where anyone can take 3 selfies. one from the left. one straight on. one from the right. that's the entire",
+      "timestamp": "2026-04-29T07:16:43.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "4",
+        "retweets": "9",
+        "likes": "22",
+        "views": "2.8K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:53.390Z"
+    },
+    {
+      "id": "2049379726444388727",
+      "url": "https://x.com/nichxbt/status/2049379726444388727",
+      "text": "im logged in on my other phone. its charging rn and will check it out once its charged",
+      "timestamp": "2026-04-29T06:46:17.000Z",
+      "displayTime": "Apr 28",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "2",
+        "views": "27"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:53.391Z"
+    },
+    {
+      "id": "2049376168953143712",
+      "url": "https://x.com/nichxbt/status/2049376168953143712",
+      "text": "i have to download the app gimme a bit",
+      "timestamp": "2026-04-29T06:32:08.000Z",
+      "displayTime": "Apr 28",
+      "metrics": {
+        "replies": "1",
+        "retweets": "1",
+        "likes": "3",
+        "views": "536"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:53.391Z"
+    },
+    {
+      "id": "2049376006709084560",
+      "url": "https://x.com/nichxbt/status/2049376006709084560",
+      "text": "lemme figure out how to do it lol",
+      "timestamp": "2026-04-29T06:31:30.000Z",
+      "displayTime": "Apr 28",
+      "metrics": {
+        "replies": "2",
+        "retweets": "1",
+        "likes": "2",
+        "views": "439"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:53.391Z"
+    },
+    {
+      "id": "2049371964129886534",
+      "url": "https://x.com/nichxbt/status/2049371964129886534",
+      "text": " this is actually good",
+      "timestamp": "2026-04-29T06:15:26.000Z",
+      "displayTime": "Apr 28",
+      "metrics": {
+        "replies": "2",
+        "retweets": "",
+        "likes": "3",
+        "views": "80"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:53.391Z"
+    },
+    {
+      "id": "2049365565203165221",
+      "url": "https://x.com/nichxbt/status/2049365565203165221",
+      "text": "thanks for sharing ",
+      "timestamp": "2026-04-29T05:50:00.000Z",
+      "displayTime": "Apr 28",
+      "metrics": {
+        "replies": "",
+        "retweets": "3",
+        "likes": "15",
+        "views": "3.1K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:53.391Z"
+    }
+  ]
+}

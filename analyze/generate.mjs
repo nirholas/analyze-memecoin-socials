@@ -1,0 +1,1192 @@
+#!/usr/bin/env node
+// Plot X (Twitter) posts on a token's price chart and measure whether they moved it.
+//
+// Usage:
+//   node analyze/generate.mjs --asset three --chart
+//   node analyze/generate.mjs --asset pump-sdk --chart
+//   node analyze/generate.mjs --mint <CA> --accounts handle --chart posts.json
+//
+// Any asset in analyze/assets.json can be charted; --mint/--pool/--accounts/--network
+// override the registry so an unregistered token needs no file edit. The pool is
+// resolved from DexScreener when only a mint is given.
+//
+// Handles the three.ws scraper schema ({ tweets:[{ text, timestamp, metrics:{likes,
+// retweets,replies,views}, type:{isRetweet,isReply}, url }] }), the browser-console
+// scraper schema ({ ts, text, likes, views, url }), and generic array / {data|tweets|
+// posts} shapes. Posts are deduped by tweet id across all files and tagged by account
+// (parsed from the status URL).
+//
+// Price history is pulled from GeckoTerminal (free, no key) and a current snapshot from
+// DexScreener. No mocks, no synthetic data.
+
+import { writeFileSync, mkdirSync, readFileSync, readdirSync, existsSync } from 'node:fs';
+import { dirname, join, basename, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const REPO = resolve(__dirname, '..');
+
+const args = process.argv.slice(2);
+const flag = (name, fallback = null) => {
+  const i = args.indexOf(`--${name}`);
+  return i !== -1 && args[i + 1] && !args[i + 1].startsWith('--') ? args[i + 1] : fallback;
+};
+
+// ---- asset resolution: registry entry first, then CLI overrides -------------
+const REGISTRY = JSON.parse(readFileSync(join(__dirname, 'assets.json'), 'utf8'));
+const assetKey = flag('asset');
+if (assetKey && !REGISTRY[assetKey]) {
+  console.error(`Unknown asset "${assetKey}". Known: ${Object.keys(REGISTRY).join(', ')}`);
+  process.exit(1);
+}
+const asset = assetKey ? REGISTRY[assetKey] : {};
+
+const MINT = flag('mint', asset.mint);
+let POOL = flag('pool', asset.pool);
+const NETWORK = flag('network', asset.network || 'solana');
+const SYMBOL = flag('symbol', asset.symbol || (MINT ? MINT.slice(0, 6) : 'TOKEN'));
+const GT = `https://api.geckoterminal.com/api/v2/networks/${NETWORK}`;
+
+if (!MINT && !POOL) {
+  console.error('Need --asset <key>, or --mint <CA> (pool auto-resolves), or --pool <address>.');
+  process.exit(1);
+}
+
+const acctArg = flag('accounts');
+const ACCOUNTS = acctArg
+  ? acctArg.toLowerCase().split(',')
+  : asset.accounts?.length ? asset.accounts.map((a) => a.toLowerCase()) : null;
+// Timeline scrapes carry replies and retweets from everyone the handle talked to.
+// Original posts only, unless the caller explicitly asks for the whole corpus.
+const ownOnly = !args.includes('--all-posts');
+
+// Forward windows in hours. Configurable so a launch that lives and dies in an afternoon
+// can be measured at 1h/4h rather than the 24h that suits a token with weeks of history.
+const WINDOWS = flag('windows', '1,4,24').split(',').map(Number).filter((n) => n > 0);
+
+// Local OHLCV exports, merged under whatever the API can still serve.
+const PRICES = flag('prices', asset.prices || null);
+const PRICES_FINE = flag('prices-fine', asset.pricesFine || null);
+
+const outBase = flag('out', assetKey ? `out/${assetKey}/chart` : 'out/chart');
+
+// --fetch-tweets: pull fresh tweets from a running XActions instance before generating.
+// Requires XACTIONS_URL (default: http://localhost:3001) and XACTIONS_COOKIE env vars.
+const FETCH_TWEETS = args.includes('--fetch-tweets');
+const XACTIONS_URL = process.env.XACTIONS_URL || 'http://localhost:3001';
+const XACTIONS_ACCOUNTS = ACCOUNTS || [];
+
+// --push-social: after analysis, POST the tweets to the Oracle social signal endpoint
+// so coin mentions update virality scores in real-time.
+// Requires THREE_WS_URL (default: https://three.ws) env var.
+const PUSH_SOCIAL = args.includes('--push-social');
+const THREE_WS_URL = (process.env.THREE_WS_URL || 'https://three.ws').replace(/\/$/, '');
+
+// Positional args are post files; the registry's globs fill in when none are given.
+const FLAGS_WITH_VALUE = new Set(['asset', 'mint', 'pool', 'network', 'symbol', 'accounts', 'windows', 'out']);
+const valueIdx = new Set();
+args.forEach((a, i) => { if (a.startsWith('--') && FLAGS_WITH_VALUE.has(a.slice(2))) valueIdx.add(i + 1); });
+const cliPaths = args.filter((a, i) => !a.startsWith('--') && !valueIdx.has(i));
+
+// "data/tweets/three/*.json" -> every matching file in that directory
+function expandGlob(pattern) {
+  const abs = resolve(REPO, pattern);
+  if (!pattern.includes('*')) return existsSync(abs) ? [abs] : [];
+  const dir = dirname(abs);
+  const suffix = basename(abs).replace('*', '');
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir).filter((f) => f.endsWith(suffix)).sort().map((f) => join(dir, f));
+}
+const postsPaths = cliPaths.length
+  ? cliPaths.map((p) => resolve(REPO, p))
+  : (asset.posts || []).flatMap(expandGlob);
+
+// ---- XActions tweet fetch (optional, requires running XActions instance) ----
+async function fetchTweetsFromXActions(account) {
+  const cookie = process.env.XACTIONS_COOKIE;
+  const body = { username: account, limit: 200, ...(cookie ? { sessionCookie: cookie } : {}) };
+  const r = await fetch(`${XACTIONS_URL}/api/ai/scrape/tweets`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...(cookie ? { 'X-Session-Cookie': cookie } : {}) },
+    body: JSON.stringify(body),
+    signal: AbortSignal.timeout(30000),
+  });
+  if (!r.ok) throw new Error(`XActions ${r.status}: ${await r.text()}`);
+  const d = await r.json();
+  if (!d.success) throw new Error(`XActions error: ${JSON.stringify(d)}`);
+  // Map XActions format → generate.mjs format
+  return (d.data?.results || []).map((t) => ({
+    id: t.id,
+    text: t.text,
+    timestamp: t.createdAt,
+    url: t.url,
+    metrics: { likes: t.metrics?.likes || 0, retweets: t.metrics?.retweets || 0, replies: t.metrics?.replies || 0, views: t.metrics?.views || 0 },
+    type: { isRetweet: false, isReply: (t.text || '').startsWith('@') },
+    profile: account,
+  }));
+}
+
+async function maybeRefreshTweets() {
+  if (!FETCH_TWEETS) return;
+  console.log(`Fetching fresh tweets from XActions at ${XACTIONS_URL}…`);
+  for (const acct of XACTIONS_ACCOUNTS) {
+    const dir = join(REPO, 'data', 'tweets', assetKey || 'adhoc');
+    mkdirSync(dir, { recursive: true });
+    const outFile = join(dir, `${acct}-${new Date().toISOString().slice(0, 10)}.json`);
+    try {
+      const tweets = await fetchTweetsFromXActions(acct);
+      writeFileSync(outFile, JSON.stringify({ tweets }, null, 2));
+      console.log(`  ${acct}: ${tweets.length} tweets → ${outFile}`);
+      postsPaths.push(outFile);
+    } catch (err) {
+      console.warn(`  ${acct}: XActions fetch failed (${err.message}). Using existing files.`);
+    }
+  }
+}
+
+if (!FETCH_TWEETS && !postsPaths.length) {
+  console.error('Usage: node generate.mjs <posts1.json> [posts2.json ...] [--fetch-tweets] [--out out/chart]');
+  process.exit(1);
+}
+
+// ---- Oracle social signal push (optional) ----
+async function pushSocialSignal(posts) {
+  if (!PUSH_SOCIAL) return;
+  const url = `${THREE_WS_URL}/api/oracle/social`;
+  // Map our internal post format to the XActions tweet shape Oracle expects
+  const tweets = posts.map(p => ({
+    id: p.id || `${p.account}:${p.ms}`,
+    text: p.text,
+    createdAt: new Date(p.ms).toISOString(),
+    url: p.url || '',
+    author: { username: p.account },
+    metrics: { views: p.views || 0, likes: p.likes || 0, retweets: p.rts || 0 },
+  }));
+  console.log(`Pushing ${tweets.length} tweets to Oracle social signal (${url})…`);
+  try {
+    const r = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tweets }),
+    });
+    const d = await r.json().catch(() => ({}));
+    console.log(`  Oracle social: ${d.mints_updated || 0} mints updated, ${d.symbols_found || 0} symbols found`);
+  } catch (err) {
+    console.warn(`  Oracle social push failed: ${err.message}`);
+  }
+}
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// GeckoTerminal's free tier sheds load with 401 as readily as 429, so a burst of pages
+// fails on a status the old loop treated as fatal. Every transient class backs off here.
+const TRANSIENT = new Set([401, 403, 408, 425, 429, 500, 502, 503, 504]);
+
+// The free tier allows roughly 30 calls a minute and answers a sustained overage with a
+// 401 penalty box that outlasts any per-request backoff. Every call goes through one
+// serialized pacer holding a minimum gap, so the run never earns the penalty at all.
+const MIN_GAP_MS = 4000;
+let gate = Promise.resolve();
+let lastCall = 0;
+let cooldownUntil = 0;
+// A throttle response applies to the whole client, so it parks every queued call rather
+// than only the one that tripped it. Retrying around a global cooldown is what keeps a
+// paginated fetch from turning one 429 into a storm of them.
+const parkAll = (ms) => { cooldownUntil = Math.max(cooldownUntil, Date.now() + ms); };
+function paced(fn) {
+  const run = gate.then(async () => {
+    const wait = Math.max(lastCall + MIN_GAP_MS, cooldownUntil) - Date.now();
+    if (wait > 0) await sleep(wait);
+    lastCall = Date.now();
+    return fn();
+  });
+  gate = run.then(() => undefined, () => undefined);
+  return run;
+}
+
+// Responses are cached on disk so iterating on the analysis costs no API budget. The
+// newest bucket of any OHLCV page is still forming, so a cached page is only reused
+// while it is fresh; --no-cache forces a clean fetch.
+const CACHE_DIR = join(REPO, '.cache', 'ohlcv');
+const CACHE_TTL_MS = args.includes('--no-cache') ? 0 : 15 * 60 * 1000;
+const cacheKey = (url) => createHash('sha1').update(url).digest('hex') + '.json';
+
+function cacheRead(url) {
+  if (!CACHE_TTL_MS) return null;
+  const f = join(CACHE_DIR, cacheKey(url));
+  if (!existsSync(f)) return null;
+  try {
+    const { at, body } = JSON.parse(readFileSync(f, 'utf8'));
+    return Date.now() - at < CACHE_TTL_MS ? body : null;
+  } catch { return null; }
+}
+
+function cacheWrite(url, body) {
+  if (!CACHE_TTL_MS) return;
+  try {
+    mkdirSync(CACHE_DIR, { recursive: true });
+    writeFileSync(join(CACHE_DIR, cacheKey(url)), JSON.stringify({ at: Date.now(), url, body }));
+  } catch { /* a cache that cannot be written is not a reason to fail the run */ }
+}
+
+async function getJson(url, tries = 6) {
+  const hit = cacheRead(url);
+  if (hit) return hit;
+  let lastErr;
+  for (let i = 0; i < tries; i++) {
+    try {
+      const res = await paced(() => fetch(url, {
+        // Keep the agent string bare: GeckoTerminal's WAF answers 429/401 to a UA
+        // carrying a URL, which reads exactly like a rate limit and is not one.
+        headers: { accept: 'application/json', 'user-agent': 'analyze-memecoin-socials' },
+        signal: AbortSignal.timeout(30000),
+      }));
+      if (res.ok) { const body = await res.json(); cacheWrite(url, body); return body; }
+      if (!TRANSIENT.has(res.status)) throw new Error(`HTTP ${res.status}`);
+      lastErr = new Error(`HTTP ${res.status}`);
+    } catch (err) {
+      if (err.message?.startsWith('HTTP ') && !TRANSIENT.has(Number(err.message.slice(5)))) throw err;
+      lastErr = err;
+    }
+    // 401 here is the penalty box for a sustained overage, not an auth problem.
+    const wait = lastErr.message === 'HTTP 401' ? 90000 : Math.min(5000 * 2 ** i, 60000);
+    if (i < tries - 1) {
+      console.log(`  ${lastErr.message}; cooling down ${Math.round(wait / 1000)}s (${i + 1}/${tries - 1})`);
+      parkAll(wait);
+      await sleep(wait);
+    }
+  }
+  throw lastErr;
+}
+
+// ---- load + normalize posts ----------------------------------------------
+// "271K" -> 271000, "1.2M" -> 1200000, "" -> 0
+function num(v) {
+  if (v == null) return 0;
+  if (typeof v === 'number') return v;
+  const s = String(v).trim().replace(/,/g, '');
+  if (!s) return 0;
+  const m = s.match(/^([\d.]+)\s*([KkMmBb]?)$/);
+  if (!m) return Number(s) || 0;
+  const mult = { '': 1, k: 1e3, m: 1e6, b: 1e9 }[m[2].toLowerCase()];
+  return Math.round(parseFloat(m[1]) * mult);
+}
+
+function loadFile(path) {
+  const raw = JSON.parse(readFileSync(path, 'utf8'));
+  const arr = Array.isArray(raw)
+    ? raw
+    : raw.data || raw.tweets || raw.posts || raw.results || [];
+  if (!Array.isArray(arr)) throw new Error(`No posts array in ${path}`);
+
+  const pick = (o, keys) => keys.map((k) => o[k]).find((v) => v != null);
+  return arr.map((p) => {
+    const ts = pick(p, ['ts', 'created_at', 'createdAt', 'date', 'timestamp', 'time']);
+    const ms = typeof ts === 'number' ? (ts < 1e12 ? ts * 1000 : ts) : Date.parse(ts);
+    const text = (pick(p, ['text', 'full_text', 'content', 'tweet', 'body']) || '').replace(/\s+/g, ' ').trim();
+    const m = p.metrics || p;
+    const t = p.type || {};
+    const url = p.url || '';
+    const account = (url.match(/x\.com\/([^/]+)\/status/) || url.match(/twitter\.com\/([^/]+)\/status/) || [, p.profile || 'unknown'])[1];
+    return {
+      id: p.id || p.id_str || url || `${account}:${ms}`,
+      account,
+      url,
+      ms, ts,
+      text,
+      likes: num(pick(m, ['likes', 'like_count', 'favorite_count', 'favoriteCount'])),
+      rts: num(pick(m, ['retweets', 'retweet_count', 'retweetCount', 'reposts'])),
+      views: num(pick(m, ['views', 'view_count', 'impressions', 'impression_count'])),
+      replies: num(pick(m, ['replies', 'reply_count', 'replyCount'])),
+      isReply: !!(t.isReply || p.in_reply_to_status_id || p.in_reply_to_user_id || /^@/.test(text)),
+      isRT: !!(t.isRetweet || /^RT @/.test(text)),
+    };
+  }).filter((p) => Number.isFinite(p.ms));
+}
+
+function loadPosts(paths) {
+  const byId = new Map();
+  for (const path of paths) {
+    for (const p of loadFile(path)) {
+      if (ACCOUNTS && !ACCOUNTS.includes(String(p.account).toLowerCase())) continue;
+      if (ownOnly && (p.isReply || p.isRT)) continue; // original posts only
+      // keep the record with the most engagement signal on dup id
+      const prev = byId.get(p.id);
+      if (!prev || p.likes + p.views + p.rts > prev.likes + prev.views + prev.rts) byId.set(p.id, p);
+    }
+  }
+  return [...byId.values()].sort((a, b) => a.ms - b.ms);
+}
+
+// ---- local price history -------------------------------------------------
+// GeckoTerminal drops history for pools that stop trading: the pump-sdk pool's candles
+// now start in July 2026 while its posts are from February, so the API alone can measure
+// nothing. Committed CSV exports cover those windows and merge ahead of the live tail.
+// Column names differ between the exports in data/, so they are detected, not assumed.
+function loadOhlcvCsv(path) {
+  const abs = resolve(REPO, path);
+  const [head, ...lines] = readFileSync(abs, 'utf8').trim().split(/\r?\n/);
+  const cols = head.split(',').map((c) => c.trim().toLowerCase());
+  const idx = (...names) => cols.findIndex((c) => names.includes(c));
+  const iO = idx('open'), iH = idx('high'), iL = idx('low'), iC = idx('close');
+  const iV = idx('volume', 'volume_usd', 'volume_in_usd');
+  if (iO < 0 || iH < 0 || iL < 0 || iC < 0) throw new Error(`${path}: needs open/high/low/close columns, saw ${cols.join(',')}`);
+
+  const rows = [];
+  for (const line of lines) {
+    const f = line.split(',');
+    // The timestamp is whichever leading column parses as unix seconds; the exports put
+    // it under "timestamp" or "unix" and sometimes carry an ISO string beside it.
+    let ts = null;
+    for (const name of ['unix', 'timestamp', 'time', 'datetime_utc', 'datetime']) {
+      const i = idx(name);
+      if (i < 0) continue;
+      const raw = f[i]?.trim();
+      const n = Number(raw);
+      if (Number.isFinite(n) && n > 1e9 && n < 1e11) { ts = Math.floor(n); break; }
+      const parsed = Date.parse(raw?.includes(' ') && !raw.includes('T') ? `${raw.replace(' ', 'T')}Z` : raw);
+      if (Number.isFinite(parsed)) { ts = Math.floor(parsed / 1000); break; }
+    }
+    const o = Number(f[iO]), h = Number(f[iH]), l = Number(f[iL]), c = Number(f[iC]);
+    if (ts == null || ![o, h, l, c].every(Number.isFinite)) continue;
+    rows.push([ts, o, h, l, c, iV >= 0 ? Number(f[iV]) || 0 : 0]);
+  }
+  if (!rows.length) throw new Error(`${path}: no parseable rows`);
+  return rows.sort((a, b) => a[0] - b[0]);
+}
+
+// Local history first, live tail second, deduped by timestamp.
+function mergeCandles(...sets) {
+  const map = new Map();
+  for (const set of sets) for (const c of set || []) map.set(c[0], c);
+  return [...map.values()].sort((a, b) => a[0] - b[0]);
+}
+
+// ---- price history (paginated OHLCV) --------------------------------------
+const PAGE = 1000;
+
+async function fetchOhlcv(timeframe, aggregate, earliestSec, beforeSec = null) {
+  const out = [];
+  let before = beforeSec ?? Math.floor(Date.now() / 1000) + 3600;
+  for (let page = 0; page < 12; page++) {
+    const url = `${GT}/pools/${POOL}/ohlcv/${timeframe}?aggregate=${aggregate}&limit=${PAGE}&before_timestamp=${before}`;
+    const j = await getJson(url);
+    const list = j?.data?.attributes?.ohlcv_list || [];
+    if (!list.length) break;
+    out.push(...list);
+    // A short page means the pool has no history older than this, so walking further
+    // spends the whole rate-limit budget re-asking for candles that do not exist. A
+    // thinly traded pool returns 17 rows and used to cost eleven more requests.
+    if (list.length < PAGE) break;
+    const oldest = list[list.length - 1][0];
+    if (oldest <= earliestSec) break;
+    before = oldest;
+    await sleep(1200);
+  }
+  // dedupe + sort ascending: [ts, o, h, l, c, v]
+  const map = new Map(out.map((c) => [c[0], c]));
+  return [...map.values()].sort((a, b) => a[0] - b[0]);
+}
+
+// nearest candle at-or-before t (seconds)
+function candleAt(candles, tSec) {
+  let lo = 0, hi = candles.length - 1, ans = -1;
+  while (lo <= hi) {
+    const mid = (lo + hi) >> 1;
+    if (candles[mid][0] <= tSec) { ans = mid; lo = mid + 1; } else hi = mid - 1;
+  }
+  return ans === -1 ? null : candles[ans];
+}
+const closeAt = (candles, tSec) => candleAt(candles, tSec)?.[4] ?? null;
+
+const pct = (a, b) => (a == null || b == null || b === 0 ? null : ((a - b) / b) * 100);
+const mean = (xs) => (xs.length ? xs.reduce((s, x) => s + x, 0) / xs.length : null);
+const median = (xs) => {
+  if (!xs.length) return null;
+  const s = [...xs].sort((a, b) => a - b);
+  const m = s.length >> 1;
+  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
+};
+const std = (xs) => {
+  if (xs.length < 2) return null;
+  const m = mean(xs);
+  return Math.sqrt(xs.reduce((s, x) => s + (x - m) ** 2, 0) / (xs.length - 1));
+};
+function pearson(xs, ys) {
+  const n = Math.min(xs.length, ys.length);
+  if (n < 3) return null;
+  const mx = mean(xs), my = mean(ys);
+  let num = 0, dx = 0, dy = 0;
+  for (let i = 0; i < n; i++) {
+    num += (xs[i] - mx) * (ys[i] - my);
+    dx += (xs[i] - mx) ** 2;
+    dy += (ys[i] - my) ** 2;
+  }
+  return dx === 0 || dy === 0 ? null : num / Math.sqrt(dx * dy);
+}
+
+function classify(p) {
+  if (p.isRT) return 'retweet';
+  if (p.isReply) return 'reply';
+  const t = p.text.toLowerCase();
+  if (/(launch|announc|introduc|shipp|now live|released|new|update|drop)/.test(t)) return 'announcement';
+  // \b sits between two word characters, and an emoji is not one, so the emoji arms of
+  // the old alternation could never match. They are tested as bare characters instead.
+  if (/\b(gm|gn|wen|lfg|ser|fam)\b/.test(t) || /[🚀🔥💎🙌]/u.test(t)) return 'engagement';
+  return 'other';
+}
+
+// ---- chart export (TradingView lightweight-charts, self-contained) --------
+// A thinly traded pool returns buckets with null OHLC. lightweight-charts throws on the
+// first one it meets, so they are dropped here rather than shipped into the page.
+const usableNum = (v) => v !== null && v !== undefined && v !== '' && Number.isFinite(Number(v));
+const toBars = (raw) => raw
+  .filter((c) => [c[0], c[1], c[2], c[3], c[4]].every(usableNum))
+  .map((c) => ({ time: Number(c[0]), open: Number(c[1]), high: Number(c[2]), low: Number(c[3]), close: Number(c[4]) }))
+  .sort((a, b) => a.time - b.time)
+  .filter((b, i, a) => i === 0 || b.time !== a[i - 1].time);
+
+function aggregateDaily(hourly) {
+  const days = new Map();
+  for (const c of hourly) {
+    const d = Math.floor(c[0] / 86400) * 86400;
+    const cur = days.get(d);
+    if (!cur) days.set(d, { time: d, open: c[1], high: c[2], low: c[3], close: c[4] });
+    else { cur.high = Math.max(cur.high, c[2]); cur.low = Math.min(cur.low, c[3]); cur.close = c[4]; }
+  }
+  return [...days.values()].sort((a, b) => a.time - b.time);
+}
+
+function buildChartHtml(payload) {
+  const TEMPLATE = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>three.ws · posts vs price</title>
+<script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+<style>
+  :root{--bg:#0a0b0e;--panel:#12141a;--line:#1e2230;--txt:#e7ecf3;--mut:#8b93a7;--cyan:#22d3ee;--mag:#f472b6;--up:#22c55e;--down:#ef4444}
+  *{box-sizing:border-box}
+  body{margin:0;font:14px/1.45 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--txt)}
+  header{display:flex;align-items:center;gap:14px;padding:10px 18px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  header h1{font-size:15px;margin:0;font-weight:600;letter-spacing:.2px}
+  header .price{color:var(--mut);font-size:13px}
+  header .price b{color:var(--txt)}
+  header .price .live{display:inline-block;width:6px;height:6px;border-radius:50%;background:#22c55e;margin-right:4px;vertical-align:middle;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .tf{display:flex;gap:6px}
+  .tf button{background:var(--panel);color:var(--mut);border:1px solid var(--line);border-radius:7px;padding:5px 11px;cursor:pointer;font-weight:600;font-size:12px}
+  .tf button.on{color:#06121a;background:var(--cyan);border-color:var(--cyan)}
+  .acct-filter{display:flex;gap:5px;margin-left:auto}
+  .acct-filter button{background:var(--panel);color:var(--mut);border:1px solid var(--line);border-radius:7px;padding:5px 10px;cursor:pointer;font-size:11px;font-weight:700}
+  .acct-filter button.on{border-color:currentColor}
+  .legend{display:flex;gap:14px;color:var(--mut);font-size:11px;align-items:center}
+  .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px;vertical-align:middle}
+  .wrap{display:flex;height:calc(100vh - 50px)}
+  #chart{flex:1;position:relative}
+  aside{width:340px;border-left:1px solid var(--line);overflow-y:auto;background:var(--panel);display:flex;flex-direction:column}
+  .aside-top{flex:0 0 auto}
+  .aside-top .head{padding:8px 14px;border-bottom:1px solid var(--line);color:var(--mut);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--panel)}
+  .top5{background:#0d1017;border-bottom:1px solid var(--line)}
+  .top5 .t5h{padding:8px 14px 6px;font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+  .top5 .t5row{display:flex;gap:8px;align-items:center;padding:7px 14px;border-top:1px solid var(--line);cursor:pointer;font-size:11.5px}
+  .top5 .t5row:hover{background:#171a22}
+  .top5 .t5num{width:16px;text-align:right;color:var(--mut);font-size:10px;font-weight:700;flex:0 0 auto}
+  .top5 .t5av{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);flex:0 0 auto;object-fit:cover}
+  .top5 .t5body{flex:1;min-width:0;color:var(--txt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .top5 .t5ret{font-weight:800;font-size:12px;white-space:nowrap;flex:0 0 auto}
+  .aside-feed{flex:1;overflow-y:auto}
+  .aside-feed .head{padding:8px 14px;border-bottom:1px solid var(--line);color:var(--mut);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;position:sticky;top:0;background:var(--panel);z-index:2}
+  aside .head{padding:8px 14px;border-bottom:1px solid var(--line);color:var(--mut);font-size:11px;position:sticky;top:0;background:var(--panel);z-index:2}
+  .post{padding:10px 14px;border-bottom:1px solid var(--line);cursor:pointer}
+  .post:hover{background:#171a22}
+  .post .meta{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--mut);margin-bottom:4px}
+  .badge{font-weight:700;padding:1px 6px;border-radius:5px;font-size:10px}
+  .post .body{font-size:12.5px;color:var(--txt);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .ret{margin-left:auto;font-weight:700}
+  .ret.up{color:var(--up)}.ret.down{color:var(--down)}
+  #ov{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:3}
+  .bub{position:absolute;width:26px;height:26px;border-radius:50%;border:2px solid #fff;cursor:pointer;pointer-events:auto;box-shadow:0 2px 9px #000b;transition:transform .1s ease}
+  .bub img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+  .bub:hover{transform:scale(1.3);z-index:6}
+  .bub .cnt{position:absolute;right:-7px;top:-7px;background:#0d1017;border:1px solid #fff;color:#fff;font-size:9px;font-weight:800;border-radius:9px;min-width:15px;text-align:center;padding:0 3px;line-height:15px}
+  .bub .ann{position:absolute;left:-5px;bottom:-7px;color:#22d3ee;font-size:12px;text-shadow:0 1px 2px #000}
+  #tip{position:absolute;pointer-events:none;z-index:9;max-width:300px;background:#0d1017f2;border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:none;box-shadow:0 8px 30px #000a}
+  #tip .meta{display:flex;gap:8px;align-items:center;font-size:11px;color:var(--mut);margin-bottom:6px}
+  #tip .body{font-size:12.5px;margin-bottom:6px}
+  #tip .rets{display:flex;gap:12px;font-size:11px;color:var(--mut)}
+  #tip .rets b{font-weight:700}
+  a{color:inherit;text-decoration:none}
+  /* modal */
+  #modal{position:fixed;inset:0;z-index:50;background:#05070bd9;backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:24px}
+  #modal.on{display:flex}
+  #modal .card{width:min(560px,94vw);max-height:86vh;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 80px #000c;overflow:hidden;animation:pop .12s ease}
+  @keyframes pop{from{transform:scale(.97);opacity:.4}to{transform:scale(1);opacity:1}}
+  #modal .mhead{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:13px;color:var(--mut);flex:0 0 auto}
+  #modal .mhead b{color:var(--txt);font-size:14px}
+  #modal .back,#modal .x{cursor:pointer;border:1px solid var(--line);border-radius:7px;padding:4px 9px;color:var(--mut);background:#0d1017}
+  #modal .back:hover,#modal .x:hover{color:var(--txt);border-color:#33384a}
+  #modal .x{margin-left:auto}
+  #modal .mlist{overflow-y:auto}
+  #modal .row{display:flex;gap:10px;align-items:flex-start;padding:11px 16px;border-bottom:1px solid var(--line);cursor:pointer}
+  #modal .row:hover{background:#171a22}
+  #modal .row .av{width:30px;height:30px;border-radius:50%;flex:0 0 auto;border:2px solid var(--line);object-fit:cover}
+  #modal .row .rmeta{display:flex;gap:7px;align-items:center;font-size:11px;color:var(--mut);margin-bottom:3px;flex-wrap:wrap}
+  #modal .row .rbody{font-size:12.5px;color:var(--txt);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  #modal .row .rret{margin-left:auto;font-weight:800;font-size:12px;white-space:nowrap}
+  /* detail */
+  #modal .detail{padding:16px 18px;overflow-y:auto}
+  #modal .dhead{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+  #modal .dhead .av{width:46px;height:46px;border-radius:50%;border:2px solid var(--line);object-fit:cover}
+  #modal .dhead .h{font-weight:700;font-size:15px}
+  #modal .dhead .t{font-size:12px;color:var(--mut)}
+  #modal .dtext{font-size:15px;line-height:1.55;white-space:pre-wrap;margin-bottom:16px}
+  #modal .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+  #modal .grid .cell{background:#0d1017;border:1px solid var(--line);border-radius:9px;padding:9px 10px;text-align:center}
+  #modal .grid .cell .k{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.4px}
+  #modal .grid .cell .v{font-size:15px;font-weight:800;margin-top:3px}
+  #modal .xbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:11px;border-radius:10px;background:#fff;color:#0a0b0e;font-weight:800;font-size:14px}
+  #modal .xbtn:hover{background:#d7dde6}
+  #modal .badge{font-weight:700;padding:1px 6px;border-radius:5px;font-size:10px}
+</style></head>
+<body>
+<header>
+  <h1>three.ws · <span style="color:var(--mut)">posts vs $THREE</span></h1>
+  <span class="price"><span class="live"></span><b id="last">-</b> <span id="chg"></span> · <b id="count">-</b> posts</span>
+  <div class="legend">
+    <span><i style="background:var(--cyan)"></i>@trythreews</span>
+    <span><i style="background:var(--mag)"></i>@nichxbt</span>
+    <span>▲ announce · ⊕N grouped</span>
+  </div>
+  <div class="tf" id="scale"><button type="button" data-scale="log" class="on" title="Logarithmic price scale">log</button><button type="button" data-scale="lin" title="Linear price scale">lin</button></div>
+<div class="tf">
+    <button data-tf="15m">15m</button>
+    <button data-tf="1h" class="on">1h</button>
+    <button data-tf="1d">1d</button>
+  </div>
+  <div class="acct-filter">
+    <button data-acct="all" class="on" style="color:var(--txt)">All</button>
+    <button data-acct="trythreews" style="color:var(--cyan)">@three</button>
+    <button data-acct="nichxbt" style="color:var(--mag)">@nich</button>
+  </div>
+</header>
+<div class="wrap">
+  <div id="chart"><div id="ov"></div><div id="tip"></div></div>
+  <aside>
+    <div class="aside-top">
+      <div class="top5" id="top5"></div>
+    </div>
+    <div class="aside-feed">
+      <div class="head" id="feed-head">POSTS · oldest first · click to locate</div>
+      <div id="list"></div>
+    </div>
+  </aside>
+</div>
+<div id="modal"><div class="card"></div></div>
+<script>
+const DATA = __DATA__;
+const AV = DATA.avatars || {};
+const COLORS = { trythreews:'#22d3ee', nichxbt:'#f472b6' };
+const acctColor = a => COLORS[a] || '#94a3b8';
+const esc = s => (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const fmtRet = v => v==null?'-':(v>=0?'+':'')+v.toFixed(1)+'%';
+const retColor = v => v==null?'#8b93a7':(v>=0?'#22c55e':'#ef4444');
+const cls = v => v==null?'':(v>=0?'up':'down');
+const fmtViews = v => !v?'-':(v>=1000?(v/1000).toFixed(0)+'K':String(v));
+const fmtTime = s => new Date(s*1000).toLocaleString(undefined,{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+const SECS = {'15m':900,'1h':3600,'1d':86400};
+let currentTF = '1h';
+
+const el = document.getElementById('chart');
+const ov = document.getElementById('ov');
+const tip = document.getElementById('tip');
+const chart = LightweightCharts.createChart(el, {
+  layout:{background:{color:'#0a0b0e'},textColor:'#8b93a7'},
+  grid:{vertLines:{color:'#13161e'},horzLines:{color:'#13161e'}},
+  // One 30x candle squashes months of price into a line on a linear scale, so these
+  // charts open logarithmic and the toggle beside the timeframes switches back.
+  rightPriceScale:{borderColor:'#1e2230',mode:LightweightCharts.PriceScaleMode.Logarithmic},
+  // fitContent() will not squeeze bars below minBarSpacing, so at the default 0.5 a long
+  // history silently shows only its tail: 3183 hourly candles rendered as the most recent
+  // 85 days and pushed every post off the left edge. Allow a tighter packing.
+  timeScale:{borderColor:'#1e2230',timeVisible:true,secondsVisible:false,minBarSpacing:0.04},
+  crosshair:{mode:LightweightCharts.CrosshairMode.Normal},
+});
+const series = chart.addCandlestickSeries({upColor:'#22c55e',downColor:'#ef4444',wickUpColor:'#22c55e',wickDownColor:'#ef4444',borderVisible:false});
+
+const posts = DATA.posts.slice().sort((a,b)=>a.time-b.time);
+
+// lightweight-charts timeToCoordinate() only resolves EXACT bar times, so snap each
+// post timestamp to the candle it falls in for the current timeframe.
+let barTimes = [];
+function snapToBar(t){
+  if(!barTimes.length) return t;
+  let lo=0, hi=barTimes.length-1, ans=barTimes[0];
+  while(lo<=hi){ const m=(lo+hi)>>1; if(barTimes[m]<=t){ ans=barTimes[m]; lo=m+1; } else hi=m-1; }
+  return ans;
+}
+
+function setTF(tf){
+  currentTF = tf;
+  series.setData(DATA.candles[tf]);
+  barTimes = DATA.candles[tf].map(c=>c.time);
+  document.querySelectorAll('.tf button[data-tf]').forEach(b=>b.classList.toggle('on',b.dataset.tf===tf));
+  chart.timeScale().fitContent();
+  // fitContent is best-effort. If the posts still fall outside the visible range, widen
+  // it explicitly so the thing the chart exists to show is actually on screen.
+  if (posts.length) {
+    const vis = chart.timeScale().getVisibleRange();
+    const firstPost = snapToBar(posts[0].time), lastBar = barTimes[barTimes.length - 1];
+    if (vis && firstPost < vis.from) chart.timeScale().setVisibleRange({from: firstPost, to: lastBar});
+  }
+  scheduleUpdate();
+}
+document.querySelectorAll('.tf button[data-tf]').forEach(b=>b.onclick=()=>setTF(b.dataset.tf));
+
+function setScale(mode){
+  chart.priceScale('right').applyOptions({mode: mode==='log'?LightweightCharts.PriceScaleMode.Logarithmic:LightweightCharts.PriceScaleMode.Normal});
+  document.querySelectorAll('#scale button').forEach(b=>b.classList.toggle('on',b.dataset.scale===mode));
+  scheduleUpdate();
+}
+document.querySelectorAll('#scale button').forEach(b=>b.onclick=()=>setScale(b.dataset.scale));
+
+// ---- avatar bubble overlay with proximity clustering ----
+const pool=[];
+function getBub(i){ if(pool[i]) return pool[i]; const d=document.createElement('div'); d.className='bub'; ov.appendChild(d); pool[i]=d; return d; }
+let raf=null;
+function scheduleUpdate(){ if(raf) return; raf=requestAnimationFrame(()=>{ raf=null; updateBubbles(); }); }
+
+function bubbleTip(items, x, y){
+  // representative = biggest |24h| move in the cluster
+  const rep = items.reduce((a,b)=>(Math.abs(b.r24h||0)>Math.abs(a.r24h||0)?b:a), items[0]);
+  const more = items.length>1 ? '<span style="color:#8b93a7"> · +'+(items.length-1)+' more here</span>' : '';
+  tip.innerHTML='<div class="meta"><span class="badge" style="background:'+acctColor(rep.account)+';color:#06121a">@'+esc(rep.account)+'</span>'+
+    '<span>'+fmtTime(rep.time)+'</span><span>· '+fmtViews(rep.views)+' views</span>'+more+'</div>'+
+    '<div class="body">'+esc(rep.text)+'</div>'+
+    '<div class="rets"><span>1h <b style="color:'+retColor(rep.r1h)+'">'+fmtRet(rep.r1h)+'</b></span>'+
+    '<span>4h <b style="color:'+retColor(rep.r4h)+'">'+fmtRet(rep.r4h)+'</b></span>'+
+    '<span>24h <b style="color:'+retColor(rep.r24h)+'">'+fmtRet(rep.r24h)+'</b></span></div>';
+  tip.style.display='block';
+  const tx=Math.min(Math.max(8,x+18), el.clientWidth-310);
+  const ty=Math.min(Math.max(8,y-10), el.clientHeight-110);
+  tip.style.left=tx+'px'; tip.style.top=ty+'px';
+}
+
+function updateBubbles(){
+  const ts=chart.timeScale();
+  const pts=[];
+  for(const p of visiblePosts){ const x=ts.timeToCoordinate(snapToBar(p.time)); if(x!=null) pts.push({p,x}); }
+  // Cluster posts whose screen-x are within TH px of the cluster's ANCHOR (pts are
+  // time-sorted, so x-sorted). Advancing the anchor to each absorbed point instead let
+  // clusters chain: 405 posts about a pixel apart collapsed into a single bubble that
+  // claimed the whole chart, which is the opposite of what this overlay is for.
+  const TH=20, clusters=[]; let cur=null;
+  for(const it of pts){
+    if(cur && it.x-cur.anchor<=TH){ cur.items.push(it.p); cur.sum+=it.x; }
+    else { cur={anchor:it.x, sum:it.x, items:[it.p]}; clusters.push(cur); }
+  }
+  // draw each cluster at the centre of the posts it actually holds
+  for(const c of clusters) c.x = c.sum / c.items.length;
+  let i=0;
+  for(const c of clusters){
+    const rep = c.items.reduce((a,b)=>(Math.abs(b.r24h||0)>Math.abs(a.r24h||0)?b:a), c.items[0]);
+    let y=series.priceToCoordinate(rep.price);
+    if(y==null) y=el.clientHeight*0.45;
+    const b=getBub(i++);
+    const acct=rep.account, img=AV[acct]?'<img src="'+AV[acct]+'"/>':'';
+    const ann=c.items.some(p=>p.type==='announcement');
+    b.style.display='block';
+    b.style.left=(c.x-13)+'px';
+    b.style.top=(y-36)+'px';
+    b.style.borderColor=acctColor(acct);
+    b.innerHTML=img+(c.items.length>1?'<span class="cnt">'+c.items.length+'</span>':'')+(ann?'<span class="ann">▲</span>':'');
+    const items=c.items;
+    b.onmouseenter=()=>bubbleTip(items, c.x, y);
+    b.onmouseleave=()=>{ tip.style.display='none'; };
+    b.onclick=()=>{ tip.style.display='none'; if(items.length>1) openCluster(items); else openDetail(items[0]); };
+  }
+  for(;i<pool.length;i++) pool[i].style.display='none';
+}
+chart.timeScale().subscribeVisibleLogicalRangeChange(scheduleUpdate);
+chart.timeScale().subscribeVisibleTimeRangeChange(scheduleUpdate);
+window.addEventListener('resize', scheduleUpdate);
+
+// ---- click-through modal: cluster list -> post detail -> View on X ----
+const modal=document.getElementById('modal');
+const card=modal.querySelector('.card');
+function closeModal(){ modal.classList.remove('on'); card.innerHTML=''; }
+modal.addEventListener('click', e=>{ if(e.target===modal) closeModal(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+function rowHTML(p){
+  const av=AV[p.account]?'<img class="av" src="'+AV[p.account]+'" style="border-color:'+acctColor(p.account)+'"/>':'<span class="av"></span>';
+  return '<div class="row" data-id="'+p.time+'-'+esc(p.account)+'">'+av+
+    '<div style="min-width:0;flex:1"><div class="rmeta"><span class="badge" style="background:'+acctColor(p.account)+'22;color:'+acctColor(p.account)+'">@'+esc(p.account)+'</span>'+
+    '<span>'+fmtTime(p.time)+'</span>'+(p.type==='announcement'?'<span style="color:#22d3ee">▲ announce</span>':'')+
+    '<span class="rret" style="color:'+retColor(p.r24h)+'">'+fmtRet(p.r24h)+' /24h</span></div>'+
+    '<div class="rbody">'+esc(p.text)+'</div></div></div>';
+}
+function cell(k,v,color){ return '<div class="cell"><div class="k">'+k+'</div><div class="v" style="color:'+(color||'var(--txt)')+'">'+v+'</div></div>'; }
+function detailHTML(p, backCount){
+  const av=AV[p.account]?'<img class="av" src="'+AV[p.account]+'" style="border-color:'+acctColor(p.account)+'"/>':'<span class="av"></span>';
+  const back = backCount ? '<span class="back">← '+backCount+' posts</span>' : '';
+  const price = p.price!=null ? '$'+Number(p.price).toPrecision(3) : '-';
+  return '<div class="mhead">'+back+'<span class="x">esc ✕</span></div>'+
+    '<div class="detail"><div class="dhead">'+av+'<div><div class="h">@'+esc(p.account)+'</div><div class="t">'+fmtTime(p.time)+
+      (p.type==='announcement'?' · ▲ announcement':'')+' · '+fmtViews(p.views)+' views</div></div></div>'+
+    '<div class="dtext">'+esc(p.text)+'</div>'+
+    '<div class="grid">'+cell('Price',price)+cell('1h',fmtRet(p.r1h),retColor(p.r1h))+cell('4h',fmtRet(p.r4h),retColor(p.r4h))+cell('24h',fmtRet(p.r24h),retColor(p.r24h))+'</div>'+
+    (p.url?'<a class="xbtn" href="'+p.url+'" target="_blank" rel="noopener">View on X →</a>':'<div class="t" style="text-align:center;color:var(--mut)">no link available</div>')+
+    '</div>';
+}
+function openDetail(p, fromItems){
+  card.innerHTML=detailHTML(p, fromItems?fromItems.length:0);
+  card.querySelector('.x').onclick=closeModal;
+  const back=card.querySelector('.back'); if(back) back.onclick=()=>openCluster(fromItems);
+  modal.classList.add('on');
+}
+function openCluster(items){
+  const sorted=[...items].sort((a,b)=>a.time-b.time);
+  card.innerHTML='<div class="mhead"><b>'+items.length+' posts</b> grouped here · click one'+
+    '<span class="x">esc ✕</span></div><div class="mlist">'+sorted.map(rowHTML).join('')+'</div>';
+  card.querySelector('.x').onclick=closeModal;
+  card.querySelectorAll('.row').forEach((row,idx)=>row.onclick=()=>openDetail(sorted[idx], sorted));
+  modal.classList.add('on');
+}
+
+// ---- account filter ----
+let activeAcct = 'all';
+let visiblePosts = posts.slice();
+document.querySelectorAll('.acct-filter button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('.acct-filter button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    activeAcct=b.dataset.acct;
+    visiblePosts = activeAcct==='all' ? posts.slice() : posts.filter(p=>p.account===activeAcct);
+    document.getElementById('count').textContent=visiblePosts.length;
+    render(); scheduleUpdate();
+  };
+});
+
+// ---- top-5 highest |24h| impact posts ----
+function renderTop5(){
+  const top5el=document.getElementById('top5');
+  const ranked=[...posts].filter(p=>p.r24h!=null).sort((a,b)=>Math.abs(b.r24h)-Math.abs(a.r24h)).slice(0,5);
+  if(!ranked.length){ top5el.innerHTML=''; return; }
+  top5el.innerHTML='<div class="t5h">Top moves after a post (24h)</div>'+
+    ranked.map((p,i)=>{
+      const av=AV[p.account]?'<img class="t5av" src="'+AV[p.account]+'" style="border-color:'+acctColor(p.account)+'" />':'<span class="t5av" style="background:'+acctColor(p.account)+'22"></span>';
+      return '<div class="t5row" data-t="'+p.time+'"><span class="t5num">'+(i+1)+'</span>'+av+
+        '<span class="t5body">'+esc(p.text)+'</span>'+
+        '<span class="t5ret" style="color:'+retColor(p.r24h)+'">'+fmtRet(p.r24h)+'</span></div>';
+    }).join('');
+  top5el.querySelectorAll('.t5row').forEach((row,i)=>{
+    const p=ranked[i];
+    row.onclick=()=>{ openDetail(p); };
+  });
+}
+
+// ---- sidebar list ----
+const list=document.getElementById('list');
+function render(){
+  const ordered=[...visiblePosts].sort((a,b)=>a.time-b.time);
+  list.innerHTML=ordered.map(p=>'<div class="post" data-t="'+p.time+'">'+
+    '<div class="meta"><span class="badge" style="background:'+acctColor(p.account)+'22;color:'+acctColor(p.account)+'">@'+esc(p.account)+'</span>'+
+    '<span>'+fmtTime(p.time)+'</span>'+(p.type==='announcement'?'<span style="color:#22d3ee">▲ announce</span>':'')+
+    '<span class="ret '+cls(p.r24h)+'">'+fmtRet(p.r24h)+' /24h</span></div>'+
+    '<div class="body">'+esc(p.text)+'</div></div>').join('');
+  list.querySelectorAll('.post').forEach(d=>d.onclick=()=>{
+    const t=+d.dataset.t, span=SECS[currentTF]*40;
+    chart.timeScale().setVisibleRange({from:t-span,to:t+span});
+    scheduleUpdate();
+  });
+}
+
+// ---- live price (best-effort, no stale data if fetch fails) ----
+(async()=>{
+  try{
+    const r=await fetch('https://api.geckoterminal.com/api/v2/networks/solana/pools/5ByL7MZoLABYnwMPZKPKjf4MGkZ7FeBzrAnos19Pre2z',{headers:{accept:'application/json'}});
+    if(!r.ok) throw 0;
+    const d=await r.json();
+    const attrs=d?.data?.attributes;
+    if(!attrs) throw 0;
+    const price=attrs.base_token_price_usd;
+    const chg=attrs.price_change_percentage?.h24;
+    const priceEl=document.getElementById('last');
+    const chgEl=document.getElementById('chg');
+    if(price) priceEl.textContent='$'+Number(price).toPrecision(4);
+    if(chg!=null){
+      const pct=parseFloat(chg);
+      chgEl.textContent=(pct>=0?'+':'')+pct.toFixed(1)+'% 24h';
+      chgEl.style.color=pct>=0?'#22c55e':'#ef4444';
+    }
+  }catch(e){ /* keep static price from build time */ }
+})();
+
+document.getElementById('count').textContent=DATA.posts.length;
+document.getElementById('last').textContent='$'+DATA.meta.lastPrice;
+renderTop5();
+setTF('1h'); render();
+</script></body></html>`;
+  return TEMPLATE.replace('__DATA__', JSON.stringify(payload));
+}
+
+// ---- main -----------------------------------------------------------------
+(async () => {
+  await maybeRefreshTweets();
+  if (!postsPaths.length) { console.error('No tweet files. Pass JSON paths or use --fetch-tweets.'); process.exit(1); }
+  const posts = loadPosts(postsPaths);
+  if (!posts.length) {
+    console.error(`No usable posts in ${postsPaths.length} file(s).`);
+    console.error(ACCOUNTS ? `  accounts filter: ${ACCOUNTS.join(', ')} (drop --accounts to widen it)` : '  no accounts filter');
+    console.error(ownOnly ? '  replies and retweets were dropped; --all-posts keeps them' : '');
+    process.exit(1);
+  }
+  const earliestSec = Math.floor(posts[0].ms / 1000) - 3 * 3600;
+  const acctCounts = {};
+  for (const p of posts) acctCounts[p.account] = (acctCounts[p.account] || 0) + 1;
+  console.log(`Loaded ${posts.length} unique posts from ${postsPaths.length} files (${new Date(posts[0].ms).toISOString()} → ${new Date(posts[posts.length - 1].ms).toISOString()})`);
+  console.log('By account:', Object.entries(acctCounts).map(([a, n]) => `${a}=${n}`).join(', '));
+
+  if (!POOL) {
+    console.log(`No pool given; resolving the deepest ${NETWORK} pool for ${MINT} from DexScreener…`);
+    const probe = await getJson(`https://api.dexscreener.com/latest/dex/tokens/${MINT}`).catch(() => null);
+    const pairs = (probe?.pairs || []).filter((p) => p.chainId === NETWORK);
+    pairs.sort((a, b) => (b.liquidity?.usd || 0) - (a.liquidity?.usd || 0));
+    POOL = pairs[0]?.pairAddress;
+    if (!POOL) {
+      console.error(`DexScreener lists no ${NETWORK} pair for ${MINT}. Pass --pool <address> explicitly.`);
+      process.exit(1);
+    }
+    console.log(`  resolved pool ${POOL} (${pairs[0].dexId}, $${Math.round(pairs[0].liquidity?.usd || 0)} liquidity)`);
+  }
+
+  const localHourly = PRICES ? loadOhlcvCsv(PRICES) : [];
+  if (localHourly.length) {
+    console.log(`Loaded ${localHourly.length} candles from ${PRICES} `
+      + `(${new Date(localHourly[0][0] * 1000).toISOString()} → ${new Date(localHourly.at(-1)[0] * 1000).toISOString()})`);
+  }
+
+  console.log('Fetching hourly OHLCV…');
+  const apiHourly = await fetchOhlcv('hour', 1, earliestSec)
+    .catch((e) => {
+      if (!localHourly.length) throw e;
+      console.warn(`  live OHLCV unavailable (${e.message}); continuing on the committed export alone`);
+      return [];
+    });
+  const hourly = mergeCandles(localHourly, apiHourly);
+  console.log(`Using ${hourly.length} hourly candles (${new Date(hourly[0][0] * 1000).toISOString()} → ${new Date(hourly.at(-1)[0] * 1000).toISOString()})`);
+
+  const snap = MINT
+    ? await getJson(`https://api.dexscreener.com/latest/dex/tokens/${MINT}`).catch(() => null)
+    : null;
+  const snapPair = snap?.pairs?.find((p) => p.pairAddress === POOL) || snap?.pairs?.[0] || null;
+  if (!snapPair) console.log('No DexScreener pair for this mint; GeckoTerminal candles are the only price source.');
+
+  const BASE = 1; // hours of lookback for the pre-post move
+
+  // ---- per-post returns ----------------------------------------------------
+  const rows = posts
+    .filter((p) => p.ms / 1000 >= hourly[0][0] && p.ms / 1000 <= hourly.at(-1)[0])
+    .map((p) => {
+      const tSec = Math.floor(p.ms / 1000);
+      const entry = closeAt(hourly, tSec);
+      const before = closeAt(hourly, tSec - BASE * 3600);
+      const fwd = {};
+      for (const w of WINDOWS) fwd[w] = pct(closeAt(hourly, tSec + w * 3600), entry);
+      return {
+        ts: new Date(p.ms).toISOString(),
+        sec: tSec,
+        account: p.account,
+        url: p.url,
+        type: classify(p),
+        text: p.text.slice(0, 80),
+        fullText: p.text,
+        likes: p.likes, rts: p.rts, views: p.views,
+        entry, pre1h: pct(entry, before),
+        returns: fwd,
+        r1h: fwd[1] ?? null, r4h: fwd[4] ?? null, r24h: fwd[24] ?? null,
+      };
+    });
+
+  const evaluable = rows.filter((r) => r.entry != null);
+  if (!evaluable.length) {
+    console.error(`\nNone of the ${posts.length} posts fall inside the price history.`);
+    console.error(`  posts:   ${new Date(posts[0].ms).toISOString()} → ${new Date(posts.at(-1).ms).toISOString()}`);
+    console.error(`  candles: ${new Date(hourly[0][0] * 1000).toISOString()} → ${new Date(hourly.at(-1)[0] * 1000).toISOString()}`);
+    console.error('  Point --prices at an OHLCV export that covers the posts (see data/ for this repo\'s own).');
+    process.exit(2);
+  }
+
+  // ---- baseline: hours NOT contaminated by a post --------------------------
+  // The original build drew the baseline from every candle, post hours included, so the
+  // treatment group sat inside its own control group and the "edge" shrank toward zero.
+  // A clean baseline hour is one where no post lands anywhere in [hour, hour + w).
+  const postHours = new Set(evaluable.map((r) => Math.floor(r.sec / 3600) * 3600));
+
+  const baseline = {};
+  const cleanPool = {}; // per-window clean returns, kept out of the report to hold its size down
+  for (const w of WINDOWS) {
+    const clean = [], all = [];
+    for (let i = 0; i + w < hourly.length; i++) {
+      const r = pct(hourly[i + w][4], hourly[i][4]);
+      if (r == null) continue;
+      all.push(r);
+      let touched = false;
+      for (let k = 0; k < w && !touched; k++) touched = postHours.has(hourly[i + k][0]);
+      if (!touched) clean.push(r);
+    }
+    cleanPool[w] = clean;
+    baseline[w] = {
+      mean: mean(clean), median: median(clean), std: std(clean), n: clean.length,
+      contaminatedHours: all.length - clean.length,
+      allHoursMean: mean(all), allHoursMedian: median(all),
+      winRate: clean.length ? (clean.filter((x) => x > 0).length / clean.length) * 100 : null,
+    };
+  }
+
+  // ---- effective sample size ----------------------------------------------
+  // 405 posts are not 405 independent observations: two posts an hour apart share almost
+  // all of their +24h path. Count maximal clusters separated by at least w hours instead.
+  function effectiveN(secs, w) {
+    if (!secs.length) return 0;
+    const sorted = [...secs].sort((a, b) => a - b);
+    let n = 1, last = sorted[0];
+    for (const s of sorted) if (s - last >= w * 3600) { n++; last = s; }
+    return n;
+  }
+
+  // ---- block bootstrap ------------------------------------------------------
+  // Overlapping windows break the independence that a standard error assumes, so the
+  // null is built by resampling contiguous blocks of clean baseline hours: draw nEff
+  // blocks of w hours, take the same statistic, repeat, and read off the percentile the
+  // observed value falls at. Deterministic seed so a rerun reproduces the p-value.
+  let seed = 0x9e3779b9;
+  const rnd = () => { seed ^= seed << 13; seed ^= seed >>> 17; seed ^= seed << 5; return (seed >>> 0) / 4294967296; };
+
+  // Below this many independent clusters the bootstrap still returns a number, and that
+  // number is meaningless: a 4h window covering two clusters is two observations wearing
+  // a sample size of 66. It is reported as null rather than as false confidence.
+  const MIN_CLUSTERS = 5;
+
+  function bootstrapP(observed, pool, draws, iterations = 2000) {
+    if (observed == null || pool.length < 2 || draws < MIN_CLUSTERS) return null;
+    let atLeast = 0;
+    for (let b = 0; b < iterations; b++) {
+      const sample = [];
+      for (let d = 0; d < draws; d++) sample.push(pool[Math.floor(rnd() * pool.length)]);
+      if (median(sample) >= observed) atLeast++;
+    }
+    // one-sided, with the +1 correction that keeps p from ever reading exactly zero
+    return (atLeast + 1) / (iterations + 1);
+  }
+
+  // ---- aggregate stats per window ------------------------------------------
+  const agg = {};
+  for (const w of WINDOWS) {
+    const rs = evaluable.map((r) => r.returns[w]).filter((x) => x != null);
+    const secs = evaluable.filter((r) => r.returns[w] != null).map((r) => r.sec);
+    const b = baseline[w];
+    const m = mean(rs), med = median(rs);
+    const nEff = effectiveN(secs, w);
+    agg[w] = {
+      postMean: m,
+      postMedian: med,
+      baselineMean: b.mean,
+      baselineMedian: b.median,
+      edge: m != null && b.mean != null ? m - b.mean : null,
+      medianEdge: med != null && b.median != null ? med - b.median : null,
+      winRate: rs.length ? (rs.filter((x) => x > 0).length / rs.length) * 100 : null,
+      baselineWinRate: b.winRate,
+      n: rs.length,
+      nEffective: nEff,
+      p: bootstrapP(med, cleanPool[w], nEff),
+      pWithheld: nEff < MIN_CLUSTERS ? `fewer than ${MIN_CLUSTERS} independent clusters` : null,
+      baselineHours: b.n,
+      contaminatedHours: b.contaminatedHours,
+    };
+  }
+
+  // by type
+  const byType = {};
+  for (const r of evaluable) {
+    (byType[r.type] ||= []).push(r);
+  }
+  const typeStats = Object.fromEntries(
+    Object.entries(byType).map(([t, rs]) => [t, {
+      n: rs.length,
+      ...Object.fromEntries(WINDOWS.map((w) => [`r${w}h`, mean(rs.map((r) => r.returns[w]).filter((x) => x != null))])),
+    }]),
+  );
+
+  // engagement vs return correlation
+  const LONG = WINDOWS[WINDOWS.length - 1];
+  const eng = evaluable.filter((r) => r.returns[LONG] != null);
+  const corr = {
+    window: `${LONG}h`,
+    likes: pearson(eng.map((r) => r.likes), eng.map((r) => r.returns[LONG])),
+    views: pearson(eng.filter((r) => r.views > 0).map((r) => r.views), eng.filter((r) => r.views > 0).map((r) => r.returns[LONG])),
+  };
+
+  // daily: posts/day vs daily return & volume
+  const dayKey = (sec) => new Date(sec * 1000).toISOString().slice(0, 10);
+  const dayClose = new Map(), dayVol = new Map();
+  for (const c of hourly) {
+    const d = dayKey(c[0]);
+    dayClose.set(d, c[4]);
+    dayVol.set(d, (dayVol.get(d) || 0) + c[5]);
+  }
+  const postsPerDay = new Map();
+  for (const p of posts) {
+    const d = dayKey(Math.floor(p.ms / 1000));
+    postsPerDay.set(d, (postsPerDay.get(d) || 0) + 1);
+  }
+  const days = [...dayClose.keys()].sort();
+  const dailyReturn = days.map((d, i) => (i === 0 ? null : pct(dayClose.get(d), dayClose.get(days[i - 1]))));
+  const dailyPosts = days.map((d) => postsPerDay.get(d) || 0);
+  const dailyVol = days.map((d) => dayVol.get(d) || 0);
+  const dailyCorr = {
+    postsPerDay_vs_dailyReturn: pearson(
+      dailyPosts.slice(1), dailyReturn.slice(1).map((x) => x ?? 0),
+    ),
+    postsPerDay_vs_dailyVolume: pearson(dailyPosts, dailyVol),
+  };
+
+  const report = {
+    generatedAt: new Date().toISOString(),
+    asset: assetKey || null,
+    token: { symbol: SYMBOL, mint: MINT, pool: POOL, network: NETWORK },
+    method: {
+      windowsHours: WINDOWS,
+      baseline: 'forward returns from hours with no post anywhere in the window',
+      significance: 'one-sided block bootstrap of the median against the clean baseline, drawing nEffective blocks',
+      postsIncluded: ownOnly ? 'original posts only (replies and retweets dropped)' : 'every post including replies and retweets',
+      accounts: ACCOUNTS,
+    },
+    currentSnapshot: snapPair && {
+      priceUsd: snapPair.priceUsd, marketCap: snapPair.marketCap,
+      vol24h: snapPair.volume?.h24, change24h: snapPair.priceChange?.h24,
+    },
+    coverage: {
+      posts: posts.length, evaluable: evaluable.length,
+      candles: hourly.length,
+      from: new Date(hourly[0][0] * 1000).toISOString(),
+      to: new Date(hourly.at(-1)[0] * 1000).toISOString(),
+    },
+    postWindowReturns: agg,
+    baseline,
+    byType: typeStats,
+    engagementCorrelation: corr,
+    dailyCorrelation: dailyCorr,
+  };
+
+  mkdirSync(dirname(outBase + '.json'), { recursive: true });
+  writeFileSync(outBase + '.json', JSON.stringify(report, null, 2));
+
+  // CSV of per-post detail
+  const csv = [
+    ['timestamp', 'account', 'type', 'likes', 'retweets', 'views', 'entry_price', 'pre1h_pct',
+      ...WINDOWS.map((w) => `r${w}h_pct`), 'text'].join(','),
+    ...evaluable.map((r) => [
+      r.ts, r.account, r.type, r.likes, r.rts, r.views,
+      r.entry, r.pre1h?.toFixed(2) ?? '',
+      ...WINDOWS.map((w) => r.returns[w]?.toFixed(2) ?? ''),
+      JSON.stringify(r.text),
+    ].join(',')),
+  ].join('\n');
+  writeFileSync(outBase + '.csv', csv);
+
+  // Feed for chart/chart.html?tweets=<url>: the shape that page already parses
+  // (ts/text/likes/views/url), plus the forward returns it never had a source for.
+  const tweetsFeed = {
+    asset: assetKey || SYMBOL,
+    token: { symbol: SYMBOL, mint: MINT, pool: POOL, network: NETWORK },
+    generatedAt: new Date().toISOString(),
+    tweets: evaluable.map((r) => ({
+      ts: r.ts,
+      text: r.fullText,
+      likes: r.likes,
+      views: r.views,
+      url: r.url,
+      account: r.account,
+      type: r.type,
+      price: r.entry,
+      returns: Object.fromEntries(WINDOWS.map((w) => [`${w}h`, r.returns[w] == null ? null : +r.returns[w].toFixed(2)])),
+    })),
+  };
+  writeFileSync(outBase.replace(/chart$/, 'tweets') + '.json', JSON.stringify(tweetsFeed, null, 2));
+
+  // console summary
+  const f = (x, d = 2) => (x == null ? 'n/a' : x.toFixed(d));
+  console.log(`\n=== $${SYMBOL} price vs X posts ===`);
+  console.log(`Evaluable posts: ${evaluable.length} / ${posts.length}  (${ownOnly ? 'original posts only' : 'all posts'})`);
+  console.log('\nForward return after a post vs a baseline of hours no post touched.');
+  console.log('Median, because a memecoin mean is a handful of outliers. p is a one-sided block');
+  console.log('bootstrap on nEff independent clusters, not on the raw post count.');
+  for (const w of WINDOWS) {
+    const a = agg[w];
+    console.log(`  +${String(w).padStart(2)}h: post ${f(a.postMedian).padStart(7)}%  base ${f(a.baselineMedian).padStart(7)}%  edge ${f(a.medianEdge).padStart(7)}pp`
+      + `  win ${f(a.winRate, 0)}% vs ${f(a.baselineWinRate, 0)}%  n=${a.n} nEff=${a.nEffective}`
+      + `  p=${a.p == null ? (a.pWithheld ? 'withheld' : 'n/a') : a.p.toFixed(4)}`);
+  }
+  if (WINDOWS.some((w) => agg[w].pWithheld)) {
+    console.log(`  p withheld where the posts collapse to fewer than ${MIN_CLUSTERS} independent clusters.`);
+  }
+  console.log('\nBy post type (mean forward return):');
+  for (const [t, st] of Object.entries(typeStats)) {
+    console.log(`  ${t.padEnd(13)} n=${String(st.n).padEnd(4)}` + WINDOWS.map((w) => `+${w}h ${f(st[`r${w}h`]).padStart(7)}%`).join('  '));
+  }
+  console.log(`\nEngagement vs +${corr.window} return (Pearson r):`);
+  console.log(`  likes: ${f(corr.likes)}   views: ${f(corr.views)}`);
+  console.log('\nDaily (Pearson r):');
+  console.log(`  posts/day vs daily return: ${f(dailyCorr.postsPerDay_vs_dailyReturn)}`);
+  console.log(`  posts/day vs daily volume: ${f(dailyCorr.postsPerDay_vs_dailyVolume)}`);
+  console.log(`\nWrote ${outBase}.json, ${outBase}.csv and ${outBase.replace(/chart$/, 'tweets')}.json`);
+
+  // Push tweets to Oracle social signal endpoint (--push-social flag)
+  await pushSocialSignal(posts);
+
+  if (args.includes('--chart')) {
+    console.log('Fetching 15m candles for chart…');
+    await sleep(1500);
+    // Twelve pages of 15m candles cover about 125 days. Paging back from now would spend
+    // all of them on the silence after the last post and never reach the posts themselves,
+    // so the walk starts just past the last measurable post instead.
+    const lastPostSec = evaluable.at(-1).sec;
+    const fineBefore = Math.min(
+      Math.floor(Date.now() / 1000) + 3600,
+      lastPostSec + Math.max(...WINDOWS) * 3600 + 7 * 86400,
+    );
+    const localFine = PRICES_FINE ? loadOhlcvCsv(PRICES_FINE) : [];
+    const apiFine = await fetchOhlcv('minute', 15, earliestSec, fineBefore)
+      .catch((e) => { console.warn(`  15m fetch failed (${e.message}); falling back to what is on hand`); return []; });
+    const m15 = mergeCandles(localFine, apiFine);
+    console.log(`15m candles: ${m15.length}`);
+    const candles = {
+      '15m': toBars(m15.length ? m15 : hourly),
+      '1h': toBars(hourly),
+      '1d': aggregateDaily(hourly),
+    };
+    const chartPosts = evaluable.map((r) => ({
+      time: r.sec, account: r.account, type: r.type, url: r.url, price: r.entry,
+      text: r.fullText.slice(0, 1000), views: r.views,
+      r1h: r.returns[1] == null ? null : +r.returns[1].toFixed(2),
+      r4h: r.returns[4] == null ? null : +r.returns[4].toFixed(2),
+      r24h: r.returns[24] == null ? null : +r.returns[24].toFixed(2),
+    }));
+    // Avatars are inlined as data URIs so the chart file opens with no network at all.
+    const avatarFile = (f) => { try { return 'data:image/jpeg;base64,' + readFileSync(resolve(REPO, f)).toString('base64'); } catch { return null; } };
+    const avatars = {};
+    for (const [handle, file] of Object.entries(asset.avatars || {})) {
+      const data = avatarFile(file);
+      if (data) avatars[handle] = data;
+      else console.warn(`  avatar missing for @${handle} (${file}); its bubbles fall back to a colored dot`);
+    }
+    const payload = {
+      meta: { lastPrice: snapPair?.priceUsd ?? hourly.at(-1)[4].toPrecision(4), symbol: SYMBOL },
+      candles, posts: chartPosts, avatars,
+    };
+    writeFileSync(outBase + '.html', buildChartHtml(payload));
+    console.log(`Wrote ${outBase}.html  →  open it in a browser`);
+  }
+})().catch((e) => { console.error(e); process.exit(1); });

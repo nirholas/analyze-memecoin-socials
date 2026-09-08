@@ -6,6 +6,8 @@
 # Unignored: data/pump-sdk/ is tracked for the case study
 /data/*
 !/data/pump-sdk/
+# The scraped post corpora are inputs to the analysis, not generated output
+!/data/tweets/
 *.duckdb
 *.duckdb-wal
 *.duckdb-shm
@@ -35,6 +37,8 @@ Thumbs.db
 # Output
 *.html
 !chart/*.html
+# Generated per-asset charts are the deliverable: they open with no server
+!out/**/*.html
 reports/
 
 # Backup archives
@@ -49,3 +53,5 @@ reports/
 !web/chart.html
 !/data/pump-sdk-*.json
 !/data/pump-sdk-*.csv
+.cache/
+node_modules/

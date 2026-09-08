@@ -1,0 +1,15 @@
+{
+  "name": "analyze-memecoin-socials",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Plot X posts on a token's price chart and measure whether they moved it",
+  "bin": { "analyze-memecoin-socials": "analyze/generate.mjs" },
+  "scripts": {
+    "generate": "node analyze/generate.mjs --asset three --chart",
+    "generate:pump-sdk": "node analyze/generate.mjs --asset pump-sdk --chart",
+    "generate:all": "npm run generate && npm run generate:pump-sdk",
+    "generate:fetch": "node analyze/generate.mjs --asset three --fetch-tweets --chart"
+  },
+  "engines": { "node": ">=18" }
+}

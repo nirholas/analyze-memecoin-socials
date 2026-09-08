@@ -812,7 +812,12 @@ function showTooltip(tw, x, y) {
   const d = new Date(tw.timestamp * 1000);
   document.getElementById('tt-time').textContent = d.toLocaleDateString('en-US', { month:'short', day:'numeric', hour:'numeric', minute:'2-digit' });
   document.getElementById('tt-text').textContent = tw.text;
-  document.getElementById('tt-stats').innerHTML = `<span>❤️ ${tw.likes.toLocaleString()}</span><span>👁 ${tw.views}</span>`;
+  const fmtRet = (v) => `<span style="color:${v >= 0 ? '#22c55e' : '#ef4444'}">${v >= 0 ? '+' : ''}${v.toFixed(1)}%</span>`;
+  const rets = tw.returns
+    ? Object.entries(tw.returns).filter(([, v]) => v != null).map(([w, v]) => `<span>+${w} ${fmtRet(v)}</span>`).join('')
+    : '';
+  document.getElementById('tt-stats').innerHTML =
+    `<span>❤️ ${tw.likes.toLocaleString()}</span><span>👁 ${tw.views}</span>${rets}`;
   if (avatarImg) document.getElementById('tt-avatar').src = avatarImg.src;
 
   const rect = document.getElementById('chart-area').getBoundingClientRect();
@@ -882,22 +887,78 @@ function toggleTweets() {
 // ══════════════════════════════════════════════════════════════════════════
 // Data fetching
 // ══════════════════════════════════════════════════════════════════════════
-async function fetchOHLCV(type, agg) {
+// GeckoTerminal answers a throttled request with 429 and no CORS header, so the browser
+// reports it as a CORS failure and the page used to sit blank on what is really a wait.
+// Each attempt backs off, and the banner says which it was.
+async function fetchOHLCV(type, agg, tries = 4) {
   const url = `${GECKO}/ohlcv/${type}?aggregate=${agg}&limit=1000&currency=usd`;
-  try {
-    const r = await fetch(url);
-    const d = await r.json();
-    const list = d.data?.attributes?.ohlcv_list || [];
-    return list.map(([ts, o, h, l, c, v]) => ({
-      time: ts, open: o, high: h, low: l, close: c, volume: v,
-    })).sort((a, b) => a.time - b.time);
-  } catch (e) { console.error('OHLCV error:', e); return []; }
+  for (let i = 0; i < tries; i++) {
+    try {
+      const r = await fetch(url);
+      if (r.status === 429 || r.status === 401) throw new Error('throttled');
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const d = await r.json();
+      const list = d.data?.attributes?.ohlcv_list || [];
+      if (!list.length) return { rows: [], error: 'This pool has no candles for that timeframe.' };
+      // A thinly traded pool returns buckets with null OHLC and the renderer throws
+      // "Value is null" on the first one, killing the chart. Coercing first would hide
+      // them: Number(null) is 0, which is finite, so the raw values are checked instead.
+      const usable = (v) => v !== null && v !== undefined && v !== '' && Number.isFinite(Number(v));
+      const rows = list
+        .filter(([ts, o, h, l, c]) => [ts, o, h, l, c].every(usable))
+        .map(([ts, o, h, l, c, v]) => ({ time: Number(ts), open: Number(o), high: Number(h), low: Number(l), close: Number(c), volume: usable(v) ? Number(v) : 0 }))
+        .sort((a, b) => a.time - b.time)
+        // The series rejects a repeated timestamp outright, and a quiet pool returns
+        // them: four rows came back for this one with three distinct times.
+        .filter((r, i, arr) => i === 0 || r.time !== arr[i - 1].time);
+      if (!rows.length) return { rows: [], error: 'Every candle this pool returned was empty.' };
+      return { rows, error: null };
+    } catch (e) {
+      // A blocked fetch and a real throttle are indistinguishable from here, and both
+      // are worth waiting out rather than reporting as a dead end.
+      if (i === tries - 1) {
+        return { rows: [], error: 'GeckoTerminal is rate limiting this browser. The chart retries on its own; give it a minute.' };
+      }
+      await new Promise((ok) => setTimeout(ok, 2000 * 2 ** i));
+    }
+  }
+}
+
+function showChartError(message) {
+  let el = document.getElementById('chart-error');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'chart-error';
+    el.setAttribute('role', 'status');
+    el.style.cssText = 'position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);z-index:20;max-width:420px;'
+      + 'padding:16px 18px;border-radius:12px;border:1px solid var(--border,#2a2f3a);background:var(--surface,#12141a);'
+      + 'color:var(--secondary,#c9d1de);font-size:13px;line-height:1.5;text-align:center;box-shadow:0 10px 40px #0009';
+    (document.getElementById('chart') || document.body).appendChild(el);
+  }
+  el.innerHTML = '';
+  const p = document.createElement('div');
+  p.textContent = message;
+  el.appendChild(p);
+  const retry = document.createElement('button');
+  retry.type = 'button';
+  retry.textContent = 'Retry now';
+  retry.style.cssText = 'margin-top:12px;padding:6px 14px;border-radius:8px;cursor:pointer;font:inherit;font-weight:600;'
+    + 'border:1px solid var(--border,#2a2f3a);background:transparent;color:inherit';
+  retry.addEventListener('click', () => loadTimeframe(currentTf.type, currentTf.agg));
+  el.appendChild(retry);
+  el.hidden = false;
+}
+
+function clearChartError() {
+  const el = document.getElementById('chart-error');
+  if (el) el.hidden = true;
 }
 
 async function loadTimeframe(type, agg) {
   currentTf = { type, agg };
-  const data = await fetchOHLCV(type, agg);
-  if (!data.length) return;
+  const { rows: data, error } = await fetchOHLCV(type, agg);
+  if (!data.length) { showChartError(error || 'No price data for this pool.'); return; }
+  clearChartError();
 
   candles = data;
   candleTimes = data.map(c => c.time);
@@ -1017,6 +1078,10 @@ async function loadExternalTweets() {
     const r = await fetch(TWEETS_URL);
     const data = await r.json();
     const items = Array.isArray(data) ? data : data.tweets || [];
+    // The embedded posts are a fallback for the default asset. An explicit feed replaces
+    // them: appending mixed them into a different token's chart, where they have no price
+    // and threw "Value is null" out of the price-line call.
+    tweetEvents.length = 0;
     items.forEach(t => {
       tweetEvents.push({
         timestamp: Math.floor(new Date(t.ts || t.timestamp || t.created_at).getTime() / 1000),
@@ -1024,7 +1089,12 @@ async function loadExternalTweets() {
         likes: parseInt(t.likes) || 0,
         views: t.views || '0',
         url: t.url || '',
-        price_at_tweet: null,
+        account: t.account || X_HANDLE,
+        // analyze/generate.mjs measures each post's forward return and ships it in the
+        // same feed, so the tooltip can say what the price did afterwards instead of
+        // only marking where the post landed.
+        returns: t.returns || null,
+        price_at_tweet: t.price != null ? Number(t.price) : null,
       });
     });
     tweetEvents.sort((a, b) => a.timestamp - b.timestamp);

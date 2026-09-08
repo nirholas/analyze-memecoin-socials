@@ -1,0 +1,148 @@
+{
+  "generatedAt": "2026-09-08T22:47:55.883Z",
+  "asset": "three",
+  "token": {
+    "symbol": "THREE",
+    "mint": "FeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump",
+    "pool": "5ByL7MZoLABYnwMPZKPKjf4MGkZ7FeBzrAnos19Pre2z",
+    "network": "solana"
+  },
+  "method": {
+    "windowsHours": [
+      1,
+      4,
+      24
+    ],
+    "baseline": "forward returns from hours with no post anywhere in the window",
+    "significance": "one-sided block bootstrap of the median against the clean baseline, drawing nEffective blocks",
+    "postsIncluded": "original posts only (replies and retweets dropped)",
+    "accounts": [
+      "trythreews",
+      "nichxbt"
+    ]
+  },
+  "currentSnapshot": {
+    "priceUsd": "0.0006083",
+    "marketCap": 608130,
+    "vol24h": 117536.36,
+    "change24h": -22.84
+  },
+  "coverage": {
+    "posts": 484,
+    "evaluable": 405,
+    "candles": 3184,
+    "from": "2026-04-29T07:00:00.000Z",
+    "to": "2026-09-08T22:00:00.000Z"
+  },
+  "postWindowReturns": {
+    "1": {
+      "postMean": 5.857562124638841,
+      "postMedian": -1.2533520854811389,
+      "baselineMean": 0.43376125389554665,
+      "baselineMedian": -0.301202246814023,
+      "edge": 5.423800870743294,
+      "medianEdge": -0.9521498386671159,
+      "winRate": 45.925925925925924,
+      "baselineWinRate": 46.02329450915141,
+      "n": 405,
+      "nEffective": 153,
+      "p": 0.9980009995002499,
+      "pWithheld": null,
+      "baselineHours": 3005,
+      "contaminatedHours": 178
+    },
+    "4": {
+      "postMean": 6.645351298210848,
+      "postMedian": -1.2973590812225635,
+      "baselineMean": 0.7981023741998471,
+      "baselineMedian": -1.069130972256815,
+      "edge": 5.847248924011001,
+      "medianEdge": -0.22822810896574852,
+      "winRate": 45.18518518518518,
+      "baselineWinRate": 43.401869158878505,
+      "n": 405,
+      "nEffective": 102,
+      "p": 0.6441779110444777,
+      "pWithheld": null,
+      "baselineHours": 2675,
+      "contaminatedHours": 505
+    },
+    "24": {
+      "postMean": 22.047457273188456,
+      "postMedian": 9.06969318514303,
+      "baselineMean": -1.1104936115071746,
+      "baselineMedian": -3.343337372781242,
+      "edge": 23.15795088469563,
+      "medianEdge": 12.413030557924273,
+      "winRate": 60.98765432098765,
+      "baselineWinRate": 40.115440115440116,
+      "n": 405,
+      "nEffective": 37,
+      "p": 0.0004997501249375312,
+      "pWithheld": null,
+      "baselineHours": 2079,
+      "contaminatedHours": 1081
+    }
+  },
+  "baseline": {
+    "1": {
+      "mean": 0.43376125389554665,
+      "median": -0.301202246814023,
+      "std": 15.24941042284765,
+      "n": 3005,
+      "contaminatedHours": 178,
+      "allHoursMean": 0.6211165344980637,
+      "allHoursMedian": -0.3072647409011881,
+      "winRate": 46.02329450915141
+    },
+    "4": {
+      "mean": 0.7981023741998471,
+      "median": -1.069130972256815,
+      "std": 27.402221558475635,
+      "n": 2675,
+      "contaminatedHours": 505,
+      "allHoursMean": 1.8683971542170132,
+      "allHoursMedian": -1.0027544866370253,
+      "winRate": 43.401869158878505
+    },
+    "24": {
+      "mean": -1.1104936115071746,
+      "median": -3.343337372781242,
+      "std": 16.09285687187267,
+      "n": 2079,
+      "contaminatedHours": 1081,
+      "allHoursMean": 10.27240127931631,
+      "allHoursMedian": -2.3005850616248082,
+      "winRate": 40.115440115440116
+    }
+  },
+  "byType": {
+    "other": {
+      "n": 328,
+      "r1h": 6.513712982344432,
+      "r4h": 4.889035050191476,
+      "r24h": 19.060216118078472
+    },
+    "announcement": {
+      "n": 72,
+      "r1h": 2.60321432472235,
+      "r4h": 13.29398174081715,
+      "r24h": 35.84686210277551
+    },
+    "engagement": {
+      "n": 5,
+      "r1h": 9.676674177948277,
+      "r4h": 26.119418794751407,
+      "r24h": 19.299047502351247
+    }
+  },
+  "engagementCorrelation": {
+    "window": "24h",
+    "likes": 0.06629835442446672,
+    "views": 0.15138852623286117
+  },
+  "dailyCorrelation": {
+    "postsPerDay_vs_dailyReturn": 0.16425240447013034,
+    "postsPerDay_vs_dailyVolume": 0.23808659427798345
+  }
+}

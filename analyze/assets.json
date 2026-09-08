@@ -1,0 +1,40 @@
+{
+  "three": {
+    "symbol": "THREE",
+    "network": "solana",
+    "mint": "FeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump",
+    "pool": "5ByL7MZoLABYnwMPZKPKjf4MGkZ7FeBzrAnos19Pre2z",
+    "accounts": [
+      "trythreews",
+      "nichxbt"
+    ],
+    "avatars": {
+      "trythreews": "assets/trythreews.jpg",
+      "nichxbt": "assets/nichxbt.jpg"
+    },
+    "posts": [
+      "data/tweets/three/*.json"
+    ],
+    "scrapedAt": "2026-06-15",
+    "note": "Timeline scrapes carry every account the two handles interacted with; the accounts filter narrows them to the two studied handles."
+  },
+  "pump-sdk": {
+    "symbol": "pump-sdk",
+    "network": "solana",
+    "mint": "F4ZHCzizwpop2XS8auuAGQ7LZcUTEwQ22m5sRmB2pump",
+    "pool": "AS5KLCFs4HVYPebV8MNt2YzD2Fs2jgb5F2p3xXjxm9Aj",
+    "accounts": [
+      "nichxbt"
+    ],
+    "avatars": {
+      "nichxbt": "assets/nichxbt-pumpsdk.jpg"
+    },
+    "posts": [
+      "data/tweets/pump-sdk/*.json"
+    ],
+    "scrapedAt": "2026-02-27",
+    "note": "The case-study asset. GeckoTerminal has dropped every candle from the post window and DexScreener no longer indexes the pool, so the committed hourly and 1-minute exports are the price source.",
+    "prices": "data/pump-sdk-ohlcv-hour-2026-03-09.csv",
+    "pricesFine": "data/pump-sdk-ohlcv-1min-alltime.csv"
+  }
+}

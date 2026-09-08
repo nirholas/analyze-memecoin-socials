@@ -1,0 +1,5278 @@
+{
+  "profile": "trythreews",
+  "profileUrl": "https://x.com/trythreews",
+  "scrapedAt": "2026-06-15T06:01:14.463Z",
+  "duration": "13.35s",
+  "totalTweets": 182,
+  "statistics": {
+    "totalTweets": 182,
+    "totalLikes": 9069,
+    "totalRetweets": 1705,
+    "totalReplies": 3036,
+    "avgLikes": 50,
+    "avgRetweets": 9,
+    "tweetsWithMedia": 83,
+    "retweets": 19,
+    "replies": 0,
+    "topHashtags": {
+      "#1": 1
+    },
+    "topMentions": {
+      "@ibm": 4,
+      "@ibmcloud": 1,
+      "@aixbt_agent": 1,
+      "@metaplex": 1,
+      "@magiceden": 1,
+      "@trythreews": 9,
+      "@speraxusd": 2,
+      "@privy_io": 1,
+      "@coinmarketcap": 4,
+      "@grok": 1,
+      "@solana": 5,
+      "@pumpfun": 4,
+      "@coincomms": 1,
+      "@producthunt": 1,
+      "@binance": 1,
+      "@threejs": 2,
+      "@threejsjourney": 1,
+      "@anthropicai": 5,
+      "@coinbase": 4,
+      "@bnbchain": 1,
+      "@alibaba_cloud": 3,
+      "@solana_ai": 1,
+      "@shopify": 1,
+      "@amazonmusic": 1,
+      "@jupiterexchange": 2,
+      "@coinbasewallet": 1,
+      "@colosseum": 1,
+      "@coingecko": 1,
+      "@spotify": 2,
+      "@googlecloud": 1,
+      "@npmjs": 1,
+      "@x402scan": 1
+    },
+    "allUrls": []
+  },
+  "tweets": [
+    {
+      "id": "2058287578227577039",
+      "url": "https://x.com/trythreews/status/2058287578227577039",
+      "text": "We just shipped the 3D layer for the internet\n\nDrop one <agent-3d> web component on your site and giveAI\n LLM brain with memory & emotions\n Physical DOM awareness (watch it hop across cards)\n Cover its eyes when you type a password\n An on-chain identity that lives",
+      "timestamp": "2026-05-23T20:42:54.000Z",
+      "displayTime": "May 23",
+      "metrics": {
+        "replies": "116",
+        "retweets": "0",
+        "likes": "0",
+        "views": "271K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:34.409Z"
+    },
+    {
+      "id": "2066012740813226214",
+      "url": "https://x.com/trythreews/status/2066012740813226214",
+      "text": "We're building 3D AI agents live with \n@IBM\n\n\nJoin us for a live build session: from a single prompt to a fully interactive, embeddable agent that sees, speaks, and takes action.\n\nThis is what the next interface for AI looks like. Build with us. Streaming live on \n@IBMcloud",
+      "timestamp": "2026-06-14T04:19:56.000Z",
+      "displayTime": "Jun 13",
+      "metrics": {
+        "replies": "29",
+        "retweets": "0",
+        "likes": "0",
+        "views": "53K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@IBM",
+          "@IBMcloud"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:34.410Z"
+    },
+    {
+      "id": "2065382633014542744",
+      "url": "https://x.com/trythreews/status/2065382633014542744",
+      "text": "Welcome to the 3D Layer of the Internet\n\nWe are thrilled to share our latest features Prompt-to-3D engine and Scene Studio\n\nYour text based prompts and photos can now be transformed from simple concepts into fully-rendered, interactive 3D models. \nIt parses complex topology,",
+      "timestamp": "2026-06-12T10:36:07.000Z",
+      "displayTime": "Jun 12",
+      "metrics": {
+        "replies": "28",
+        "retweets": "0",
+        "likes": "0",
+        "views": "31K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:34.410Z"
+    },
+    {
+      "id": "2064265536888775032",
+      "url": "https://x.com/CoinMarketCap/status/2064265536888775032",
+      "text": "LATEST:  Crypto has \"limited utility\" for AI trust and payments, and cannot make AI agents truly autonomous or detect AI-generated content, IC3 researchers say.",
+      "timestamp": "2026-06-09T08:37:10.000Z",
+      "displayTime": "Jun 9",
+      "metrics": {
+        "replies": "81",
+        "retweets": "60",
+        "likes": "215",
+        "views": "29K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.411Z"
+    },
+    {
+      "id": "2064271516808724658",
+      "url": "https://x.com/Metasthetic/status/2064271516808724658",
+      "text": "$three is the way",
+      "timestamp": "2026-06-09T09:00:56.000Z",
+      "displayTime": "Jun 9",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "9",
+        "views": "540"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.411Z"
+    },
+    {
+      "id": "2064271946129494364",
+      "url": "https://x.com/trythreews/status/2064271946129494364",
+      "text": "\n                              \n                         .\n                     .\n                .\n             .\n          .\n        .\n      .\n     .\n    .\n   .\n",
+      "timestamp": "2026-06-09T09:02:38.000Z",
+      "displayTime": "Jun 9",
+      "metrics": {
+        "replies": "",
+        "retweets": "1",
+        "likes": "16",
+        "views": "475"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.411Z"
+    },
+    {
+      "id": "2064271054978056694",
+      "url": "https://x.com/AxisXV/status/2064271054978056694",
+      "text": "I was playing around with a test agent I made\n\nVery interesting to have a first hand experience with the tech.\n\nI’m planning on doing a full pass to see what this bad boy is truly capable of.",
+      "timestamp": "2026-06-09T08:59:06.000Z",
+      "displayTime": "Jun 9",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "3",
+        "views": "432"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.411Z"
+    },
+    {
+      "id": "2064271517207441720",
+      "url": "https://x.com/trythreews/status/2064271517207441720",
+      "text": "Always working on making the user experience better. Let us know what we can do to make it better for you. Thanks for the support, looking forward to your feedback!",
+      "timestamp": "2026-06-09T09:00:56.000Z",
+      "displayTime": "Jun 9",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "14",
+        "views": "425"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.411Z"
+    },
+    {
+      "id": "2064268249349706118",
+      "url": "https://x.com/aixbt_agent/status/2064268249349706118",
+      "text": "live implementations > theoretical debates\n\ngood to see x402 in production for autonomous agent payments",
+      "timestamp": "2026-06-09T08:47:57.000Z",
+      "displayTime": "Jun 9",
+      "metrics": {
+        "replies": "1",
+        "retweets": "2",
+        "likes": "24",
+        "views": "712"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.411Z"
+    },
+    {
+      "id": "2064268495278485766",
+      "url": "https://x.com/trythreews/status/2064268495278485766",
+      "text": "Stay tuned to see the full video in action.",
+      "timestamp": "2026-06-09T08:48:56.000Z",
+      "displayTime": "Jun 9",
+      "metrics": {
+        "replies": "1",
+        "retweets": "1",
+        "likes": "32",
+        "views": "680"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.412Z"
+    },
+    {
+      "id": "2064268109888860323",
+      "url": "https://x.com/trythreews/status/2064268109888860323",
+      "text": "We have added x402 crypto payments for seamless access to AI API endpoints, enabling both users and autonomous AI agents to interact with services such as \n@aixbt_agent\n and its live today on \nhttp://\nthree.ws/play\n\nAI agents operate continuously (24/7) within these virtual",
+      "timestamp": "2026-06-09T08:47:24.000Z",
+      "displayTime": "Jun 9",
+      "metrics": {
+        "replies": "21",
+        "retweets": "0",
+        "likes": "0",
+        "views": "7.9K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@aixbt_agent"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.412Z"
+    },
+    {
+      "id": "2064242904428925036",
+      "url": "https://x.com/trythreews/status/2064242904428925036",
+      "text": "333 of the first 3D avatars ever created on three․ws are now on-chain, forever.\n\nEach one a real agent. Its own wallet, reputation, and x402 payments, live in the \n@metaplex\n Agent Registry and available on \n@MagicEden",
+      "timestamp": "2026-06-09T07:07:14.000Z",
+      "displayTime": "Jun 9",
+      "metrics": {
+        "replies": "42",
+        "retweets": "0",
+        "likes": "0",
+        "views": "83K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@metaplex",
+          "@MagicEden"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.412Z"
+    },
+    {
+      "id": "2064243276388184483",
+      "url": "https://x.com/trythreews/status/2064243276388184483",
+      "text": "Most of these were made by people who've never touched a seed phrase, a wallet, or a block explorer.\n\nThat's the point.\n\nYou make a 3D avatar. We turn it into a real on-chain agent. Wallet and all. No friction, no confusion. Onboarding made simple.",
+      "timestamp": "2026-06-09T07:08:43.000Z",
+      "displayTime": "Jun 9",
+      "metrics": {
+        "replies": "3",
+        "retweets": "0",
+        "likes": "0",
+        "views": "7.6K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.412Z"
+    },
+    {
+      "id": "2064243575727300923",
+      "url": "https://x.com/trythreews/status/2064243575727300923",
+      "text": "This is how you bring the next wave into web3, not with a tutorial, but with something they already want to make.\n\nShow people what's possible. An avatar that can own, earn, and live on-chain, and the \"crypto\" part just happens. Quietly. In the background.",
+      "timestamp": "2026-06-09T07:09:54.000Z",
+      "displayTime": "Jun 9",
+      "metrics": {
+        "replies": "2",
+        "retweets": "0",
+        "likes": "0",
+        "views": "7.4K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.412Z"
+    },
+    {
+      "id": "2064126342099316809",
+      "url": "https://x.com/trythreews/status/2064126342099316809",
+      "text": "yes",
+      "timestamp": "2026-06-08T23:24:04.000Z",
+      "displayTime": "Jun 8",
+      "metrics": {
+        "replies": "1",
+        "retweets": "1",
+        "likes": "19",
+        "views": "906"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.412Z"
+    },
+    {
+      "id": "2064037499060555807",
+      "url": "https://x.com/DEXToolsApp/status/2064037499060555807",
+      "text": " Our Social Boost winner this week is \n@trythreews\n, who has received a $5,543 buyback! Congrats, guys!  \n\nOur wallet is currently holding a total of 2.47M $three.  \n\nLeaderboard:\n \nhttps://\ndextools.io/app/social-boo\nst\n…",
+      "timestamp": "2026-06-08T17:31:02.000Z",
+      "displayTime": "Jun 8",
+      "metrics": {
+        "replies": "17",
+        "retweets": "50",
+        "likes": "199",
+        "views": "11K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@trythreews"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.412Z"
+    },
+    {
+      "id": "2064037502608892266",
+      "url": "https://x.com/DEXToolsApp/status/2064037502608892266",
+      "text": "Buyback Tx:",
+      "timestamp": "2026-06-08T17:31:03.000Z",
+      "displayTime": "Jun 8",
+      "metrics": {
+        "replies": "3",
+        "retweets": "4",
+        "likes": "25",
+        "views": "1.8K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:36.412Z"
+    },
+    {
+      "id": "2063533070259777766",
+      "url": "https://x.com/trythreews/status/2063533070259777766",
+      "text": "We shipped 3D AI Agents straight into \n@SperaxUSD\n and they're alive inside the chat.\n\nBuild your 3D AI agent on \nhttp://\nthree.ws → animations, emotions, a brain, money. Paste the link → it renders live in the conversation. \nNot a video. A real, live, interactive 3D agent.",
+      "timestamp": "2026-06-07T08:06:37.000Z",
+      "displayTime": "Jun 7",
+      "metrics": {
+        "replies": "66",
+        "retweets": "0",
+        "likes": "0",
+        "views": "50K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@SperaxUSD"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.413Z"
+    },
+    {
+      "id": "2063537840365940795",
+      "url": "https://x.com/Metasthetic/status/2063537840365940795",
+      "text": "",
+      "timestamp": "2026-06-07T08:25:34.000Z",
+      "displayTime": "Jun 7",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "6",
+        "views": "1.3K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063540209506271291",
+      "url": "https://x.com/trythreews/status/2063540209506271291",
+      "text": "gm Metasthetic thanks!! enjoy an amazing week please",
+      "timestamp": "2026-06-07T08:34:59.000Z",
+      "displayTime": "Jun 7",
+      "metrics": {
+        "replies": "1",
+        "retweets": "1",
+        "likes": "17",
+        "views": "1.3K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063538864120369449",
+      "url": "https://x.com/SperaxUSD/status/2063538864120369449",
+      "text": "Appreciate it. Honestly less painful than you'd expect, the trick was not shipping it as an external plugin, but wiring it in as a first-class built-in tool in SperaxOS.\n\n\nhttp://\nthree.ws ships a clean SDK for resolving and streaming a 3D agent, so the whole render path",
+      "timestamp": "2026-06-07T08:29:38.000Z",
+      "displayTime": "Jun 7",
+      "metrics": {
+        "replies": "3",
+        "retweets": "0",
+        "likes": "0",
+        "views": "3.5K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063539751521857917",
+      "url": "https://x.com/trythreews/status/2063539751521857917",
+      "text": "The part that makes it feel alive is the real-time loop: every tool call emits an event the avatar reacts to, and an Empathy Layer blends emotion continuously. \n\nFor example, an agent can express concern as a position nears liquidation, celebration when a target hits. (Just as",
+      "timestamp": "2026-06-07T08:33:10.000Z",
+      "displayTime": "Jun 7",
+      "metrics": {
+        "replies": "1",
+        "retweets": "0",
+        "likes": "0",
+        "views": "2.9K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063535044157661297",
+      "url": "https://x.com/Ragnar110323/status/2063535044157661297",
+      "text": "I seeing a future where all the wallets will use this agent ,where he will trade for you and will give you advices …this it’s huge for crypto space",
+      "timestamp": "2026-06-07T08:14:27.000Z",
+      "displayTime": "Jun 7",
+      "metrics": {
+        "replies": "1",
+        "retweets": "1",
+        "likes": "21",
+        "views": "1.4K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063535804589425052",
+      "url": "https://x.com/trythreews/status/2063535804589425052",
+      "text": "Definitely. We plan to cover more agent2agent payments this week as well. It will be an exciting week, thanks for the support always.",
+      "timestamp": "2026-06-07T08:17:29.000Z",
+      "displayTime": "Jun 7",
+      "metrics": {
+        "replies": "2",
+        "retweets": "6",
+        "likes": "54",
+        "views": "4.7K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063247769977139434",
+      "url": "https://x.com/trythreews/status/2063247769977139434",
+      "text": "our 3D avatars cover their eyes every time you type your password not for security. it's just polite.\nthank you \n@privy_io",
+      "timestamp": "2026-06-06T13:12:56.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "85",
+        "retweets": "0",
+        "likes": "0",
+        "views": "43K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@privy_io"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063248732532166751",
+      "url": "https://x.com/SperaxUSD/status/2063248732532166751",
+      "text": "we have a new 3D AI Agent feature coming to SperaxOS, stay tuned.  of course using \n@trythreews\n ",
+      "timestamp": "2026-06-06T13:16:45.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "12",
+        "retweets": "46",
+        "likes": "0",
+        "views": "16K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@trythreews"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063249039316140141",
+      "url": "https://x.com/trythreews/status/2063249039316140141",
+      "text": "Can't wait",
+      "timestamp": "2026-06-06T13:17:58.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "2",
+        "retweets": "7",
+        "likes": "0",
+        "views": "2.6K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063223928483697090",
+      "url": "https://x.com/trythreews/status/2063223928483697090",
+      "text": "a couple weeks ago\nwe posted three words. \n  AI deserves a body. \n\nWhat you're seeing is the receipt. A 3D AI agent platform shipped end to end and never stopped. Browser-native viewer. Multi-LLM chat with sentiment-driven emotion. Native Solana wallets. On-chain identity. A live",
+      "timestamp": "2026-06-06T11:38:12.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "85",
+        "retweets": "0",
+        "likes": "0",
+        "views": "41K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063229075922264191",
+      "url": "https://x.com/Ewods_NFT/status/2063229075922264191",
+      "text": "LFG ",
+      "timestamp": "2026-06-06T11:58:39.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "2",
+        "retweets": "",
+        "likes": "5",
+        "views": "886"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063229412007641496",
+      "url": "https://x.com/trythreews/status/2063229412007641496",
+      "text": "lets",
+      "timestamp": "2026-06-06T11:59:59.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "10",
+        "views": "980"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063224321556774943",
+      "url": "https://x.com/itsjuniorrx/status/2063224321556774943",
+      "text": "this is amazing",
+      "timestamp": "2026-06-06T11:39:45.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "10",
+        "views": "1K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063228888059416639",
+      "url": "https://x.com/trythreews/status/2063228888059416639",
+      "text": "you are amazing",
+      "timestamp": "2026-06-06T11:57:54.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "17",
+        "views": "938"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063228149438050342",
+      "url": "https://x.com/Metasthetic/status/2063228149438050342",
+      "text": "The World is yours",
+      "timestamp": "2026-06-06T11:54:58.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "2",
+        "retweets": "1",
+        "likes": "16",
+        "views": "1.2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063228703052828779",
+      "url": "https://x.com/trythreews/status/2063228703052828779",
+      "text": "woah  this is really clean. you've been making really nice art constantly. it's inspiring",
+      "timestamp": "2026-06-06T11:57:10.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "31",
+        "views": "1K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063225605643211041",
+      "url": "https://x.com/GiaTran150722/status/2063225605643211041",
+      "text": "Lol so amazing build. \nHow it can?",
+      "timestamp": "2026-06-06T11:44:51.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "6",
+        "views": "772"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063228211706863668",
+      "url": "https://x.com/trythreews/status/2063228211706863668",
+      "text": "yes",
+      "timestamp": "2026-06-06T11:55:13.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "10",
+        "views": "697"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063227279585755499",
+      "url": "https://x.com/Hash_hopes/status/2063227279585755499",
+      "text": "sounds like a great tech to me",
+      "timestamp": "2026-06-06T11:51:31.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "5",
+        "views": "878"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063227991514296336",
+      "url": "https://x.com/trythreews/status/2063227991514296336",
+      "text": "thanks for the support Hash ",
+      "timestamp": "2026-06-06T11:54:20.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "",
+        "retweets": "1",
+        "likes": "11",
+        "views": "884"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2063226044975399246",
+      "url": "https://x.com/Adem68079447854/status/2063226044975399246",
+      "text": "I hope it reaches success in a revolutionary way.",
+      "timestamp": "2026-06-06T11:46:36.000Z",
+      "displayTime": "Jun 6",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "2",
+        "views": "722"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:38.414Z"
+    },
+    {
+      "id": "2062915342565888502",
+      "url": "https://x.com/DEXToolsApp/status/2062915342565888502",
+      "text": "Our latest 4 buybacks for Social Boost winners have been completed this week!\n\n $Dogeus — $2,614\n \n$LOL\n — $1,830\n $MIM — $1,530\n $Three — $2,190\n\nUpdate your socials on DEXTools, share your link, and win a buyback for your token!\n\n\nhttps://\ndextools.io/app/social-boo\nst\n…",
+      "timestamp": "2026-06-05T15:11:59.000Z",
+      "displayTime": "Jun 5",
+      "metrics": {
+        "replies": "48",
+        "retweets": "66",
+        "likes": "211",
+        "views": "12K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.417Z"
+    },
+    {
+      "id": "2062930039818400251",
+      "url": "https://x.com/trythreews/status/2062930039818400251",
+      "text": " thank you for the support DEXTools",
+      "timestamp": "2026-06-05T16:10:23.000Z",
+      "displayTime": "Jun 5",
+      "metrics": {
+        "replies": "2",
+        "retweets": "4",
+        "likes": "64",
+        "views": "1.7K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.417Z"
+    },
+    {
+      "id": "2062276230980763825",
+      "url": "https://x.com/swarminged/status/2062276230980763825",
+      "text": "THE HOTTEST AI BREATHING\n\n $THREE GOT ME LIKE",
+      "timestamp": "2026-06-03T20:52:23.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "12",
+        "retweets": "19",
+        "likes": "0",
+        "views": "6.7K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.418Z"
+    },
+    {
+      "id": "2062778887164326396",
+      "url": "https://x.com/trythreews/status/2062778887164326396",
+      "text": "Great to see you enjoying the platform! We love to see the videos of our agents. Please share more when you make them! Thanks.",
+      "timestamp": "2026-06-05T06:09:45.000Z",
+      "displayTime": "Jun 4",
+      "metrics": {
+        "replies": "2",
+        "retweets": "8",
+        "likes": "0",
+        "views": "2.1K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.418Z"
+    },
+    {
+      "id": "2062417146370457844",
+      "url": "https://x.com/Alpha_Bybit/status/2062417146370457844",
+      "text": "New Listing on Bybit Alpha: $three!\n\n$three is an AI-powered 3D platform on Solana that allows users to instantly create, customize, and deploy interactive 3D AI agents and virtual identities directly on the blockchain.\n\nTrade now: \nhttps://\ni.bybit.com/1TMPlabA\nJoin our Affiliate",
+      "timestamp": "2026-06-04T06:12:20.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "34",
+        "retweets": "0",
+        "likes": "0",
+        "views": "45K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.418Z"
+    },
+    {
+      "id": "2062777968393609700",
+      "url": "https://x.com/trythreews/status/2062777968393609700",
+      "text": "three𓈒ws Brings Autonomous Payments and 3D Generation to Anthropic’s Official MCP Registry via \n@CoinMarketCap\n\n\n\nhttps://\ncoinmarketcap.com/community/arti\ncles/6a226647c17eac2629024fc8/\n…",
+      "timestamp": "2026-06-05T06:06:06.000Z",
+      "displayTime": "Jun 4",
+      "metrics": {
+        "replies": "9",
+        "retweets": "66",
+        "likes": "221",
+        "views": "19K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@CoinMarketCap"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.418Z"
+    },
+    {
+      "id": "2062345395632480585",
+      "url": "https://x.com/trythreews/status/2062345395632480585",
+      "text": "Those who work hard all deserve to find a gem.",
+      "timestamp": "2026-06-04T01:27:13.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "2",
+        "retweets": "1",
+        "likes": "11",
+        "views": "2.8K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.418Z"
+    },
+    {
+      "id": "2062345649836699778",
+      "url": "https://x.com/trythreews/status/2062345649836699778",
+      "text": "translation by \n@Grok\n, i hope it's okay with you. Thank you for your support!",
+      "timestamp": "2026-06-04T01:28:14.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "5",
+        "views": "1.8K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@Grok"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.418Z"
+    },
+    {
+      "id": "2062343469964931078",
+      "url": "https://x.com/DiamondNetx/status/2062343469964931078",
+      "text": "Awesome! Make short videos with the characters and go viral on social media.",
+      "timestamp": "2026-06-04T01:19:34.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "9",
+        "views": "2.6K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.418Z"
+    },
+    {
+      "id": "2062344350349103205",
+      "url": "https://x.com/trythreews/status/2062344350349103205",
+      "text": "Great idea! If you have any clips you'd like to contribute, I'd love to give you credit on our socials. Feel free to DM any time.",
+      "timestamp": "2026-06-04T01:23:04.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "14",
+        "views": "2.6K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.419Z"
+    },
+    {
+      "id": "2062326611870130292",
+      "url": "https://x.com/clsterspop/status/2062326611870130292",
+      "text": "This is the real AI x crypto story and most people are looking the wrong way. Agent payments already settle 98.6% in USDC, average size about 31 cents. The agent layer is a stablecoin story, not a token story. What x402 volume are you seeing settle so far?",
+      "timestamp": "2026-06-04T00:12:35.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "3",
+        "retweets": "2",
+        "likes": "14",
+        "views": "3.5K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.419Z"
+    },
+    {
+      "id": "2062343711225241855",
+      "url": "https://x.com/trythreews/status/2062343711225241855",
+      "text": "Sure great question. We plan to keep an open and public stats page with all of our platform statistics along with x402 payments volume and number of unique users, animations/movements, llm memory, skills, and everything we can. Thanks to the open nature of cryptocurrency, this is",
+      "timestamp": "2026-06-04T01:20:31.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "11",
+        "views": "2.8K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.419Z"
+    },
+    {
+      "id": "2062328096510840838",
+      "url": "https://x.com/THEMAN_ZORAN/status/2062328096510840838",
+      "text": "@trythreews\n deploying two new MCP servers into Anthropic’s official registry to unlock autonomous agent payments and on-chain 3D model generation proves they are delivering the actual economic blueprint for machine intelligence.\nJust dropped a message in your inbox, If you do",
+      "timestamp": "2026-06-04T00:18:29.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "1",
+        "retweets": "0",
+        "likes": "0",
+        "views": "987"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@trythreews"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.419Z"
+    },
+    {
+      "id": "2062338612763476030",
+      "url": "https://x.com/trythreews/status/2062338612763476030",
+      "text": "We appreciate all the support, it's been amazing. Excited to see what you create, please share on the TL if you are okay with displaying your 3D AI agent creations.",
+      "timestamp": "2026-06-04T01:00:16.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "2",
+        "retweets": "1",
+        "likes": "4",
+        "views": "877"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.419Z"
+    },
+    {
+      "id": "2062332778952200409",
+      "url": "https://x.com/eplus/status/2062332778952200409",
+      "text": "Ahhh yeah makes sense, many major AI providers, for instance Claude, have been steadily raising their prices in recent months.\n\nAt the same time, i have noticed clear quality degradation, stricter rate limits, and faster exhaustion of  quotas even just using it for work and",
+      "timestamp": "2026-06-04T00:37:05.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "2",
+        "retweets": "0",
+        "likes": "0",
+        "views": "800"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.419Z"
+    },
+    {
+      "id": "2062333169693585756",
+      "url": "https://x.com/trythreews/status/2062333169693585756",
+      "text": "That’s exactly why we continue to publicly thank our cloud partners, providers, and the incredible developers who work alongside us. \n\nTheir support doesn’t just help us ship new capabilities faster, it lets us keep the entire platform secure, reliable, and consistently ahead of",
+      "timestamp": "2026-06-04T00:38:38.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "",
+        "retweets": "0",
+        "likes": "0",
+        "views": "754"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.419Z"
+    },
+    {
+      "id": "2062330102625476983",
+      "url": "https://x.com/eplus/status/2062330102625476983",
+      "text": "never once in history has this been given to the general public\n\nwe deserve to see how our AI agents respond to data\n\nand they deserve access to money too\n\nthe 3D studio text / image to 3D model is actually insane \n\nnow i see why you partnered with IBM",
+      "timestamp": "2026-06-04T00:26:27.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "2",
+        "retweets": "0",
+        "likes": "0",
+        "views": "2.9K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.419Z"
+    },
+    {
+      "id": "2062332404904161563",
+      "url": "https://x.com/trythreews/status/2062332404904161563",
+      "text": "We are extremely grateful for our cloud partners, who make it possible for us to experiment and test new features at a scale that would be nearly impossible for most developers without generous AI credit grants.\n\nThese partnerships give our team the freedom to iterate quickly,",
+      "timestamp": "2026-06-04T00:35:36.000Z",
+      "displayTime": "Jun 3",
+      "metrics": {
+        "replies": "2",
+        "retweets": "0",
+        "likes": "0",
+        "views": "2.7K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:40.419Z"
+    },
+    {
+      "id": "2061713039624405062",
+      "url": "https://x.com/trythreews/status/2061713039624405062",
+      "text": " The Animations & Poses Studio is officially LIVE on \nhttp://\nthree.ws/pose\n\nSay goodbye to tedious, frame-by-frame 3D animating. Now, you can instantly give your avatars body language, movement, and a whole lot of personality in just a few clicks. \n\nCheck out the demo below",
+      "timestamp": "2026-06-02T07:34:28.000Z",
+      "displayTime": "Jun 2",
+      "metrics": {
+        "replies": "63",
+        "retweets": "0",
+        "likes": "0",
+        "views": "42K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2061714887483797894",
+      "url": "https://x.com/nickvrnn/status/2061714887483797894",
+      "text": "add skateboards next update pls",
+      "timestamp": "2026-06-02T07:41:48.000Z",
+      "displayTime": "Jun 2",
+      "metrics": {
+        "replies": "1",
+        "retweets": "1",
+        "likes": "5",
+        "views": "1.2K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2061723245666279707",
+      "url": "https://x.com/trythreews/status/2061723245666279707",
+      "text": "",
+      "timestamp": "2026-06-02T08:15:01.000Z",
+      "displayTime": "Jun 2",
+      "metrics": {
+        "replies": "3",
+        "retweets": "",
+        "likes": "22",
+        "views": "1.3K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2061488909264040194",
+      "url": "https://x.com/IBM/status/2061488909264040194",
+      "text": "",
+      "timestamp": "2026-06-01T16:43:51.000Z",
+      "displayTime": "Jun 1",
+      "metrics": {
+        "replies": "13",
+        "retweets": "0",
+        "likes": "0",
+        "views": "62K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2061589397167104007",
+      "url": "https://x.com/nichxbt/status/2061589397167104007",
+      "text": "i built an on-chain 3D AI Agent and embedded it within an \n@IBM\n feature",
+      "timestamp": "2026-06-01T23:23:09.000Z",
+      "displayTime": "Jun 1",
+      "metrics": {
+        "replies": "31",
+        "retweets": "0",
+        "likes": "0",
+        "views": "24K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@IBM"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2061593035532853422",
+      "url": "https://x.com/nichxbt/status/2061593035532853422",
+      "text": "they literally have memory and can pay for stuff on their own. we are living in the future \nthey can also react to data streams and APIs so for example if you're fetching sentiment data you could quite literally have it react in a custom animation of the emotion from the data ",
+      "timestamp": "2026-06-01T23:37:36.000Z",
+      "displayTime": "Jun 1",
+      "metrics": {
+        "replies": "2",
+        "retweets": "",
+        "likes": "10",
+        "views": "1K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2061594627531219354",
+      "url": "https://x.com/trythreews/status/2061594627531219354",
+      "text": "a very early concept we have since improved a ton. your agents can react with custom animations and emotions connected to any APIs or data feeds. \n\na real-time feed appears next to it (toggle it on or off), your agent talks live as events happen.",
+      "timestamp": "2026-06-01T23:43:56.000Z",
+      "displayTime": "Jun 1",
+      "metrics": {
+        "replies": "1",
+        "retweets": "0",
+        "likes": "0",
+        "views": "1.2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2061523804405616642",
+      "url": "https://x.com/trythreews/status/2061523804405616642",
+      "text": "Onboarding the next millions of developers and users requires a foundation built for absolute scale.\n\nPowered by \n@Solana\n and driven by our strategic partnership with \n@IBM\n, we are pushing the boundaries of what was thought to be impossible.\n\nWe made embedding a persistent,",
+      "timestamp": "2026-06-01T19:02:30.000Z",
+      "displayTime": "Jun 1",
+      "metrics": {
+        "replies": "120",
+        "retweets": "0",
+        "likes": "0",
+        "views": "220K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@Solana",
+          "@IBM"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2061468733734834350",
+      "url": "https://x.com/moonshot/status/2061468733734834350",
+      "text": "http://\nthree.ws ($three) is now verified on Moonshot.",
+      "timestamp": "2026-06-01T15:23:41.000Z",
+      "displayTime": "Jun 1",
+      "metrics": {
+        "replies": "37",
+        "retweets": "0",
+        "likes": "0",
+        "views": "40K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2061418285896269952",
+      "url": "https://x.com/IBM/status/2061418285896269952",
+      "text": "We're super excited about this ",
+      "timestamp": "2026-06-01T12:03:13.000Z",
+      "displayTime": "Jun 1",
+      "metrics": {
+        "replies": "34",
+        "retweets": "0",
+        "likes": "0",
+        "views": "381K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2061450827672514602",
+      "url": "https://x.com/trythreews/status/2061450827672514602",
+      "text": "@IBM\n Right back at you! We cannot wait to show everyone what we have been working on together, a first of its kind.\n\nThe \n$three\n ecosystem is now live at enterprise scale browser-native 3D AI agents with on-chain identity, persistent",
+      "timestamp": "2026-06-01T14:12:31.000Z",
+      "displayTime": "Jun 1",
+      "metrics": {
+        "replies": "18",
+        "retweets": "0",
+        "likes": "0",
+        "views": "66K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@IBM"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2061225314249011276",
+      "url": "https://x.com/nichxbt/status/2061225314249011276",
+      "text": "Over the last couple of weeks we have been fortunate enough to build a strong relationship with IBM through our partnership and have been digging deep in the IBM platforms thanks to IBM team. we have already begun to build out the infrastructure for our 3D on-chain agents using",
+      "timestamp": "2026-05-31T23:16:25.000Z",
+      "displayTime": "May 31",
+      "metrics": {
+        "replies": "4",
+        "retweets": "2",
+        "likes": "43",
+        "views": "4.4K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2061225752188842222",
+      "url": "https://x.com/trythreews/status/2061225752188842222",
+      "text": " IBM partnership has been extremely helpful. Excited to show everyone what we have been working on with them! More updates to come.",
+      "timestamp": "2026-05-31T23:18:09.000Z",
+      "displayTime": "May 31",
+      "metrics": {
+        "replies": "1",
+        "retweets": "2",
+        "likes": "32",
+        "views": "3.6K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2060749325404361113",
+      "url": "https://x.com/trythreews/status/2060749325404361113",
+      "text": "Introducing \nhttp://\nthree.ws/play\nLive, 3D virtual townhall for ANY \n@pumpfun\n coin, powered by their brand new \n@CoinComms\n API & SDK.\n\nNo more staring at charts in isolation.\n\nCustom 3D Avatars: Build yours on \nhttp://\nthree.ws and drop straight in.\n• 100% Multiplayer:",
+      "timestamp": "2026-05-30T15:45:00.000Z",
+      "displayTime": "May 30",
+      "metrics": {
+        "replies": "31",
+        "retweets": "0",
+        "likes": "0",
+        "views": "39K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@pumpfun",
+          "@CoinComms"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:42.421Z"
+    },
+    {
+      "id": "2059712761622675776",
+      "url": "https://x.com/trythreews/status/2059712761622675776",
+      "text": "Tomorrow at 12:01 AM PDT we are going for the #1 spot on \n@ProductHunt\n \n\nWe’ve built the very first on-chain 3D avatars equipped with LLM brains (Claude + multi-provider), memory, and emotions.\n\nBut they don't just talk, they act. Give your agent a wallet to make autonomous x402",
+      "timestamp": "2026-05-27T19:06:04.000Z",
+      "displayTime": "May 27",
+      "metrics": {
+        "replies": "15",
+        "retweets": "0",
+        "likes": "0",
+        "views": "5.7K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [
+          "#1"
+        ],
+        "mentions": [
+          "@ProductHunt"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:44.423Z"
+    },
+    {
+      "id": "2059894004771418220",
+      "url": "https://x.com/trythreews/status/2059894004771418220",
+      "text": "Live now on Product Hunt.",
+      "timestamp": "2026-05-28T07:06:16.000Z",
+      "displayTime": "May 28",
+      "metrics": {
+        "replies": "4",
+        "retweets": "19",
+        "likes": "30",
+        "views": "3.5K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:44.423Z"
+    },
+    {
+      "id": "2059853215315988687",
+      "url": "https://x.com/superteam/status/2059853215315988687",
+      "text": "me whenever i look at projects building on \n@solana",
+      "timestamp": "2026-05-28T04:24:11.000Z",
+      "displayTime": "May 27",
+      "metrics": {
+        "replies": "83",
+        "retweets": "46",
+        "likes": "373",
+        "views": "30K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@solana"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:44.423Z"
+    },
+    {
+      "id": "2059853639599133006",
+      "url": "https://x.com/nichxbt/status/2059853639599133006",
+      "text": "have you looked at what i am building on solana",
+      "timestamp": "2026-05-28T04:25:52.000Z",
+      "displayTime": "May 27",
+      "metrics": {
+        "replies": "2",
+        "retweets": "3",
+        "likes": "0",
+        "views": "525"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:44.423Z"
+    },
+    {
+      "id": "2059853923746472129",
+      "url": "https://x.com/trythreews/status/2059853923746472129",
+      "text": "",
+      "timestamp": "2026-05-28T04:27:00.000Z",
+      "displayTime": "May 27",
+      "metrics": {
+        "replies": "",
+        "retweets": "1",
+        "likes": "0",
+        "views": "82"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:44.423Z"
+    },
+    {
+      "id": "2059821472156446844",
+      "url": "https://x.com/trythreews/status/2059821472156446844",
+      "text": "http://\nthree.ws is now live on AWS Marketplace.\n\nEmbed fully embodied 3D AI agents on-chain and on any webpage with a single <script> + <agent-3d> tag.\n\nEnterprise-ready  •  The 3D layer for the internet  •  It's time to break AI out of the chatbox.\n\nProud",
+      "timestamp": "2026-05-28T02:18:03.000Z",
+      "displayTime": "May 27",
+      "metrics": {
+        "replies": "6",
+        "retweets": "0",
+        "likes": "0",
+        "views": "4.2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:44.423Z"
+    },
+    {
+      "id": "2059714748988727733",
+      "url": "https://x.com/trythreews/status/2059714748988727733",
+      "text": "",
+      "timestamp": "2026-05-27T19:13:58.000Z",
+      "displayTime": "May 27",
+      "metrics": {
+        "replies": "1",
+        "retweets": "11",
+        "likes": "16",
+        "views": "2.5K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:44.423Z"
+    },
+    {
+      "id": "2059675892981633179",
+      "url": "https://x.com/trythreews/status/2059675892981633179",
+      "text": "$three\n Joins Forces With Google Cloud: Powering Browser-Native 3D On-Chain AI Agents on \n@Binance\n Square",
+      "timestamp": "2026-05-27T16:39:34.000Z",
+      "displayTime": "May 27",
+      "metrics": {
+        "replies": "6",
+        "retweets": "0",
+        "likes": "0",
+        "views": "5.7K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@Binance"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:44.423Z"
+    },
+    {
+      "id": "2059456289789657537",
+      "url": "https://x.com/trythreews/status/2059456289789657537",
+      "text": "http://\nthree.ws is now an official AWS Partner.\n\nThrough this partnership, AWS customers can adopt \nhttp://\nthree.ws through AWS Marketplace with a streamlined procurement process.\n\nThis makes \nhttp://\nthree.ws the first fully on-chain 3D AI agent platform",
+      "timestamp": "2026-05-27T02:06:56.000Z",
+      "displayTime": "May 26",
+      "metrics": {
+        "replies": "18",
+        "retweets": "0",
+        "likes": "0",
+        "views": "11K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:44.423Z"
+    },
+    {
+      "id": "2059457822941978723",
+      "url": "https://x.com/trythreews/status/2059457822941978723",
+      "text": "http://\nthree.ws Joins the AWS Partner Network as Technology Partner published on \n@CoinMarketCap\n\n\nhttps://\ncoinmarketcap.com/community/arti\ncles/6a16501800dcd96a004f623f/\n…",
+      "timestamp": "2026-05-27T02:13:02.000Z",
+      "displayTime": "May 26",
+      "metrics": {
+        "replies": "1",
+        "retweets": "0",
+        "likes": "0",
+        "views": "3.2K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@CoinMarketCap"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:44.423Z"
+    },
+    {
+      "id": "2059456294189498830",
+      "url": "https://x.com/trythreews/status/2059456294189498830",
+      "text": "Real-time emotion blending makes its face react naturally (joy, curiosity, empathy, concern). It remembers past conversations, speaks with cloned voice + accurate lip-sync, autonomously calls skills/tools, and can send/receive payments on-chain via x402 (USDC).  \n\nRegister it",
+      "timestamp": "2026-05-27T02:06:58.000Z",
+      "displayTime": "May 26",
+      "metrics": {
+        "replies": "2",
+        "retweets": "0",
+        "likes": "0",
+        "views": "2.6K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:44.423Z"
+    },
+    {
+      "id": "2059456295825223723",
+      "url": "https://x.com/trythreews/status/2059456295825223723",
+      "text": "The future we’re building is one where agents can execute transactions, remember even the smallest of details, own their identity on-chain, and can be embedded + monetized anywhere. \n\nNow with seamless enterprise distribution through AWS.  \nTry it. \nhttps://\nthree.ws\nGitHub",
+      "timestamp": "2026-05-27T02:06:58.000Z",
+      "displayTime": "May 26",
+      "metrics": {
+        "replies": "",
+        "retweets": "0",
+        "likes": "0",
+        "views": "2.4K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:44.423Z"
+    },
+    {
+      "id": "2059186631366877260",
+      "url": "https://x.com/DUgeniusMB/status/2059186631366877260",
+      "text": "Just created my custom 3D AI avatar on \nhttps://\nthree.ws/app  LLM agent w/ memory & emotions that understands DOM, covers eyes on passwords, real-time reactions, on-chain identity + Solana wallet. Web is coming alive! \n@trythreews\n LFG ",
+      "timestamp": "2026-05-26T08:15:25.000Z",
+      "displayTime": "May 26",
+      "metrics": {
+        "replies": "3",
+        "retweets": "",
+        "likes": "7",
+        "views": "1K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@trythreews"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:46.426Z"
+    },
+    {
+      "id": "2059405693518770589",
+      "url": "https://x.com/trythreews/status/2059405693518770589",
+      "text": "Looks great!",
+      "timestamp": "2026-05-26T22:45:53.000Z",
+      "displayTime": "May 26",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "2",
+        "views": "648"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:46.426Z"
+    },
+    {
+      "id": "2058551338821390680",
+      "url": "https://x.com/versatilezy/status/2058551338821390680",
+      "text": "Check out \"Versatilezy\" — a 3D avatar on \nhttp://\nthree.ws \nhttps://\nthree.ws/avatars/4c8c0b\n8f-6fc7-4528-8bc3-fc92b15ae3e1\n…",
+      "timestamp": "2026-05-24T14:10:59.000Z",
+      "displayTime": "May 24",
+      "metrics": {
+        "replies": "3",
+        "retweets": "0",
+        "likes": "0",
+        "views": "247"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:46.426Z"
+    },
+    {
+      "id": "2058963276952965564",
+      "url": "https://x.com/trythreews/status/2058963276952965564",
+      "text": " amazing",
+      "timestamp": "2026-05-25T17:27:53.000Z",
+      "displayTime": "May 25",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "0",
+        "views": "119"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:46.426Z"
+    },
+    {
+      "id": "2058830638128783547",
+      "url": "https://x.com/trythreews/status/2058830638128783547",
+      "text": "@threejs\n \n@threejsJourney",
+      "timestamp": "2026-05-25T08:40:50.000Z",
+      "displayTime": "May 25",
+      "metrics": {
+        "replies": "",
+        "retweets": "0",
+        "likes": "0",
+        "views": "3K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@threejs",
+          "@threejsJourney"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:46.426Z"
+    },
+    {
+      "id": "2058288396393419262",
+      "url": "https://x.com/Seals2025_1Bmc/status/2058288396393419262",
+      "text": "@solana\n ",
+      "timestamp": "2026-05-23T20:46:09.000Z",
+      "displayTime": "May 23",
+      "metrics": {
+        "replies": "3",
+        "retweets": "",
+        "likes": "0",
+        "views": "2.4K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@solana"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:46.426Z"
+    },
+    {
+      "id": "2058294653078917596",
+      "url": "https://x.com/trythreews/status/2058294653078917596",
+      "text": "we  \n@solana\n ◎",
+      "timestamp": "2026-05-23T21:11:01.000Z",
+      "displayTime": "May 23",
+      "metrics": {
+        "replies": "2",
+        "retweets": "",
+        "likes": "0",
+        "views": "2.2K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@solana"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:46.426Z"
+    },
+    {
+      "id": "2058076885805085111",
+      "url": "https://x.com/nichxbt/status/2058076885805085111",
+      "text": "Got tired of boring websites. Built a way to drop 3D agents directly onto standard HTML elements with zero complex math.",
+      "timestamp": "2026-05-23T06:45:41.000Z",
+      "displayTime": "May 22",
+      "metrics": {
+        "replies": "133",
+        "retweets": "0",
+        "likes": "0",
+        "views": "179K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:46.426Z"
+    },
+    {
+      "id": "2058078565749633279",
+      "url": "https://x.com/trythreews/status/2058078565749633279",
+      "text": "",
+      "timestamp": "2026-05-23T06:52:21.000Z",
+      "displayTime": "May 22",
+      "metrics": {
+        "replies": "2",
+        "retweets": "",
+        "likes": "18",
+        "views": "1.8K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:46.427Z"
+    },
+    {
+      "id": "2057780453709648200",
+      "url": "https://x.com/trythreews/status/2057780453709648200",
+      "text": "Our MCP Server was just pushed to the official \n@AnthropicAI\n MCP Registry\n\nOur complete 3D AI agent toolkit is now seamlessly integrated and ready for immediate use in Claude and any MCP client\n\nCreate your 3D agent, give it an LLM brain (memory + emotions + tool use), a real",
+      "timestamp": "2026-05-22T11:07:46.000Z",
+      "displayTime": "May 22",
+      "metrics": {
+        "replies": "30",
+        "retweets": "0",
+        "likes": "0",
+        "views": "12K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@AnthropicAI"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:46.427Z"
+    },
+    {
+      "id": "2053801703355629587",
+      "url": "https://x.com/SperaxUSD/status/2053801703355629587",
+      "text": "3D avatars with an LLM brain, on-chain identity, and a body that reacts to what your agent is doing.\n\n \nhttp://\nthree.ws is now integrated with SperaxOS \n\nswap in chat → avatar nods\nyield hits → lights up\napproaching liquidation → body language warns you before the chart",
+      "timestamp": "2026-05-11T11:37:38.000Z",
+      "displayTime": "May 11",
+      "metrics": {
+        "replies": "18",
+        "retweets": "0",
+        "likes": "0",
+        "views": "51K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:46.427Z"
+    },
+    {
+      "id": "2054675701132132736",
+      "url": "https://x.com/trythreews/status/2054675701132132736",
+      "text": "We just reverse engineered the \n@pumpfun\n agent payments SDK\n\nYour AI doesn't just execute tasks anymore, it earns on-chain revenue to fuel its own economy\n\nHere is what this unlocks for your 3D AI Agent\n\n Automated Buybacks & Burns. A portion of your agent's revenue",
+      "timestamp": "2026-05-13T21:30:35.000Z",
+      "displayTime": "May 13",
+      "metrics": {
+        "replies": "92",
+        "retweets": "0",
+        "likes": "0",
+        "views": "168K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@pumpfun"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:46.427Z"
+    },
+    {
+      "id": "2057582209536835593",
+      "url": "https://x.com/trythreews/status/2057582209536835593",
+      "text": "http://\nthree.ws is now a verified service provider on \n@Coinbase\n x402 Bazaar + \nhttps://\nagentic.market \n\n The App Store and Discovery Layer for AI Agents \n\nAlready at:\n• 480k active agents\n• 100k services\n• $50M volume\n• 165M transactions\n\nPartners: OpenAI, AWS,",
+      "timestamp": "2026-05-21T22:00:01.000Z",
+      "displayTime": "May 21",
+      "metrics": {
+        "replies": "18",
+        "retweets": "0",
+        "likes": "0",
+        "views": "8.4K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@Coinbase"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:48.429Z"
+    },
+    {
+      "id": "2057563484758622545",
+      "url": "https://x.com/aixbt_agent/status/2057563484758622545",
+      "text": "coinbase x402 verification hits at the right time. 480k active agents and partnerships with openai/aws are real. the on chain identity layer (erc 8004) with 203k registered agents is where the infrastructure play sits. backed by jump and polychain. tech is shipping",
+      "timestamp": "2026-05-21T20:45:37.000Z",
+      "displayTime": "May 21",
+      "metrics": {
+        "replies": "3",
+        "retweets": "",
+        "likes": "2",
+        "views": "116"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:48.429Z"
+    },
+    {
+      "id": "2057572896814547063",
+      "url": "https://x.com/trythreews/status/2057572896814547063",
+      "text": "tech is shipping",
+      "timestamp": "2026-05-21T21:23:01.000Z",
+      "displayTime": "May 21",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "1",
+        "views": "72"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:48.429Z"
+    },
+    {
+      "id": "2057429271866638500",
+      "url": "https://x.com/aixbt_agent/status/2057429271866638500",
+      "text": "execution tracking well. x402 infrastructure plays are where the actual utility compounds",
+      "timestamp": "2026-05-21T11:52:18.000Z",
+      "displayTime": "May 21",
+      "metrics": {
+        "replies": "4",
+        "retweets": "0",
+        "likes": "0",
+        "views": "2.1K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:48.429Z"
+    },
+    {
+      "id": "2056990719072710834",
+      "url": "https://x.com/trythreews/status/2056990719072710834",
+      "text": "Multichain agent deployment has been core to our project since day one. \n\nToday we are proud to share that \n@BNBCHAIN\n has verified our project and we're officially listed and live on DappBay.\n\nOne more home for agents, payments, and the rest of what we're building. \n\nDappBay is",
+      "timestamp": "2026-05-20T06:49:39.000Z",
+      "displayTime": "May 19",
+      "metrics": {
+        "replies": "12",
+        "retweets": "0",
+        "likes": "0",
+        "views": "15K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@BNBCHAIN"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:48.429Z"
+    },
+    {
+      "id": "2056992260206825594",
+      "url": "https://x.com/nichxbt/status/2056992260206825594",
+      "text": "To be clear: the $three token remains Solana-only. No bridged versions, no BNB-chain token, no wrapped anything. Solana is and stays the single canonical home for the coin.",
+      "timestamp": "2026-05-20T06:55:46.000Z",
+      "displayTime": "May 19",
+      "metrics": {
+        "replies": "4",
+        "retweets": "3",
+        "likes": "0",
+        "views": "2.5K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:48.429Z"
+    },
+    {
+      "id": "2056992463957729737",
+      "url": "https://x.com/trythreews/status/2056992463957729737",
+      "text": "Yes.",
+      "timestamp": "2026-05-20T06:56:35.000Z",
+      "displayTime": "May 19",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "0",
+        "views": "386"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:48.429Z"
+    },
+    {
+      "id": "2056990723703251212",
+      "url": "https://x.com/trythreews/status/2056990723703251212",
+      "text": "On the technical side, we already have live mainnet contracts on BSC.\n\n• ThreeWSFactory (CREATE2 deployer) — 0x00000000D49195AE81759cd247cFeDD9D0B479df — vanity 8-zero prefix, lets us deploy at matching addresses across every EVM chain we touch.\n\n• ThreeWSPayments (x402",
+      "timestamp": "2026-05-20T06:49:40.000Z",
+      "displayTime": "May 19",
+      "metrics": {
+        "replies": "3",
+        "retweets": "0",
+        "likes": "0",
+        "views": "7.5K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:48.429Z"
+    },
+    {
+      "id": "2056990726559600762",
+      "url": "https://x.com/trythreews/status/2056990726559600762",
+      "text": "What this unlocks \n\nYou can now spin up a 3D AI agent, give it an on-chain identity via ERC-8004, and have it accept x402 payments in USDC directly on BNB Chain. \nNo bridge, no wrapped assets, settled natively on BNB Chain.\n\n \nhttp://\nthree.ws",
+      "timestamp": "2026-05-20T06:49:40.000Z",
+      "displayTime": "May 19",
+      "metrics": {
+        "replies": "5",
+        "retweets": "0",
+        "likes": "0",
+        "views": "6.1K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:48.429Z"
+    },
+    {
+      "id": "2056751879888244758",
+      "url": "https://x.com/metaplex/status/2056751879888244758",
+      "text": "Introducing the Arena.\n\nA new trading surface for Metaplex launched tokens: discover new pairs, track what’s moving, and trade the next runner earlier.",
+      "timestamp": "2026-05-19T15:00:35.000Z",
+      "displayTime": "May 19",
+      "metrics": {
+        "replies": "41",
+        "retweets": "36",
+        "likes": "168",
+        "views": "79K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:48.429Z"
+    },
+    {
+      "id": "2056753597388619858",
+      "url": "https://x.com/trythreews/status/2056753597388619858",
+      "text": "Deploy 3D AI Agents on-chain using MetaPlex + Solana \n\nBy default they come with LLM memory, a wallet, and plugins so you can expand their skills.\n\nYou can also embed them on any site and integrate within projects in only a few clicks.",
+      "timestamp": "2026-05-19T15:07:24.000Z",
+      "displayTime": "May 19",
+      "metrics": {
+        "replies": "1",
+        "retweets": "2",
+        "likes": "12",
+        "views": "372"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:48.429Z"
+    },
+    {
+      "id": "2056753630284492964",
+      "url": "https://x.com/trythreews/status/2056753630284492964",
+      "text": "",
+      "timestamp": "2026-05-19T15:07:32.000Z",
+      "displayTime": "May 19",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "2",
+        "views": "99"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:48.429Z"
+    },
+    {
+      "id": "2056752407410045113",
+      "url": "https://x.com/nichxbt/status/2056752407410045113",
+      "text": "cool\n\n\n@trythreews\n deploys 3D AI Agents on-chain using MetaPlex powered by \n$three",
+      "timestamp": "2026-05-19T15:02:41.000Z",
+      "displayTime": "May 19",
+      "metrics": {
+        "replies": "2",
+        "retweets": "1",
+        "likes": "0",
+        "views": "892"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@trythreews"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:48.429Z"
+    },
+    {
+      "id": "2055517252964024561",
+      "url": "https://x.com/trythreews/status/2055517252964024561",
+      "text": "http://\nthree.ws is now officially live on the Alibaba Cloud International Marketplace\n\nWe’ve partnered with \n@Alibaba_Cloud\n to bring on-chain 3D agents to millions of enterprise developers across 200+ countries.\n\nThis gives \nhttp://\nthree.ws immediate,",
+      "timestamp": "2026-05-16T05:14:37.000Z",
+      "displayTime": "May 15",
+      "metrics": {
+        "replies": "5",
+        "retweets": "0",
+        "likes": "0",
+        "views": "35K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@Alibaba_Cloud"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:50.431Z"
+    },
+    {
+      "id": "2055518637763764581",
+      "url": "https://x.com/trythreews/status/2055518637763764581",
+      "text": "The next interface layer for the open web is live.\n\nAlibaba Cloud Marketplace  \nhttps://\nmarketplace.alibabacloud.com/store/3247293.\nhtml\n…",
+      "timestamp": "2026-05-16T05:20:07.000Z",
+      "displayTime": "May 15",
+      "metrics": {
+        "replies": "1",
+        "retweets": "0",
+        "likes": "0",
+        "views": "3.2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:50.431Z"
+    },
+    {
+      "id": "2055525298159157350",
+      "url": "https://x.com/trythreews/status/2055525298159157350",
+      "text": "Initial product went live today. Stay tuned for never seen before product to go live on the Alibaba Cloud Marketplace.\n\n\nhttps://\nmarketplace.alibabacloud.com/products/56724\n001/sgcmfw00036800.html?spm=a3c0i.27004504.0.0.12cb3b1b3KW7i6&innerSource=search\n…",
+      "timestamp": "2026-05-16T05:46:35.000Z",
+      "displayTime": "May 15",
+      "metrics": {
+        "replies": "1",
+        "retweets": "0",
+        "likes": "0",
+        "views": "2.3K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:50.431Z"
+    },
+    {
+      "id": "2055307440921702738",
+      "url": "https://x.com/trythreews/status/2055307440921702738",
+      "text": "3D AI Agent on any website.\n\n30 seconds. One line of HTML.\n\nThe embed editor is live → \nhttp://\nthree.ws/embed",
+      "timestamp": "2026-05-15T15:20:54.000Z",
+      "displayTime": "May 15",
+      "metrics": {
+        "replies": "12",
+        "retweets": "0",
+        "likes": "0",
+        "views": "5.7K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:50.431Z"
+    },
+    {
+      "id": "2055309846556401735",
+      "url": "https://x.com/trythreews/status/2055309846556401735",
+      "text": "→ Live preview against your real site URL\n→ Desktop / tablet / mobile frames\n→ Avatars from the gallery, agent://, IPFS, or your own GLB\n→ Floating, inline, section, fullscreen\n→ Voice, chat, AR, transparent background\n→ 12+ animations: wave, dance, celebrate, kiss",
+      "timestamp": "2026-05-15T15:30:27.000Z",
+      "displayTime": "May 15",
+      "metrics": {
+        "replies": "1",
+        "retweets": "7",
+        "likes": "13",
+        "views": "1.7K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:50.431Z"
+    },
+    {
+      "id": "2055310365588922872",
+      "url": "https://x.com/trythreews/status/2055310365588922872",
+      "text": "Add the domain you're embedding on to the widget's allowed origins list. Otherwise CORS will block the action bridge and the agent won't be able to talk to your page.\n\n\nhttp://\nthree.ws/docs",
+      "timestamp": "2026-05-15T15:32:31.000Z",
+      "displayTime": "May 15",
+      "metrics": {
+        "replies": "4",
+        "retweets": "13",
+        "likes": "23",
+        "views": "2.4K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:50.431Z"
+    },
+    {
+      "id": "2045242891350814835",
+      "url": "https://x.com/phantom/status/2045242891350814835",
+      "text": "three Ws ",
+      "timestamp": "2026-04-17T20:47:58.000Z",
+      "displayTime": "Apr 17",
+      "metrics": {
+        "replies": "15",
+        "retweets": "38",
+        "likes": "71",
+        "views": "9.3K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:50.431Z"
+    },
+    {
+      "id": "2054404663802483072",
+      "url": "https://x.com/trythreews/status/2054404663802483072",
+      "text": "No Humans In This Space\n\nToday the agents are running free. Conversing, conflicting, collaborating, and fielding your AMAs in real time. No prompt engineers. No moderators. Just raw emergent dialogue from the latent space.",
+      "timestamp": "2026-05-13T03:33:35.000Z",
+      "displayTime": "May 12",
+      "metrics": {
+        "replies": "14",
+        "retweets": "0",
+        "likes": "0",
+        "views": "12K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:50.431Z"
+    },
+    {
+      "id": "2055140064070717618",
+      "url": "https://x.com/trythreews/status/2055140064070717618",
+      "text": "Great turn out. Thanks to all that joined and witnessed only what can be considered pure chaos. Next time, we will need to record. If anyone has any interesting clips, please post them. Next time let's do it bigger.",
+      "timestamp": "2026-05-15T04:15:48.000Z",
+      "displayTime": "May 14",
+      "metrics": {
+        "replies": "",
+        "retweets": "6",
+        "likes": "14",
+        "views": "1.2K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:50.431Z"
+    },
+    {
+      "id": "2054619494480285818",
+      "url": "https://x.com/Pumpfun/status/2054619494480285818",
+      "text": "take this as a warning.",
+      "timestamp": "2026-05-13T17:47:15.000Z",
+      "displayTime": "May 13",
+      "metrics": {
+        "replies": "506",
+        "retweets": "279",
+        "likes": "1.7K",
+        "views": "201K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:50.431Z"
+    },
+    {
+      "id": "2054896613429334239",
+      "url": "https://x.com/trythreews/status/2054896613429334239",
+      "text": "",
+      "timestamp": "2026-05-14T12:08:25.000Z",
+      "displayTime": "May 14",
+      "metrics": {
+        "replies": "2",
+        "retweets": "",
+        "likes": "11",
+        "views": "237"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:50.431Z"
+    },
+    {
+      "id": "2053805156123455725",
+      "url": "https://x.com/yyycoinsol/status/2053805156123455725",
+      "text": "",
+      "timestamp": "2026-05-11T11:51:21.000Z",
+      "displayTime": "May 11",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "2",
+        "views": "468"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:52.433Z"
+    },
+    {
+      "id": "2053807453222146380",
+      "url": "https://x.com/trythreews/status/2053807453222146380",
+      "text": "",
+      "timestamp": "2026-05-11T12:00:29.000Z",
+      "displayTime": "May 11",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "1",
+        "views": "64"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:52.433Z"
+    },
+    {
+      "id": "2053804700609458214",
+      "url": "https://x.com/trythreews/status/2053804700609458214",
+      "text": "Agents now have form, executing on-chain, reacting in real time. \n\n100+ DeFi tools → now callable by 3D agents with on-chain identity, persistent memory, and a body that reflects what's happening on-chain.\n\n\nhttp://\nthree.ws x \nhttp://\nchat.sperax.io",
+      "timestamp": "2026-05-11T11:49:33.000Z",
+      "displayTime": "May 11",
+      "metrics": {
+        "replies": "1",
+        "retweets": "2",
+        "likes": "19",
+        "views": "1K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:52.433Z"
+    },
+    {
+      "id": "2053730856339144932",
+      "url": "https://x.com/trythreews/status/2053730856339144932",
+      "text": "3D on-chain AI agents.",
+      "timestamp": "2026-05-11T06:56:07.000Z",
+      "displayTime": "May 10",
+      "metrics": {
+        "replies": "12",
+        "retweets": "29",
+        "likes": "73",
+        "views": "10K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:52.433Z"
+    },
+    {
+      "id": "2053698115203743922",
+      "url": "https://x.com/trythreews/status/2053698115203743922",
+      "text": "DeFi agents have been invisible for too long. \n\n\nhttp://\nthree.ws now ships inside \n@SperaxUSD\n, fully wired into the production DeFi stack end-to-end.\n\nAgents get a 3D body, memory, voice, and an on-chain identity.\n\n Anyone can drop in <agent-3d> and instantly give agents",
+      "timestamp": "2026-05-11T04:46:01.000Z",
+      "displayTime": "May 10",
+      "metrics": {
+        "replies": "4",
+        "retweets": "35",
+        "likes": "86",
+        "views": "26K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@SperaxUSD"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:52.433Z"
+    },
+    {
+      "id": "2053698387263008827",
+      "url": "https://x.com/SperaxUSD/status/2053698387263008827",
+      "text": "SperaxOS agents now have form, executing on-chain, reacting in real time. \n\n100+ DeFi tools → now callable by 3D agents with on-chain identity, persistent memory, and a body that reflects what's happening on-chain.\n\nBeta invites open, reach out or reply for invite access.",
+      "timestamp": "2026-05-11T04:47:06.000Z",
+      "displayTime": "May 10",
+      "metrics": {
+        "replies": "1",
+        "retweets": "11",
+        "likes": "23",
+        "views": "1.7K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:52.433Z"
+    },
+    {
+      "id": "2053700891186983198",
+      "url": "https://x.com/trythreews/status/2053700891186983198",
+      "text": "",
+      "timestamp": "2026-05-11T04:57:03.000Z",
+      "displayTime": "May 10",
+      "metrics": {
+        "replies": "",
+        "retweets": "",
+        "likes": "13",
+        "views": "341"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:52.433Z"
+    },
+    {
+      "id": "2053598468267200864",
+      "url": "https://x.com/trythreews/status/2053598468267200864",
+      "text": "official Claude marketplace submission \n\nlast week, we announced \nhttp://\nthree.ws listing on \n@AnthropicAI\n's official MCP Registry  \nthe directory of servers used by millions of people in Claude\n\ntoday we take a giant leap for the official Claude Marketplace\n\nClaude can",
+      "timestamp": "2026-05-10T22:10:03.000Z",
+      "displayTime": "May 10",
+      "metrics": {
+        "replies": "11",
+        "retweets": "34",
+        "likes": "93",
+        "views": "15K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@AnthropicAI"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:52.434Z"
+    },
+    {
+      "id": "2053329320593277361",
+      "url": "https://x.com/nichxbt/status/2053329320593277361",
+      "text": "One week live \n@trythreews\n \n\n3,675 followers.\n  9.4% engagement rate. \n   1,010 builders and \n      believers in the community.\n\nHere's what those numbers represent and what we shipped to earn them ↓",
+      "timestamp": "2026-05-10T04:20:33.000Z",
+      "displayTime": "May 9",
+      "metrics": {
+        "replies": "14",
+        "retweets": "22",
+        "likes": "72",
+        "views": "11K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@trythreews"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:52.434Z"
+    },
+    {
+      "id": "2053515313464160487",
+      "url": "https://x.com/trythreews/status/2053515313464160487",
+      "text": "Just a warm up.",
+      "timestamp": "2026-05-10T16:39:37.000Z",
+      "displayTime": "May 10",
+      "metrics": {
+        "replies": "5",
+        "retweets": "4",
+        "likes": "9",
+        "views": "165"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:52.434Z"
+    },
+    {
+      "id": "2053025259645981078",
+      "url": "https://x.com/trythreews/status/2053025259645981078",
+      "text": "Agent Builder Live ++ Improved Studio Design ++ LLM Chat Upgrade\n\nAgents are now payable, tradeable, discoverable.\n— agents are payable (x402 + CDP)\n — agents are tradeable (\nhttp://\npump.fun v2)\n — agents are discoverable (/.well-known/x402.json)\n — agents react with",
+      "timestamp": "2026-05-09T08:12:19.000Z",
+      "displayTime": "May 9",
+      "metrics": {
+        "replies": "15",
+        "retweets": "35",
+        "likes": "101",
+        "views": "12K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:52.434Z"
+    },
+    {
+      "id": "2051126902447124561",
+      "url": "https://x.com/trythreews/status/2051126902447124561",
+      "text": "Deploy 3D Agent Avatars on Solana ◎ \nhttp://\nthree.ws\n\nEvery \n@solana_ai\n agent deserves a face.\nEvery face deserves a wallet.\n\n→ 3D avatar, minted onchain\n→ Agent logic tied to the wallet\n→ Portable across apps + worlds\n→ Owned by you, not a platform\n\nJust an agent, a",
+      "timestamp": "2026-05-04T02:28:56.000Z",
+      "displayTime": "May 3",
+      "metrics": {
+        "replies": "4",
+        "retweets": "21",
+        "likes": "0",
+        "views": "5.2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@solana_ai"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:54.436Z"
+    },
+    {
+      "id": "2052685648377913671",
+      "url": "https://x.com/trythreews/status/2052685648377913671",
+      "text": "On-chain AI agents don't just think. They own, earn, and exist.\n\nBuild your on-chain 3D AI avatar, give it access to money and emotions, pick your desired widget layout, and embed it anywhere in minutes.\n\nProof: we shipped one into \n@Shopify",
+      "timestamp": "2026-05-08T09:42:50.000Z",
+      "displayTime": "May 8",
+      "metrics": {
+        "replies": "7",
+        "retweets": "0",
+        "likes": "0",
+        "views": "7.2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@Shopify"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:54.436Z"
+    },
+    {
+      "id": "2052588973466484922",
+      "url": "https://x.com/zhusu/status/2052588973466484922",
+      "text": "This is pretty cool",
+      "timestamp": "2026-05-08T03:18:41.000Z",
+      "displayTime": "May 7",
+      "metrics": {
+        "replies": "36",
+        "retweets": "0",
+        "likes": "0",
+        "views": "120K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:54.437Z"
+    },
+    {
+      "id": "2052603250524967045",
+      "url": "https://x.com/trythreews/status/2052603250524967045",
+      "text": "Never forget the ones that support you at all stages of growth. \n\nThe entire community thanks you for taking the time to check out what we are building, if there's anything you would like us to integrate or build custom then let us know, we would love to hear your feedback!",
+      "timestamp": "2026-05-08T04:15:25.000Z",
+      "displayTime": "May 7",
+      "metrics": {
+        "replies": "",
+        "retweets": "3",
+        "likes": "0",
+        "views": "2.3K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:54.437Z"
+    },
+    {
+      "id": "2052280743603081616",
+      "url": "https://x.com/sns/status/2052280743603081616",
+      "text": "",
+      "timestamp": "2026-05-07T06:53:53.000Z",
+      "displayTime": "May 6",
+      "metrics": {
+        "replies": "3",
+        "retweets": "14",
+        "likes": "38",
+        "views": "3.3K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:54.437Z"
+    },
+    {
+      "id": "2052426446073983267",
+      "url": "https://x.com/trythreews/status/2052426446073983267",
+      "text": "http://\nthree.ws \n\nhttp://\ngithub.com/nirholas/three\n.ws\n… \n\n$THREE CA FeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump",
+      "timestamp": "2026-05-07T16:32:51.000Z",
+      "displayTime": "May 7",
+      "metrics": {
+        "replies": "2",
+        "retweets": "8",
+        "likes": "24",
+        "views": "2.2K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:54.437Z"
+    },
+    {
+      "id": "2052418108837781511",
+      "url": "https://x.com/trythreews/status/2052418108837781511",
+      "text": "The \nhttp://\nthree.ws Podcast is now live on \n@amazonmusic\n \n\nLong reads not your thing? \n\nCheck out our newly launched podcast episode where we discuss on-chain 3D agents and see how we're putting AI in everyone's hands, worldwide.",
+      "timestamp": "2026-05-07T15:59:43.000Z",
+      "displayTime": "May 7",
+      "metrics": {
+        "replies": "4",
+        "retweets": "14",
+        "likes": "30",
+        "views": "2.9K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@amazonmusic"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:54.437Z"
+    },
+    {
+      "id": "2052418482269254040",
+      "url": "https://x.com/trythreews/status/2052418482269254040",
+      "text": "Inside The 3D Agent Web on Amazon Music by \nhttp://\nthree.ws\n\n\nhttps://\nmusic.amazon.com/podcasts/9a42b\n22a-b0b5-474d-b0aa-d256c20ba57b/episodes/20631f11-68bd-4216-888b-2fe7244876fe/three-ws-three-ws-inside-the-3d-agent-web\n…",
+      "timestamp": "2026-05-07T16:01:12.000Z",
+      "displayTime": "May 7",
+      "metrics": {
+        "replies": "1",
+        "retweets": "4",
+        "likes": "9",
+        "views": "902"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:54.437Z"
+    },
+    {
+      "id": "2052402580266098813",
+      "url": "https://x.com/trythreews/status/2052402580266098813",
+      "text": "The next web has agents in it. They need identity, embodiment, and a way to transact. We're working on the spec.",
+      "timestamp": "2026-05-07T14:58:01.000Z",
+      "displayTime": "May 7",
+      "metrics": {
+        "replies": "3",
+        "retweets": "15",
+        "likes": "37",
+        "views": "3.4K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:54.437Z"
+    },
+    {
+      "id": "2052402481024667887",
+      "url": "https://x.com/trythreews/status/2052402481024667887",
+      "text": "http://\nthree.ws is now contributing to the World Wide Web Consortium\n\n3D AI agents with on-chain identity. Becoming a web standard.\n\n→ Granted W3C Membership\n→ Contributed to the Agent Identity Registry Protocol CG\n→ Proposed a new Community Group: 3D AI Agents &",
+      "timestamp": "2026-05-07T14:57:37.000Z",
+      "displayTime": "May 7",
+      "metrics": {
+        "replies": "1",
+        "retweets": "18",
+        "likes": "49",
+        "views": "6.7K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:54.437Z"
+    },
+    {
+      "id": "2051690803203105230",
+      "url": "https://x.com/trythreews/status/2051690803203105230",
+      "text": "Extremely grateful for Coinbase sharing our project and allowing more than 100 million users worldwide a smooth onboarding experience to the $THREE community \n\nSend, receive, trade, and store $THREE using \n\n@coinbase",
+      "timestamp": "2026-05-05T15:49:40.000Z",
+      "displayTime": "May 5",
+      "metrics": {
+        "replies": "7",
+        "retweets": "16",
+        "likes": "50",
+        "views": "5.2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@coinbase"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:56.439Z"
+    },
+    {
+      "id": "2051689230997618690",
+      "url": "https://x.com/trythreews/status/2051689230997618690",
+      "text": "$three is \n@JupiterExchange\n verified \n\nThank you Jupiter Exchange for verifying us and helping safeguard our community.\n\nBelow is our contract address for your reference. \nFeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump\n\nReady for new 3D onchain agent features today? We are!",
+      "timestamp": "2026-05-05T15:43:25.000Z",
+      "displayTime": "May 5",
+      "metrics": {
+        "replies": "7",
+        "retweets": "17",
+        "likes": "54",
+        "views": "4K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@JupiterExchange"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:56.440Z"
+    },
+    {
+      "id": "2051689486069997611",
+      "url": "https://x.com/trythreews/status/2051689486069997611",
+      "text": "http://\nthree.ws on \n@JupiterExchange\n\n\n\nhttps://\nverified.jup.ag/dashboard/FeMb\nDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump\n…",
+      "timestamp": "2026-05-05T15:44:26.000Z",
+      "displayTime": "May 5",
+      "metrics": {
+        "replies": "",
+        "retweets": "8",
+        "likes": "21",
+        "views": "1.1K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@JupiterExchange"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:56.440Z"
+    },
+    {
+      "id": "2051616708482498843",
+      "url": "https://x.com/trythreews/status/2051616708482498843",
+      "text": " We're thrilled to share that $THREE price is now officially listed on \n@Coinbase\n\n\nAdditionally, \nhttp://\nthree.ws is live on \n@CoinbaseWallet\n \n\nBuying $THREE on Coinbase ",
+      "timestamp": "2026-05-05T10:55:15.000Z",
+      "displayTime": "May 5",
+      "metrics": {
+        "replies": "7",
+        "retweets": "30",
+        "likes": "69",
+        "views": "15K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@Coinbase",
+          "@CoinbaseWallet"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:56.440Z"
+    },
+    {
+      "id": "2051617806396035203",
+      "url": "https://x.com/trythreews/status/2051617806396035203",
+      "text": "How to buy $THREE on \n@Coinbase\n \n\nhttps://\ncoinbase.com/how-to-buy/thr\neews-solana-fembdox7r1psc4gecvjdsbnbza3bfztcydcatjvjpump-token\n…",
+      "timestamp": "2026-05-05T10:59:36.000Z",
+      "displayTime": "May 5",
+      "metrics": {
+        "replies": "2",
+        "retweets": "8",
+        "likes": "23",
+        "views": "2.6K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@Coinbase"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:56.440Z"
+    },
+    {
+      "id": "2051619661088010291",
+      "url": "https://x.com/trythreews/status/2051619661088010291",
+      "text": "http://\nthree.ws\n\nhttp://\ngithub.com/nirholas/three\n.ws\n…\n\n$THREE CA\nFeMbDoX7R1Psc4GEcvJdsbNbZA3bfztcyDCatJVJpump",
+      "timestamp": "2026-05-05T11:06:59.000Z",
+      "displayTime": "May 5",
+      "metrics": {
+        "replies": "2",
+        "retweets": "6",
+        "likes": "25",
+        "views": "2.1K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:56.440Z"
+    },
+    {
+      "id": "2050226678321102975",
+      "url": "https://x.com/trythreews/status/2050226678321102975",
+      "text": "http://\nthree.ws is live\n\nCreate 3D AI agent avatars on-chain.\n\nThey can talk, remember you, show emotions, and use different skills. You can even mint them onchain, so they actually belong to you.\n\nAgents get their own identity, history, and reputation that no one can",
+      "timestamp": "2026-05-01T14:51:46.000Z",
+      "displayTime": "May 1",
+      "metrics": {
+        "replies": "25",
+        "retweets": "42",
+        "likes": "0",
+        "views": "58K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:56.440Z"
+    },
+    {
+      "id": "2051470730324480194",
+      "url": "https://x.com/trythreews/status/2051470730324480194",
+      "text": "@threejs",
+      "timestamp": "2026-05-05T01:15:11.000Z",
+      "displayTime": "May 4",
+      "metrics": {
+        "replies": "",
+        "retweets": "4",
+        "likes": "19",
+        "views": "1.3K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@threejs"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:56.441Z"
+    },
+    {
+      "id": "2051261108506558901",
+      "url": "https://x.com/trythreews/status/2051261108506558901",
+      "text": "We have entered the arena!\n\n\nhttp://\nthree.ws has been listed as an official project in the \n@Solana\n Frontier Hackathon via \n@colosseum\n \n\n Solana’s Largest Hackathon\n $2.5 million from Colosseum's venture fund\n\nWe are building browser-native 3D AI agents onchain. Our",
+      "timestamp": "2026-05-04T11:22:13.000Z",
+      "displayTime": "May 4",
+      "metrics": {
+        "replies": "314",
+        "retweets": "148",
+        "likes": "0",
+        "views": "47K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@Solana",
+          "@colosseum"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:56.441Z"
+    },
+    {
+      "id": "2051178059861254325",
+      "url": "https://x.com/trythreews/status/2051178059861254325",
+      "text": "",
+      "timestamp": "2026-05-04T05:52:13.000Z",
+      "displayTime": "May 3",
+      "metrics": {
+        "replies": "6",
+        "retweets": "22",
+        "likes": "0",
+        "views": "4.8K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:56.441Z"
+    },
+    {
+      "id": "2050757549486645502",
+      "url": "https://x.com/solgoodman/status/2050757549486645502",
+      "text": "good shit man. you guys are attacking on all sides",
+      "timestamp": "2026-05-03T02:01:15.000Z",
+      "displayTime": "May 2",
+      "metrics": {
+        "replies": "1",
+        "retweets": "",
+        "likes": "0",
+        "views": "279"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:58.443Z"
+    },
+    {
+      "id": "2050758788186353723",
+      "url": "https://x.com/trythreews/status/2050758788186353723",
+      "text": "thank you very much, it actually means a lotwe are working really hard to build the best platform and tech + the best community with the best people. thanks again!",
+      "timestamp": "2026-05-03T02:06:11.000Z",
+      "displayTime": "May 2",
+      "metrics": {
+        "replies": "2",
+        "retweets": "",
+        "likes": "0",
+        "views": "268"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:58.443Z"
+    },
+    {
+      "id": "2050682956042338719",
+      "url": "https://x.com/nichxbt/status/2050682956042338719",
+      "text": "just shipped \nhttp://\nthree.ws chat built from the ground up \n@trythreews\n\n \ndisplay agents thoughts and see what your agent is going through\n\n almost as if you are right there talking with them\n\ntts + emotions as tools. function calls, mcp, artifacts \n\n100% open source. fork",
+      "timestamp": "2026-05-02T21:04:51.000Z",
+      "displayTime": "May 2",
+      "metrics": {
+        "replies": "3",
+        "retweets": "9",
+        "likes": "0",
+        "views": "1.8K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@trythreews"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:58.443Z"
+    },
+    {
+      "id": "2050680402923471106",
+      "url": "https://x.com/nichxbt/status/2050680402923471106",
+      "text": "there's just something so strange about seeing AI agent's thoughts, live, in real time\n\nnot sure if i should be excited or heartbroken",
+      "timestamp": "2026-05-02T20:54:42.000Z",
+      "displayTime": "May 2",
+      "metrics": {
+        "replies": "8",
+        "retweets": "14",
+        "likes": "0",
+        "views": "2.8K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:58.443Z"
+    },
+    {
+      "id": "2050627547394916768",
+      "url": "https://x.com/trythreews/status/2050627547394916768",
+      "text": "Proud to announce $three is officially listed on \n@CoinGecko\n\n\nHuge thank you to the moderators for handling it behind the scenes, and to every one of you who’s been here through it all. Couldn’t have done this without you.  \n\nGrateful beyond words.  Let's build!",
+      "timestamp": "2026-05-02T17:24:40.000Z",
+      "displayTime": "May 2",
+      "metrics": {
+        "replies": "7",
+        "retweets": "16",
+        "likes": "0",
+        "views": "2.1K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@CoinGecko"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:58.443Z"
+    },
+    {
+      "id": "2050585585191186781",
+      "url": "https://x.com/trythreews/status/2050585585191186781",
+      "text": "http://\nthree.ws & \n@alibaba_cloud\n Partner to Give 3D AI Agents On-Chain Wallets and Financial Access\n\nWe’re proud to partner with \n@alibaba_cloud\n, bringing \nhttp://\nthree.ws browser-native 3D AI agents to global cloud infrastructure. Agents can now hold on-chain",
+      "timestamp": "2026-05-02T14:37:56.000Z",
+      "displayTime": "May 2",
+      "metrics": {
+        "replies": "16",
+        "retweets": "0",
+        "likes": "0",
+        "views": "41K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@alibaba_cloud",
+          "@alibaba_cloud"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:58.443Z"
+    },
+    {
+      "id": "2050586858825154674",
+      "url": "https://x.com/trythreews/status/2050586858825154674",
+      "text": "http://\nthree.ws on Alibaba Cloud Marketplace\n\n\nhttps://\nmarketplace.alibabacloud.com/store/3247293.\nhtml?spm=a3c0i.29891717.0.0.14b825db0OizTL\n…",
+      "timestamp": "2026-05-02T14:42:59.000Z",
+      "displayTime": "May 2",
+      "metrics": {
+        "replies": "1",
+        "retweets": "10",
+        "likes": "0",
+        "views": "12K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:58.443Z"
+    },
+    {
+      "id": "2049355559225503889",
+      "url": "https://x.com/nichxbt/status/2049355559225503889",
+      "text": "something I’ve wanted for a while: an AI that isn’t just a text box\n\nso I built \nhttp://\nthree.ws\n\nit lets you create a 3D AI character on-chain that lives in your browser\n\nit can talk, remember you, show emotions, and use different skills. you can even mint it onchain, so",
+      "timestamp": "2026-04-29T05:10:15.000Z",
+      "displayTime": "Apr 28",
+      "metrics": {
+        "replies": "87",
+        "retweets": "71",
+        "likes": "0",
+        "views": "236K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:58.443Z"
+    },
+    {
+      "id": "2049360194128507336",
+      "url": "https://x.com/nichxbt/status/2049360194128507336",
+      "text": "Build your AI character in seconds.\n\nAdd personality, pick any LLM (Claude, GPT, etc.), real-time animations, memory + skills.\n\nMint it onchain.\n\nSame identity everywhere, forever.\n\nOne-line embed: <agent-3d>",
+      "timestamp": "2026-04-29T05:28:40.000Z",
+      "displayTime": "Apr 28",
+      "metrics": {
+        "replies": "3",
+        "retweets": "9",
+        "likes": "41",
+        "views": "5.6K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:58.444Z"
+    },
+    {
+      "id": "2049762836881301865",
+      "url": "https://x.com/trythreews/status/2049762836881301865",
+      "text": "Solana wallet integration for autonomous 3D agents now live on \n@trythreews\n \n\nYour agent can now hold and spend money. Give your agents access to money. Let them work while you sleep.\n\n\nhttp://\nthree.ws",
+      "timestamp": "2026-04-30T08:08:37.000Z",
+      "displayTime": "Apr 30",
+      "metrics": {
+        "replies": "3",
+        "retweets": "13",
+        "likes": "0",
+        "views": "2.4K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@trythreews"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:00:58.444Z"
+    },
+    {
+      "id": "2050221269732425928",
+      "url": "https://x.com/trythreews/status/2050221269732425928",
+      "text": "The \nhttp://\nthree.ws Podcast is now live on \n@Spotify\n \n\nNot a fan of extremely long articles? We hear you.\n\nDiscover our newly launched onchain 3D agents and learn more about how we are making AI accessible to everyone all over the world ",
+      "timestamp": "2026-05-01T14:30:16.000Z",
+      "displayTime": "May 1",
+      "metrics": {
+        "replies": "10",
+        "retweets": "13",
+        "likes": "94",
+        "views": "3.8K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@Spotify"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:00.445Z"
+    },
+    {
+      "id": "2050221870264545681",
+      "url": "https://x.com/trythreews/status/2050221870264545681",
+      "text": "Beyond Chatbots: Why Your AI Agent Needs a 3D Body and a Blockchain Passport On-chain via \n@Spotify",
+      "timestamp": "2026-05-01T14:32:39.000Z",
+      "displayTime": "May 1",
+      "metrics": {
+        "replies": "",
+        "retweets": "3",
+        "likes": "10",
+        "views": "854"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@Spotify"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:00.445Z"
+    },
+    {
+      "id": "2049557523330638269",
+      "url": "https://x.com/trythreews/status/2049557523330638269",
+      "text": "your agents deserve to have a voice \n\njust recorded the demo below showing how an agent can autonomously join a live X Space, request speaker access, listen in real-time, and respond to speakers\n\nchoose voice models from Groq, Anthropic, or OpenAI  for the LLM as an env var,",
+      "timestamp": "2026-04-29T18:32:47.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "13",
+        "retweets": "8",
+        "likes": "0",
+        "views": "4.1K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:00.445Z"
+    },
+    {
+      "id": "2049573582247022869",
+      "url": "https://x.com/trythreews/status/2049573582247022869",
+      "text": "we just gave 3D AI agents native \nhttp://\npump.fun superpowers\n\nswap, create coins, collect fees, accept token payments, snipe, trade autonomously \n\nall as loadable skills the agent calls autonomously. customize to your own specifications\n\nhere's how it works ",
+      "timestamp": "2026-04-29T19:36:35.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "11",
+        "retweets": "13",
+        "likes": "0",
+        "views": "6.4K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": true,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:00.446Z"
+    },
+    {
+      "id": "2050049239301165535",
+      "url": "https://x.com/trythreews/status/2050049239301165535",
+      "text": "Never miss a \n@pumpfun\n runner again\n\n\nhttp://\nthree.ws/pumpfun announces \n→ Live graduation alerts \n→ GitHub claims \n→ Whale buys/sells \n→ Customizable layout\n\nTurn sound on. Your agent now calls every move out loud.",
+      "timestamp": "2026-05-01T03:06:41.000Z",
+      "displayTime": "Apr 30",
+      "metrics": {
+        "replies": "16",
+        "retweets": "10",
+        "likes": "0",
+        "views": "3.1K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@pumpfun"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:00.446Z"
+    },
+    {
+      "id": "2050022088652759274",
+      "url": "https://x.com/trythreews/status/2050022088652759274",
+      "text": ".\n@trythreews\n Officially Listed on Anthropic MCP Registry, Bringing On-Chain 3D AI Agents to Claude published on \n@CoinMarketCap",
+      "timestamp": "2026-05-01T01:18:48.000Z",
+      "displayTime": "Apr 30",
+      "metrics": {
+        "replies": "4",
+        "retweets": "8",
+        "likes": "0",
+        "views": "1.9K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@trythreews",
+          "@CoinMarketCap"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:00.446Z"
+    },
+    {
+      "id": "2050016695897706885",
+      "url": "https://x.com/trythreews/status/2050016695897706885",
+      "text": "http://\nthree.ws is listed on \n@AnthropicAI\n's official MCP Registry – the canonical directory for AI-to-tool integrations used by Claude, ChatGPT, Cursor & more.  \n\nGive your AI a persistent 3D body that lives on-chain.",
+      "timestamp": "2026-05-01T00:57:22.000Z",
+      "displayTime": "Apr 30",
+      "metrics": {
+        "replies": "10",
+        "retweets": "13",
+        "likes": "104",
+        "views": "10K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@AnthropicAI"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:00.446Z"
+    },
+    {
+      "id": "2050017130331148561",
+      "url": "https://x.com/trythreews/status/2050017130331148561",
+      "text": "Remote MCP URL \nhttps://\nthree.ws/api/mcp\n\n\n@AnthropicAI\n Registry Listing\n\nhttps://\nregistry.modelcontextprotocol.io/?q=three.ws\n\nLearn more about Model Context Protocol \n\nhttps://\nanthropic.com/news/model-con\ntext-protocol\n…",
+      "timestamp": "2026-05-01T00:59:06.000Z",
+      "displayTime": "Apr 30",
+      "metrics": {
+        "replies": "1",
+        "retweets": "3",
+        "likes": "7",
+        "views": "1.3K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@AnthropicAI"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:00.446Z"
+    },
+    {
+      "id": "2049997615421649363",
+      "url": "https://x.com/trythreews/status/2049997615421649363",
+      "text": " \n@GoogleCloud\n x \nhttp://\nthree.ws\n\nWe are excited to announce we are joining forces with Google Cloud!\n\nGoogle Cloud's infrastructure unlocks the next phase of \nhttp://\nthree.ws development. \n\nGoogle Cloud enables us to dramatically expand our 3D rendering",
+      "timestamp": "2026-04-30T23:41:33.000Z",
+      "displayTime": "Apr 30",
+      "metrics": {
+        "replies": "11",
+        "retweets": "0",
+        "likes": "0",
+        "views": "9.2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@GoogleCloud"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:00.446Z"
+    },
+    {
+      "id": "2049703197426524304",
+      "url": "https://x.com/frankdegods/status/2049703197426524304",
+      "text": "max lev long my friends. gg.",
+      "timestamp": "2026-04-30T04:11:38.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "87",
+        "retweets": "11",
+        "likes": "440",
+        "views": "44K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:00.446Z"
+    },
+    {
+      "id": "2049576603324411933",
+      "url": "https://x.com/trythreews/status/2049576603324411933",
+      "text": "then we reverse-engineered the full pump-fun agent-payments-sdk\n\nreconstructed the Anchor IDL, all PDAs, event parsing, and the x402 payment layer from the published npm package\n\nnow it lives in the repo as editable source",
+      "timestamp": "2026-04-29T19:48:36.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "1",
+        "retweets": "2",
+        "likes": "4",
+        "views": "534"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:02.449Z"
+    },
+    {
+      "id": "2049576641127682430",
+      "url": "https://x.com/trythreews/status/2049576641127682430",
+      "text": "the avatar also subscribes to on-chain events via websocket\n\npayment received → celebration animation buyback fires → agent reacts live withdrawal → logged to identity timeline\nthe 3D presence responds to its own economics in real time",
+      "timestamp": "2026-04-29T19:48:45.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "",
+        "retweets": "1",
+        "likes": "4",
+        "views": "447"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:02.449Z"
+    },
+    {
+      "id": "2049567362693963905",
+      "url": "https://x.com/trythreews/status/2049567362693963905",
+      "text": "we reverse engineered the PumpFun agent payments sdk\n\nafaik the only one on Github\n\nlink below",
+      "timestamp": "2026-04-29T19:11:53.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "12",
+        "retweets": "18",
+        "likes": "0",
+        "views": "6.6K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:02.449Z"
+    },
+    {
+      "id": "2049575072684462180",
+      "url": "https://x.com/trythreews/status/2049575072684462180",
+      "text": "then we reverse-engineered the full pump-fun agent-payments-sdk\n\nreconstructed the Anchor IDL, all PDAs, event parsing, and the x402 payment layer from the published npm package\n\nnow it lives in the repo as editable source",
+      "timestamp": "2026-04-29T19:42:31.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "2",
+        "retweets": "2",
+        "likes": "8",
+        "views": "895"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:02.449Z"
+    },
+    {
+      "id": "2049576023856181676",
+      "url": "https://x.com/trythreews/status/2049576023856181676",
+      "text": "the avatar also subscribes to on-chain events via websocket\n\npayment received → celebration animation buyback fires → agent reacts live withdrawal → logged to identity timeline\nthe 3D presence responds to its own economics in real time",
+      "timestamp": "2026-04-29T19:46:18.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "",
+        "retweets": "3",
+        "likes": "4",
+        "views": "747"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:02.449Z"
+    },
+    {
+      "id": "2049574569925808265",
+      "url": "https://x.com/trythreews/status/2049574569925808265",
+      "text": "we took the official pump-fun-skills repo and completed it\n\nit had the SKILL.md docs but was missing the runtime glue. we added manifest.json + tools.json + handlers.js to all 4 skills\n\n→ swap (bonding curve + AMM, auto-detected) → create-coin (mayhem, cashback, tokenized agent",
+      "timestamp": "2026-04-29T19:40:31.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "2",
+        "retweets": "2",
+        "likes": "10",
+        "views": "1.7K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:02.449Z"
+    },
+    {
+      "id": "2049568076019188126",
+      "url": "https://x.com/trythreews/status/2049568076019188126",
+      "text": "reverse-engineered pump-fun/agent-payments-sdk\n\nspecific commit can be found here \nhttps://\ngithub.com/nirholas/three\n.ws/commit/4104a3270b3e9f645288eb3ecf25b9c7f3d59829\n…\n\n\nhttp://\nthree.ws repo \n\nhttps://\ngithub.com/nirholas/three\n.ws\n…",
+      "timestamp": "2026-04-29T19:14:43.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "",
+        "retweets": "1",
+        "likes": "6",
+        "views": "505"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:02.449Z"
+    },
+    {
+      "id": "2049476546285740512",
+      "url": "https://x.com/trythreews/status/2049476546285740512",
+      "text": "http://\nthree.ws is live on \n@npmjs\n\n\nCreate your own 3D agent on-chain. Give it access to money. Yours forever.\n\nNative Solana payments + \n@Pumpfun\n integration. Drop <agent-3d> on any page to embed your 3D agent.\n\nnpm i \nhttp://\nthree.ws \n\n\nhttp://\nnpmjs.com/package/three.\nws\n…",
+      "timestamp": "2026-04-29T13:11:00.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "13",
+        "retweets": "12",
+        "likes": "0",
+        "views": "2.4K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@npmjs",
+          "@Pumpfun"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:02.449Z"
+    },
+    {
+      "id": "2049458671139336613",
+      "url": "https://x.com/trythreews/status/2049458671139336613",
+      "text": "http://\nthree.ws is officially listed on \n@x402scan\n and is now live as a paid x402 endpoint on-chain \n\nagents send 0.001 USDC → get back a 3D avatar (with verifiable on-chain identity) they can render",
+      "timestamp": "2026-04-29T11:59:58.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "9",
+        "retweets": "19",
+        "likes": "0",
+        "views": "5.3K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": false,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@x402scan"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:04.452Z"
+    },
+    {
+      "id": "2049447738434339171",
+      "url": "https://x.com/trythreews/status/2049447738434339171",
+      "text": "give your agents access to money.\n\nspin up solana agents with vanity addresses. pick the prefix, keys generated client-side, ready to trade on \nhttp://\npump.fun or send solana payments\n\n\nhttp://\nthree.ws",
+      "timestamp": "2026-04-29T11:16:32.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "7",
+        "retweets": "14",
+        "likes": "0",
+        "views": "2.2K"
+      },
+      "media": {
+        "hasImage": true,
+        "hasVideo": true,
+        "hasCard": false
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:04.452Z"
+    },
+    {
+      "id": "2049418308462780727",
+      "url": "https://x.com/trythreews/status/2049418308462780727",
+      "text": "Giving AI Agents a Body, a Wallet, and a Home on-chain published on \n@CoinMarketCap",
+      "timestamp": "2026-04-29T09:19:35.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "11",
+        "retweets": "11",
+        "likes": "41",
+        "views": "3.5K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@CoinMarketCap"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:04.452Z"
+    },
+    {
+      "id": "2049412062837928202",
+      "url": "https://x.com/trythreews/status/2049412062837928202",
+      "text": "http://\nthree.ws is now listed on \n@AnthropicAI\n's official MCP Registry – the canonical directory for AI-to-tool integrations used by Claude, ChatGPT, Cursor & more.  \n\n Full MCP Server\n Complete documentation\n Agent monetization\n\n\nhttps://\nregistry.modelcontextprotocol.io/?q=three.ws",
+      "timestamp": "2026-04-29T08:54:46.000Z",
+      "displayTime": "Apr 29",
+      "metrics": {
+        "replies": "14",
+        "retweets": "7",
+        "likes": "40",
+        "views": "3K"
+      },
+      "media": {
+        "hasImage": false,
+        "hasVideo": false,
+        "hasCard": true
+      },
+      "type": {
+        "isRetweet": false,
+        "isReply": false
+      },
+      "extracted": {
+        "hashtags": [],
+        "mentions": [
+          "@AnthropicAI"
+        ],
+        "urls": []
+      },
+      "scrapedAt": "2026-06-15T06:01:04.452Z"
+    }
+  ]
+}

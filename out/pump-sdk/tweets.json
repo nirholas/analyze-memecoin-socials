@@ -1,0 +1,1002 @@
+{
+  "asset": "pump-sdk",
+  "token": {
+    "symbol": "pump-sdk",
+    "mint": "F4ZHCzizwpop2XS8auuAGQ7LZcUTEwQ22m5sRmB2pump",
+    "pool": "AS5KLCFs4HVYPebV8MNt2YzD2Fs2jgb5F2p3xXjxm9Aj",
+    "network": "solana"
+  },
+  "generatedAt": "2026-09-08T22:48:07.639Z",
+  "tweets": [
+    {
+      "ts": "2026-02-26T20:58:26.000Z",
+      "text": "are token locks still a thing like ive been building — lets run this properly for the trenches. we need it",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027126131250643230",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00012986369296138283,
+      "returns": {
+        "1h": -52.03,
+        "4h": -29.43,
+        "24h": -46.03
+      }
+    },
+    {
+      "ts": "2026-02-26T21:00:04.000Z",
+      "text": "claim",
+      "likes": 21,
+      "views": 2100,
+      "url": "https://x.com/nichxbt/status/2027126541520617662",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:02:02.000Z",
+      "text": "i pushed $GCR for a year to 13m so like can we run this back turbo",
+      "likes": 19,
+      "views": 805,
+      "url": "https://x.com/nichxbt/status/2027127035232166242",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:03:28.000Z",
+      "text": "i am on the front page of pumpfun",
+      "likes": 51,
+      "views": 2500,
+      "url": "https://x.com/nichxbt/status/2027127396181365176",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:04:03.000Z",
+      "text": "screenshot it when im number 1 please",
+      "likes": 6,
+      "views": 415,
+      "url": "https://x.com/nichxbt/status/2027127543296627102",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:05:29.000Z",
+      "text": "on it",
+      "likes": 7,
+      "views": 174,
+      "url": "https://x.com/nichxbt/status/2027127905772568618",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:07:26.000Z",
+      "text": "im trying they dont make it very user friendly yet they can improve",
+      "likes": 3,
+      "views": 108,
+      "url": "https://x.com/nichxbt/status/2027128396522938452",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:07:38.000Z",
+      "text": "wait",
+      "likes": 12,
+      "views": 457,
+      "url": "https://x.com/nichxbt/status/2027128448104407193",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:09:03.000Z",
+      "text": "no legit if someone sends me a link i will",
+      "likes": 2,
+      "views": 189,
+      "url": "https://x.com/nichxbt/status/2027128802929996186",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:10:08.000Z",
+      "text": "easy bet",
+      "likes": 3,
+      "views": 108,
+      "url": "https://x.com/nichxbt/status/2027129075953991774",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:10:21.000Z",
+      "text": "is 100% buy back standard",
+      "likes": 5,
+      "views": 130,
+      "url": "https://x.com/nichxbt/status/2027129131935375390",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:10:50.000Z",
+      "text": "i want a dev buy back candle larger than gake candle — nich candle now",
+      "likes": 9,
+      "views": 343,
+      "url": "https://x.com/nichxbt/status/2027129253524017449",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:12:07.000Z",
+      "text": "someone record this candle",
+      "likes": 27,
+      "views": 1700,
+      "url": "https://x.com/nichxbt/status/2027129573100634365",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:15:38.000Z",
+      "text": "(media)",
+      "likes": 58,
+      "views": 5100,
+      "url": "https://x.com/nichxbt/status/2027130459285782618",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:22:39.000Z",
+      "text": "aight i downloaded the app",
+      "likes": 18,
+      "views": 1600,
+      "url": "https://x.com/nichxbt/status/2027132224794157544",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:25:43.000Z",
+      "text": "i claimed",
+      "likes": 12,
+      "views": 263,
+      "url": "https://x.com/nichxbt/status/2027132997879914956",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:28:34.000Z",
+      "text": "this is crazy but like how high is $PUMP again",
+      "likes": 18,
+      "views": 1300,
+      "url": "https://x.com/nichxbt/status/2027133712476025015",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:31:51.000Z",
+      "text": "pump-sdk is actually so crazy if you think about it",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027134539731227080",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:35:26.000Z",
+      "text": "would you?",
+      "likes": 0,
+      "views": 120,
+      "url": "https://x.com/nichxbt/status/2027135442936889776",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:36:18.000Z",
+      "text": "you little shits better listen here — aint no one telling me what to do",
+      "likes": 52,
+      "views": 2200,
+      "url": "https://x.com/nichxbt/status/2027135662533869901",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:37:24.000Z",
+      "text": "thanks",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027135937726312584",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:38:24.000Z",
+      "text": "thank you. let's build a community",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027136187828421058",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:38:43.000Z",
+      "text": "study small active accounts pushing a token",
+      "likes": 331,
+      "views": 16000,
+      "url": "https://x.com/nichxbt/status/2027136267750908006",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:40:16.000Z",
+      "text": "sure",
+      "likes": 6,
+      "views": 116,
+      "url": "https://x.com/nichxbt/status/2027136658672664746",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:42:08.000Z",
+      "text": "hey",
+      "likes": 3,
+      "views": 223,
+      "url": "https://x.com/nichxbt/status/2027137129789509838",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:48:19.000Z",
+      "text": "wait you have me thinking — i have a telegram claim bot i was working on this morning. we will release it",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027138682613047343",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:49:12.000Z",
+      "text": "i aint finna go back to jail",
+      "likes": 5,
+      "views": 85,
+      "url": "https://x.com/nichxbt/status/2027138909042597960",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:50:17.000Z",
+      "text": "allow me to cook check this out one sec",
+      "likes": 9,
+      "views": 181,
+      "url": "https://x.com/nichxbt/status/2027139178253914576",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:55:26.000Z",
+      "text": "Give AI agents access to money. MCP servers for your AI agents to interact with DeFi",
+      "likes": 80,
+      "views": 7800,
+      "url": "https://x.com/nichxbt/status/2027140474147082543",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:56:05.000Z",
+      "text": "WE WILL INTEGRATE PUMP-SDK",
+      "likes": 33,
+      "views": 1600,
+      "url": "https://x.com/nichxbt/status/2027140637305512347",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T21:57:14.000Z",
+      "text": "it took me what felt like an hour to figure out how to claim for pump-sdk",
+      "likes": 27,
+      "views": 1900,
+      "url": "https://x.com/nichxbt/status/2027140927450755376",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006228980249361393,
+      "returns": {
+        "1h": 43.94,
+        "4h": 137.07,
+        "24h": -25.2
+      }
+    },
+    {
+      "ts": "2026-02-26T22:00:09.000Z",
+      "text": "if you sign up for Pump Fun SDK where pump-fun-sdk will be integrated then i will",
+      "likes": 12,
+      "views": 246,
+      "url": "https://x.com/nichxbt/status/2027141664456982857",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:03:25.000Z",
+      "text": "how about we do things differently than all these other projects — let's collaborate and build",
+      "likes": 5,
+      "views": 488,
+      "url": "https://x.com/nichxbt/status/2027142486595109018",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:04:22.000Z",
+      "text": "omg... this is why we do this — i have yet to see anyone do this — you are genius",
+      "likes": 20,
+      "views": 1400,
+      "url": "https://x.com/nichxbt/status/2027142723246121171",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:05:46.000Z",
+      "text": "with the pump-fun-sdk you can definitely claim and forward fees to your agent",
+      "likes": 23,
+      "views": 1700,
+      "url": "https://x.com/nichxbt/status/2027143075194355834",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:07:18.000Z",
+      "text": "me you and shaw — let's lead by example. it's time",
+      "likes": 2,
+      "views": 74,
+      "url": "https://x.com/nichxbt/status/2027143463121334719",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:09:37.000Z",
+      "text": "exactly — my agents already on it. TTS is so nice. chat.sperax.io/beta — you can legit just speak to your agents",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027144043210396152",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:11:26.000Z",
+      "text": "buying a domain, paying for hosting, running the project — its the pump-fun-sdk",
+      "likes": 4,
+      "views": 104,
+      "url": "https://x.com/nichxbt/status/2027144502721548523",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:16:05.000Z",
+      "text": "i am looking for projects to collaborate with — it's quite simple to integrate existing projects within Pump Fun SDK",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027145670596202721",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:18:16.000Z",
+      "text": "seriously even if you launched for fun and have no motion. post below, share your idea. let's build",
+      "likes": 14,
+      "views": 773,
+      "url": "https://x.com/nichxbt/status/2027146220544970886",
+      "account": "nichxbt",
+      "type": "announcement",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:20:12.000Z",
+      "text": "you still owe me $100 so please use my credit for a new video on the pump-fun-sdk",
+      "likes": 1,
+      "views": 58,
+      "url": "https://x.com/nichxbt/status/2027146708568945134",
+      "account": "nichxbt",
+      "type": "announcement",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:21:02.000Z",
+      "text": "no pump-fun-sdk is the one — we don't do pvp here",
+      "likes": 0,
+      "views": 92,
+      "url": "https://x.com/nichxbt/status/2027146918758064148",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:23:57.000Z",
+      "text": "let's show them how to build in public with the pump-fun-sdk",
+      "likes": 2,
+      "views": 148,
+      "url": "https://x.com/nichxbt/status/2027147652312547477",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:26:16.000Z",
+      "text": "pump-sdk the official @Pumpfun source code reverse engineered — and they launched a coin on pumpfun. we have agents",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027148236658749578",
+      "account": "nichxbt",
+      "type": "announcement",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:33:06.000Z",
+      "text": "Want to run AI agents 24/7? Copilot, Claude, or Cursor within Github Codespaces...",
+      "likes": 17,
+      "views": 1600,
+      "url": "https://x.com/nichxbt/status/2027149953131491722",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:34:34.000Z",
+      "text": "With the pump-sdk you can build crypto tools, monitor memecoin launches, claims, or snipe tokens",
+      "likes": 18,
+      "views": 1600,
+      "url": "https://x.com/nichxbt/status/2027150323291504698",
+      "account": "nichxbt",
+      "type": "announcement",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:48:10.000Z",
+      "text": "added solana wallet vanity address generator — generate a nice vanity address for your agents",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027153748393603086",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T22:50:49.000Z",
+      "text": "what's your github @ ? ill add you as contributor if you want to collab",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027154411370484209",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00008965935207153191,
+      "returns": {
+        "1h": -23.17,
+        "4h": 22.76,
+        "24h": -63.58
+      }
+    },
+    {
+      "ts": "2026-02-26T23:01:17.000Z",
+      "text": "pump-fun-sdk: The Reverse-Engineered Pumpfun Bonding Curve SDK Powering the Next Generation of Solana AI Agents",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027157045749993539",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006888263817681911,
+      "returns": {
+        "1h": 33.05,
+        "4h": 335.71,
+        "24h": -67.77
+      }
+    },
+    {
+      "ts": "2026-02-26T23:17:58.000Z",
+      "text": "bullish",
+      "likes": 10,
+      "views": 428,
+      "url": "https://x.com/nichxbt/status/2027161244344684743",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006888263817681911,
+      "returns": {
+        "1h": 33.05,
+        "4h": 335.71,
+        "24h": -67.77
+      }
+    },
+    {
+      "ts": "2026-02-26T23:39:57.000Z",
+      "text": "not enough will scoop dips",
+      "likes": 9,
+      "views": 1700,
+      "url": "https://x.com/nichxbt/status/2027166778695221600",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006888263817681911,
+      "returns": {
+        "1h": 33.05,
+        "4h": 335.71,
+        "24h": -67.77
+      }
+    },
+    {
+      "ts": "2026-02-26T23:47:20.000Z",
+      "text": "the agents are cooking check the repo its nuts",
+      "likes": 3,
+      "views": 338,
+      "url": "https://x.com/nichxbt/status/2027168637900251483",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00006888263817681911,
+      "returns": {
+        "1h": 33.05,
+        "4h": 335.71,
+        "24h": -67.77
+      }
+    },
+    {
+      "ts": "2026-02-27T00:08:01.000Z",
+      "text": "pump-fun-sdk is now listed on @AnthropicAI's official MCP Registry",
+      "likes": 75,
+      "views": 8800,
+      "url": "https://x.com/nichxbt/status/2027173839826976778",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00009164555898184429,
+      "returns": {
+        "1h": 61.13,
+        "4h": 210.71,
+        "24h": -79.43
+      }
+    },
+    {
+      "ts": "2026-02-27T00:10:08.000Z",
+      "text": "TypeScript/Rust SDK for the Pump protocol on Solana — offline instruction builders, bonding curve math",
+      "likes": 14,
+      "views": 617,
+      "url": "https://x.com/nichxbt/status/2027174372482711656",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00009164555898184429,
+      "returns": {
+        "1h": 61.13,
+        "4h": 210.71,
+        "24h": -79.43
+      }
+    },
+    {
+      "ts": "2026-02-27T00:22:25.000Z",
+      "text": "Pump SDK Core — Instruction Building & On-Chain Interaction for Pump Protocol on @openclaw ClawHub",
+      "likes": 31,
+      "views": 2300,
+      "url": "https://x.com/nichxbt/status/2027177463567224969",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00009164555898184429,
+      "returns": {
+        "1h": 61.13,
+        "4h": 210.71,
+        "24h": -79.43
+      }
+    },
+    {
+      "ts": "2026-02-27T00:22:47.000Z",
+      "text": "The skill's declared requirements and runtime instructions are coherent with its stated purpose",
+      "likes": 10,
+      "views": 619,
+      "url": "https://x.com/nichxbt/status/2027177559071641770",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00009164555898184429,
+      "returns": {
+        "1h": 61.13,
+        "4h": 210.71,
+        "24h": -79.43
+      }
+    },
+    {
+      "ts": "2026-02-27T00:30:25.000Z",
+      "text": "crypto tools are so fun to build — give your agents access to money and watch what they can do!",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027179477420409237",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00009164555898184429,
+      "returns": {
+        "1h": 61.13,
+        "4h": 210.71,
+        "24h": -79.43
+      }
+    },
+    {
+      "ts": "2026-02-27T01:29:18.000Z",
+      "text": "correct",
+      "likes": 5,
+      "views": 117,
+      "url": "https://x.com/nichxbt/status/2027194294952710321",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00014766854185806346,
+      "returns": {
+        "1h": -25.46,
+        "4h": 85.71,
+        "24h": -86.93
+      }
+    },
+    {
+      "ts": "2026-02-27T01:30:30.000Z",
+      "text": "soon — have something really exciting planned for this. stay tuned!",
+      "likes": 9,
+      "views": 261,
+      "url": "https://x.com/nichxbt/status/2027194598070886625",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00014766854185806346,
+      "returns": {
+        "1h": -25.46,
+        "4h": 85.71,
+        "24h": -86.93
+      }
+    },
+    {
+      "ts": "2026-02-27T03:27:22.000Z",
+      "text": "Real-time PumpFun token tracking — built with raw WebSockets on Solana using pump-fun-sdk",
+      "likes": 24,
+      "views": 1100,
+      "url": "https://x.com/nichxbt/status/2027224007486194094",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00030012857060661565,
+      "returns": {
+        "1h": -5.12,
+        "4h": -25.19,
+        "24h": -94.41
+      }
+    },
+    {
+      "ts": "2026-02-27T03:40:47.000Z",
+      "text": "spent the last couple of months working on it — live today. you will want to rack up the refs",
+      "likes": 1,
+      "views": 95,
+      "url": "https://x.com/nichxbt/status/2027227387881312446",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00030012857060661565,
+      "returns": {
+        "1h": -5.12,
+        "4h": -25.19,
+        "24h": -94.41
+      }
+    },
+    {
+      "ts": "2026-02-27T03:55:07.000Z",
+      "text": "omg remotion + pump-sdk — watch this",
+      "likes": 11,
+      "views": 202,
+      "url": "https://x.com/nichxbt/status/2027230992872911088",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00030012857060661565,
+      "returns": {
+        "1h": -5.12,
+        "4h": -25.19,
+        "24h": -94.41
+      }
+    },
+    {
+      "ts": "2026-02-27T04:01:58.000Z",
+      "text": "(media)",
+      "likes": 2,
+      "views": 51,
+      "url": "https://x.com/nichxbt/status/2027232717772128427",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00028474999899446267,
+      "returns": {
+        "1h": -3.69,
+        "4h": -42.31,
+        "24h": -94.32
+      }
+    },
+    {
+      "ts": "2026-02-27T04:04:49.000Z",
+      "text": "i think people will be scared to see how long i can go",
+      "likes": 4,
+      "views": 25,
+      "url": "https://x.com/nichxbt/status/2027233432854782143",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00028474999899446267,
+      "returns": {
+        "1h": -3.69,
+        "4h": -42.31,
+        "24h": -94.32
+      }
+    },
+    {
+      "ts": "2026-02-27T04:47:28.000Z",
+      "text": "Generate custom Solana vanity addresses - entirely in your browser. pump-fun-sdk",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027244165738930609",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00028474999899446267,
+      "returns": {
+        "1h": -3.69,
+        "4h": -42.31,
+        "24h": -94.32
+      }
+    },
+    {
+      "ts": "2026-02-27T04:52:36.000Z",
+      "text": "not sure why the agents prefer the terminal look maybe because haha terminal... pumpfun... haha",
+      "likes": 0,
+      "views": 0,
+      "url": "https://x.com/nichxbt/status/2027245458717057406",
+      "account": "nichxbt",
+      "type": "other",
+      "price": 0.00028474999899446267,
+      "returns": {
+        "1h": -3.69,
+        "4h": -42.31,
+        "24h": -94.32
+      }
+    }
+  ]
+}
