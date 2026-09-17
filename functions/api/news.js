@@ -18,6 +18,8 @@ const SOURCES = [
   { source: 'Decrypt', url: 'https://decrypt.co/feed', category: 'General' },
   { source: 'The Block', url: 'https://www.theblock.co/rss.xml', category: 'Markets' },
   { source: 'The Defiant', url: 'https://thedefiant.io/feed', category: 'DeFi' },
+  { source: 'Bitcoin Magazine', url: 'https://bitcoinmagazine.com/feed', category: 'Bitcoin' },
+  { source: 'Blockworks', url: 'https://blockworks.co/feed', category: 'Markets' },
 ];
 
 const PER_SOURCE = 25;
@@ -47,15 +49,17 @@ function textOf(itemXml, tag) {
 }
 
 function parseFeed(xml, { source, category }) {
-  const items = xml.match(/<item(?:\s[^>]*)?>[\s\S]*?<\/item>/gi) || [];
+  // RSS wraps a post in <item>, Atom in <entry>; Blockworks publishes Atom, and matching
+  // only <item> read its feed as empty rather than as broken.
+  const items = xml.match(/<(item|entry)(?:\s[^>]*)?>[\s\S]*?<\/\1>/gi) || [];
   return items.slice(0, PER_SOURCE).map((item) => {
     // Atom-style <link href="..."/> appears inside some RSS feeds alongside <link>text</link>.
     const href = item.match(/<link[^>]*\shref=["']([^"']+)["']/i);
     return {
       source,
       title: textOf(item, 'title'),
-      description: textOf(item, 'description') || textOf(item, 'content:encoded'),
-      pubDate: textOf(item, 'pubDate') || textOf(item, 'dc:date') || textOf(item, 'published'),
+      description: textOf(item, 'description') || textOf(item, 'content:encoded') || textOf(item, 'summary'),
+      pubDate: textOf(item, 'pubDate') || textOf(item, 'dc:date') || textOf(item, 'published') || textOf(item, 'updated'),
       link: textOf(item, 'link') || (href ? decodeEntities(href[1]) : ''),
       category: textOf(item, 'category') || category,
     };
@@ -81,6 +85,26 @@ async function readSource(config) {
   }
 }
 
+// The Defiant stamps every item with the moment its feed was built, so sorting the merged
+// list purely by time hands it the entire page and buries the publishers that date their
+// posts honestly. Taking one article at a time from each source, newest head first, keeps
+// the order roughly chronological without letting one feed crowd the others out.
+function interleaveByRecency(queues, limit) {
+  const at = (article) => (article ? new Date(article.pubDate).getTime() || 0 : 0);
+  const pending = queues.map((list) => [...list].sort((a, b) => at(b) - at(a)));
+  const out = [];
+  while (out.length < limit) {
+    const live = pending.filter((q) => q.length);
+    if (!live.length) break;
+    live.sort((a, b) => at(b[0]) - at(a[0]));
+    for (const q of live) {
+      if (out.length >= limit) break;
+      out.push(q.shift());
+    }
+  }
+  return out;
+}
+
 export async function onRequestGet({ request }) {
   const cache = caches.default;
   const key = new Request(new URL(request.url).origin + '/api/news', { method: 'GET' });
@@ -90,14 +114,14 @@ export async function onRequestGet({ request }) {
   const results = await Promise.all(SOURCES.map(readSource));
 
   const seen = new Set();
-  const articles = [];
-  for (const article of results.flatMap((r) => r.articles)) {
+  const queues = results.map((r) => r.articles.filter((article) => {
     const dedupeKey = `${article.source}|${article.title}`.toLowerCase();
-    if (seen.has(dedupeKey)) continue;
+    if (seen.has(dedupeKey)) return false;
     seen.add(dedupeKey);
-    articles.push(article);
-  }
-  articles.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
+    return true;
+  })).filter((list) => list.length);
+
+  const articles = interleaveByRecency(queues, MAX_ARTICLES);
 
   const body = {
     generatedAt: new Date().toISOString(),
