@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T18:12:11.983Z",
+  "generatedAt": "2026-09-17T20:46:58.153Z",
   "asset": "three",
   "token": {
     "symbol": "THREE",
@@ -22,98 +22,98 @@
     ]
   },
   "currentSnapshot": {
-    "priceUsd": "0.0008479",
-    "marketCap": 847639,
-    "vol24h": 136439.31,
-    "change24h": -6.41
+    "priceUsd": "0.0008363",
+    "marketCap": 836068,
+    "vol24h": 127864.2,
+    "change24h": -8.33
   },
   "coverage": {
     "posts": 484,
     "evaluable": 405,
-    "candles": 3386,
+    "candles": 3390,
     "from": "2026-04-29T07:00:00.000Z",
-    "to": "2026-09-17T18:00:00.000Z"
+    "to": "2026-09-17T20:00:00.000Z"
   },
   "postWindowReturns": {
     "1": {
       "postMean": 5.857562124638841,
       "postMedian": -1.2533520854811389,
-      "baselineMean": 0.4226327467918327,
-      "baselineMedian": -0.2951661226018311,
-      "edge": 5.434929377847008,
-      "medianEdge": -0.9581859628793077,
+      "baselineMean": 0.42163968753840253,
+      "baselineMedian": -0.2977060338746573,
+      "edge": 5.435922437100439,
+      "medianEdge": -0.9556460516064815,
       "winRate": 45.925925925925924,
-      "baselineWinRate": 46.18023074524478,
+      "baselineWinRate": 46.15384615384615,
       "n": 405,
       "nEffective": 153,
-      "p": 0.9985007496251874,
+      "p": 0.9995002498750625,
       "pWithheld": null,
-      "baselineHours": 3207,
+      "baselineHours": 3211,
       "contaminatedHours": 178
     },
     "4": {
       "postMean": 6.645351298210848,
       "postMedian": -1.2973590812225635,
-      "baselineMean": 0.8143780873172715,
-      "baselineMedian": -1.0182228768375756,
-      "edge": 5.830973210893577,
-      "medianEdge": -0.2791362043849879,
+      "baselineMean": 0.8121724393603645,
+      "baselineMedian": -1.0115957094459151,
+      "edge": 5.833178858850483,
+      "medianEdge": -0.28576337177664834,
       "winRate": 45.18518518518518,
-      "baselineWinRate": 43.7608620090372,
+      "baselineWinRate": 43.734814300590074,
       "n": 405,
       "nEffective": 102,
-      "p": 0.696151924037981,
+      "p": 0.6671664167916042,
       "pWithheld": null,
-      "baselineHours": 2877,
+      "baselineHours": 2881,
       "contaminatedHours": 505
     },
     "24": {
       "postMean": 22.047457273188456,
       "postMedian": 9.06969318514303,
-      "baselineMean": -0.5571465555474437,
-      "baselineMedian": -2.9478799203761024,
-      "edge": 22.6046038287359,
-      "medianEdge": 12.017573105519133,
+      "baselineMean": -0.570953945849005,
+      "baselineMedian": -2.975431089444422,
+      "edge": 22.618411219037462,
+      "medianEdge": 12.045124274587453,
       "winRate": 60.98765432098765,
-      "baselineWinRate": 41.47303814116616,
+      "baselineWinRate": 41.44420131291028,
       "n": 405,
       "nEffective": 37,
-      "p": 0.0004997501249375312,
+      "p": 0.0009995002498750624,
       "pWithheld": null,
-      "baselineHours": 2281,
+      "baselineHours": 2285,
       "contaminatedHours": 1081
     }
   },
   "baseline": {
     "1": {
-      "mean": 0.4226327467918327,
-      "median": -0.2951661226018311,
-      "std": 14.804278656638274,
-      "n": 3207,
+      "mean": 0.42163968753840253,
+      "median": -0.2977060338746573,
+      "std": 14.794743878881714,
+      "n": 3211,
       "contaminatedHours": 178,
-      "allHoursMean": 0.5993927859121498,
+      "allHoursMean": 0.5982432570188935,
       "allHoursMedian": -0.301202246814023,
-      "winRate": 46.18023074524478
+      "winRate": 46.15384615384615
     },
     "4": {
-      "mean": 0.8143780873172715,
-      "median": -1.0182228768375756,
-      "std": 26.519027274809687,
-      "n": 2877,
+      "mean": 0.8121724393603645,
+      "median": -1.0115957094459151,
+      "std": 26.50137099210103,
+      "n": 2881,
       "contaminatedHours": 505,
-      "allHoursMean": 1.8183160427667935,
-      "allHoursMedian": -0.9240527562613179,
-      "winRate": 43.7608620090372
+      "allHoursMean": 1.8152533659842636,
+      "allHoursMedian": -0.9220869105445818,
+      "winRate": 43.734814300590074
     },
     "24": {
-      "mean": -0.5571465555474437,
-      "median": -2.9478799203761024,
-      "std": 16.48371700948953,
-      "n": 2281,
+      "mean": -0.570953945849005,
+      "median": -2.975431089444422,
+      "std": 16.47347618628324,
+      "n": 2285,
       "contaminatedHours": 1081,
-      "allHoursMean": 9.963906296180628,
-      "allHoursMedian": -2.0250047071177217,
-      "winRate": 41.47303814116616
+      "allHoursMean": 9.942030449999404,
+      "allHoursMedian": -2.042374146850795,
+      "winRate": 41.44420131291028
     }
   },
   "byType": {
@@ -142,7 +142,7 @@
     "views": 0.15138852623286117
   },
   "dailyCorrelation": {
-    "postsPerDay_vs_dailyReturn": 0.1646569204135522,
-    "postsPerDay_vs_dailyVolume": 0.24848914065301936
+    "postsPerDay_vs_dailyReturn": 0.16472022219197544,
+    "postsPerDay_vs_dailyVolume": 0.24847239083008563
   }
 }

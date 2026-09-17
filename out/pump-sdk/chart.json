@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-08T22:48:07.639Z",
+  "generatedAt": "2026-09-17T20:46:51.851Z",
   "asset": "pump-sdk",
   "token": {
     "symbol": "pump-sdk",
@@ -24,90 +24,90 @@
   "coverage": {
     "posts": 66,
     "evaluable": 66,
-    "candles": 176,
+    "candles": 179,
     "from": "2026-02-26T20:00:00.000Z",
-    "to": "2026-09-05T00:00:00.000Z"
+    "to": "2026-09-13T00:00:00.000Z"
   },
   "postWindowReturns": {
     "1": {
       "postMean": 18.620626969687166,
       "postMedian": 43.939053395977545,
-      "baselineMean": -1.0675794076921228,
-      "baselineMedian": -0.7103788435179937,
-      "edge": 19.688206377379288,
-      "medianEdge": 44.64943223949554,
+      "baselineMean": -1.036249340558795,
+      "baselineMedian": -0.6906798885792352,
+      "edge": 19.65687631024596,
+      "medianEdge": 44.62973328455678,
       "winRate": 59.09090909090909,
-      "baselineWinRate": 38.32335329341318,
+      "baselineWinRate": 38.82352941176471,
       "n": 66,
       "nEffective": 7,
       "p": 0.0004997501249375312,
       "pWithheld": null,
-      "baselineHours": 167,
+      "baselineHours": 170,
       "contaminatedHours": 8
     },
     "4": {
       "postMean": 102.91772559905786,
       "postMedian": 137.06696111807824,
-      "baselineMean": -7.380261194933153,
-      "baselineMedian": -4.303003413476772,
-      "edge": 110.29798679399102,
-      "medianEdge": 141.369964531555,
+      "baselineMean": -7.236105496180837,
+      "baselineMedian": -4.211184378527934,
+      "edge": 110.1538310952387,
+      "medianEdge": 141.2781454966062,
       "winRate": 87.87878787878788,
-      "baselineWinRate": 25.766871165644172,
+      "baselineWinRate": 25.903614457831324,
       "n": 66,
       "nEffective": 2,
       "p": null,
       "pWithheld": "fewer than 5 independent clusters",
-      "baselineHours": 163,
+      "baselineHours": 166,
       "contaminatedHours": 9
     },
     "24": {
       "postMean": -51.29619861455251,
       "postMedian": -63.58106963277069,
-      "baselineMean": -34.22371287154535,
-      "baselineMedian": -26.22589772840353,
-      "edge": -17.072485743007157,
-      "medianEdge": -37.35517190436716,
+      "baselineMean": -33.881946613663814,
+      "baselineMedian": -25.36935964000982,
+      "edge": -17.414252000888695,
+      "medianEdge": -38.21170999276087,
       "winRate": 0,
-      "baselineWinRate": 1.3986013986013985,
+      "baselineWinRate": 1.36986301369863,
       "n": 66,
       "nEffective": 1,
       "p": null,
       "pWithheld": "fewer than 5 independent clusters",
-      "baselineHours": 143,
+      "baselineHours": 146,
       "contaminatedHours": 9
     }
   },
   "baseline": {
     "1": {
-      "mean": -1.0675794076921228,
-      "median": -0.7103788435179937,
-      "std": 17.144893770167254,
-      "n": 167,
+      "mean": -1.036249340558795,
+      "median": -0.6906798885792352,
+      "std": 17.041641951286536,
+      "n": 170,
       "contaminatedHours": 8,
-      "allHoursMean": -0.8551855400337719,
-      "allHoursMedian": -0.734891141049518,
-      "winRate": 38.32335329341318
+      "allHoursMean": -0.8288432377321387,
+      "allHoursMedian": -0.7015676819802722,
+      "winRate": 38.82352941176471
     },
     "4": {
-      "mean": -7.380261194933153,
-      "median": -4.303003413476772,
-      "std": 20.286480570145645,
-      "n": 163,
+      "mean": -7.236105496180837,
+      "median": -4.211184378527934,
+      "std": 20.154564324423244,
+      "n": 166,
       "contaminatedHours": 9,
-      "allHoursMean": -1.871592859813086,
-      "allHoursMedian": -4.090053108471407,
-      "winRate": 25.766871165644172
+      "allHoursMean": -1.8292851970272315,
+      "allHoursMedian": -4.000807706428965,
+      "winRate": 25.903614457831324
     },
     "24": {
-      "mean": -34.22371287154535,
-      "median": -26.22589772840353,
-      "std": 24.74412601320661,
-      "n": 143,
+      "mean": -33.881946613663814,
+      "median": -25.36935964000982,
+      "std": 24.524544777225454,
+      "n": 146,
       "contaminatedHours": 9,
-      "allHoursMean": -36.43217257314198,
-      "allHoursMedian": -28.06812563244374,
-      "winRate": 1.3986013986013985
+      "allHoursMean": -36.06750642633234,
+      "allHoursMedian": -27.08616373711922,
+      "winRate": 1.36986301369863
     }
   },
   "byType": {
@@ -130,7 +130,7 @@
     "views": 0.15461631271040763
   },
   "dailyCorrelation": {
-    "postsPerDay_vs_dailyReturn": -0.617003596203567,
-    "postsPerDay_vs_dailyVolume": 0.7057096740069726
+    "postsPerDay_vs_dailyReturn": -0.6096401611904066,
+    "postsPerDay_vs_dailyVolume": 0.7079633869147279
   }
 }
