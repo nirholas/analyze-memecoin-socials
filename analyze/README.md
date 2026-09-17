@@ -65,9 +65,30 @@ node analyze/generate.mjs \
 | `--archive <prefix>` | load and update a candle archive at `<prefix>-1h.csv` / `<prefix>-15m.csv` |
 | `--out <base>` | output path prefix, default `out/<asset>/chart` |
 | `--chart` | also write the self-contained `chart.html` |
-| `--fetch-tweets` | pull fresh posts from a running XActions instance first |
+| `--fetch-tweets` | pull fresh posts from a running XActions instance first (`XACTIONS_URL`, `XACTIONS_TOKEN`) |
 | `--push-social` | POST the corpus to the three.ws Oracle social endpoint |
 | `--no-cache` | ignore the on-disk response cache |
+
+## Posts from XActions
+
+`--fetch-tweets` reads `POST /api/ai/scrape/tweets` on the XActions instance named by
+`XACTIONS_URL` (default `http://localhost:3001`) and writes one file per handle under
+`data/tweets/<asset-or-adhoc>/`. `XACTIONS_TOKEN` (an x.com `auth_token`, or the older
+`XACTIONS_COOKIE`) is passed as the request's `authToken`: the Node API answers 400
+without one, while the edge deployment scrapes as a guest and ignores it.
+
+The client lives in [`xactions.mjs`](xactions.mjs) because that endpoint has three live
+response shapes: `{ success, data: [...] }` from the Node route, `{ user, tweets }` from
+the edge function, and `{ data: { tweets } }` in the docs. Reading only one of them returns
+zero posts from an HTTP 200, which looks like a handle with nothing to say rather than a
+parsing failure, so all three are unwrapped and an unrecognized shape raises. Field names
+are normalized too (`createdAt` or `timestamp`, nested `metrics` or flat counts, the
+parser's own `isReply` flag rather than guessing from a leading `@`), and a post URL is
+rebuilt from the handle and id when the payload omits it.
+
+`node scripts/test-xactions-fetch.mjs` (also `npm test`) replays each shape against a local
+server and checks the normalized output, so a change to either side is caught without a
+live scrape.
 
 ## How a return is measured
 

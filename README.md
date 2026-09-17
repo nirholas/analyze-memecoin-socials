@@ -16,11 +16,36 @@ node analyze/generate.mjs --asset three --chart
 
 Then open `out/three/chart.html`. No install, no dependencies, no API key. Node 18 or newer.
 
-Any token works, not just the two studied here:
+## Any coin, any account
+
+That is the point of the repo: give it a contract address and a handle's posts, and it
+charts those posts against that coin. Nothing is hardcoded to the tokens studied here.
 
 ```bash
 node analyze/generate.mjs --mint <contract address> --accounts <handle> --chart posts.json
 ```
+
+The pool resolves from the mint through DexScreener, the candles come from GeckoTerminal,
+and the posts come from whatever JSON you hand it. Any chain GeckoTerminal indexes works
+with `--network <slug>`; the default is Solana.
+
+Post JSON comes from [XActions](https://github.com/nirholas/XActions), which scrapes any X
+account. Point this at a running instance and it pulls the posts itself:
+
+```bash
+XACTIONS_URL=http://localhost:3001 XACTIONS_TOKEN=<x.com auth_token> \
+  node analyze/generate.mjs --mint <contract address> --accounts <handle> \
+    --fetch-tweets --chart
+```
+
+The fetched posts are saved under `data/tweets/<asset-or-adhoc>/` so a later run can reuse
+them without scraping again. XActions serves that endpoint from three surfaces that wrap
+the tweet array differently; all three are handled, and `npm test` checks each one. The
+hosted edge deployment scrapes as a guest, so `XACTIONS_TOKEN` is only needed by the Node
+API, which rejects a request without it.
+
+The browser-console scrapers in [`scripts/`](scripts/) are the no-install alternative: they
+write the same JSON straight from an x.com tab.
 
 ## What's here
 
@@ -31,7 +56,7 @@ node analyze/generate.mjs --mint <contract address> --accounts <handle> --chart 
 | [`chart/case-study.html`](chart/case-study.html) | the written case study, with eight Chart.js figures and the interactive chart embedded |
 | [`chart/tweetcharts.html`](chart/tweetcharts.html) | a multi-asset front end over the upstream Python pipeline's static export |
 | [`chart/social-sentiment.html`](chart/social-sentiment.html) | an aggregated crypto news feed with per-headline sentiment |
-| [`scripts/`](scripts/) | the browser-console scrapers (cashtag search, profile with replies) and the chart verifier |
+| [`scripts/`](scripts/) | the browser-console scrapers (cashtag search, profile with replies), the chart verifier, and the XActions client test |
 | [`data/`](data/) | scraped posts under `data/tweets/`, OHLCV exports for the case-study token, and the self-updating candle archive under `data/ohlcv/` |
 | [`out/`](out/) | generated per asset: `chart.json`, `chart.csv`, `tweets.json`, `chart.html` |
 | [`tweet-price-charts/`](tweet-price-charts/) | the upstream Python project ([rohunvora/tweet-price-charts](https://github.com/rohunvora/tweet-price-charts)) |

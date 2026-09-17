@@ -24,6 +24,8 @@ import { dirname, join, basename, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 
+import { fetchTweetsFromXActions } from './xactions.mjs';
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(__dirname, '..');
 
@@ -74,7 +76,9 @@ const ARCHIVE = flag('archive', asset.archive || null);
 const outBase = flag('out', assetKey ? `out/${assetKey}/chart` : 'out/chart');
 
 // --fetch-tweets: pull fresh tweets from a running XActions instance before generating.
-// Requires XACTIONS_URL (default: http://localhost:3001) and XACTIONS_COOKIE env vars.
+// XACTIONS_URL defaults to http://localhost:3001. The Node API refuses a request with no
+// credential, so XACTIONS_TOKEN (an x.com auth_token) or XACTIONS_COOKIE is required
+// there; the edge deployment scrapes as a guest and needs neither.
 const FETCH_TWEETS = args.includes('--fetch-tweets');
 const XACTIONS_URL = process.env.XACTIONS_URL || 'http://localhost:3001';
 const XACTIONS_ACCOUNTS = ACCOUNTS || [];
@@ -105,30 +109,6 @@ const postsPaths = cliPaths.length
   : (asset.posts || []).flatMap(expandGlob);
 
 // ---- XActions tweet fetch (optional, requires running XActions instance) ----
-async function fetchTweetsFromXActions(account) {
-  const cookie = process.env.XACTIONS_COOKIE;
-  const body = { username: account, limit: 200, ...(cookie ? { sessionCookie: cookie } : {}) };
-  const r = await fetch(`${XACTIONS_URL}/api/ai/scrape/tweets`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...(cookie ? { 'X-Session-Cookie': cookie } : {}) },
-    body: JSON.stringify(body),
-    signal: AbortSignal.timeout(30000),
-  });
-  if (!r.ok) throw new Error(`XActions ${r.status}: ${await r.text()}`);
-  const d = await r.json();
-  if (!d.success) throw new Error(`XActions error: ${JSON.stringify(d)}`);
-  // Map XActions format → generate.mjs format
-  return (d.data?.results || []).map((t) => ({
-    id: t.id,
-    text: t.text,
-    timestamp: t.createdAt,
-    url: t.url,
-    metrics: { likes: t.metrics?.likes || 0, retweets: t.metrics?.retweets || 0, replies: t.metrics?.replies || 0, views: t.metrics?.views || 0 },
-    type: { isRetweet: false, isReply: (t.text || '').startsWith('@') },
-    profile: account,
-  }));
-}
-
 async function maybeRefreshTweets() {
   if (!FETCH_TWEETS) return;
   console.log(`Fetching fresh tweets from XActions at ${XACTIONS_URL}…`);
