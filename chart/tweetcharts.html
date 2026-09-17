@@ -222,7 +222,7 @@
         <span class="title">Tweet Charts</span>
         <span class="sub">Founder tweets × token price</span>
         <span class="spacer"></span>
-        <a class="src-link" href="https://tweet-price-charts.vercel.app" target="_blank" title="Open full site">tweetcharts.xyz ↗</a>
+        <a class="src-link" href="/" title="Open the posts vs price chart">posts vs price ↗</a>
     </div>
 
     <div class="tab-bar">
@@ -286,10 +286,11 @@
 <script>
 /* ================================================================
    Tweet-Price Charts — PumpOS App
-   Fetches static JSON from the live Vercel deployment
+   Reads the static export served from this same origin under /static,
+   so the page has no third-party data dependency and needs no proxy.
    ================================================================ */
 
-const BASE = 'https://tweet-price-charts.vercel.app/static';
+const BASE = '/static';
 let assets = [];
 let allEvents = {};   // assetId -> TweetEvent[]
 let currentAsset = null;
@@ -297,8 +298,15 @@ let currentMetric = '1h';
 let dataSortKey = 'date';
 let dataSortAsc = false;
 
-/* ── CORS-safe fetch (uses injected cfetch from kernel, fallback to proxy) ── */
-const _fetch = (typeof cfetch === 'function') ? cfetch : async function(url, opts) {
+/* ── Fetch: same-origin paths go straight out; only cross-origin URLs need
+      the host page's injected cfetch, or its proxy, to clear CORS. ── */
+const isSameOrigin = (url) => {
+    try { return new URL(url, window.location.href).origin === window.location.origin; }
+    catch { return false; }
+};
+const _fetch = function(url, opts) {
+    if (isSameOrigin(url)) return fetch(url, opts);
+    if (typeof cfetch === 'function') return cfetch(url, opts);
     const host = (window.PUMP_HOST || window.location.ancestorOrigins?.[0] || window.location.origin).replace(/\/$/, '');
     return fetch(host + '/api/proxy?url=' + encodeURIComponent(url), opts);
 };

@@ -787,11 +787,15 @@
         const fetchFn = window.cfetch || fetch;
         let currentEndpoint = '/api/news';
         let currentArticle = null;
-        const COINGECKO_STATUS_URL = 'https://api.coingecko.com/api/v3/status_updates';
+        const NEWS_ENDPOINT = '/api/news';
         const RSS_PROXY_PREFIX = 'https://api.allorigins.win/raw?url=';
+        // Every source is an RSS feed with <item> entries. A feed that publishes Atom
+        // <entry> elements instead is not listed, because the parser below reads <item>.
         const NEWS_SOURCES = [
             { source: 'CoinDesk', url: 'https://www.coindesk.com/arc/outboundfeeds/rss/', category: 'General' },
             { source: 'Cointelegraph', url: 'https://cointelegraph.com/rss', category: 'General' },
+            { source: 'Decrypt', url: 'https://decrypt.co/feed', category: 'General' },
+            { source: 'The Block', url: 'https://www.theblock.co/rss.xml', category: 'Markets' },
             { source: 'The Defiant', url: 'https://thedefiant.io/feed', category: 'DeFi' }
         ];
         
@@ -838,23 +842,6 @@
             };
         }
 
-        async function fetchCoinGeckoStatusUpdates(limit = 25) {
-            const response = await fetchFn(`${COINGECKO_STATUS_URL}?category=general&project_type=coin&per_page=${limit}&page=1`);
-            if (!response.ok) {
-                throw new Error(`CoinGecko status ${response.status}`);
-            }
-            const data = await response.json();
-            const updates = Array.isArray(data?.status_updates) ? data.status_updates : [];
-            return updates.map((item) => formatArticle({
-                source: 'CoinGecko',
-                title: item.project?.name ? `${item.project.name}: ${item.title || 'Status update'}` : (item.title || 'Status update'),
-                description: item.description || item.text || '',
-                pubDate: item.created_at,
-                link: item.article_url || item.project?.links?.homepage?.[0] || 'https://www.coingecko.com/en/news',
-                category: item.category || 'Market'
-            }));
-        }
-
         async function fetchRssFeed(sourceConfig, limit = 20) {
             const response = await fetchFn(`${RSS_PROXY_PREFIX}${encodeURIComponent(sourceConfig.url)}`);
             if (!response.ok) {
@@ -878,23 +865,69 @@
             }));
         }
 
-        async function getAggregatedArticles(limit = 50) {
-            const tasks = [
-                fetchCoinGeckoStatusUpdates(Math.min(35, limit)).catch(() => []),
-                ...NEWS_SOURCES.map((source) => fetchRssFeed(source, Math.min(20, limit)).catch(() => []))
-            ];
-            const resultSets = await Promise.all(tasks);
-            const merged = resultSets.flat().filter((article) => article.title && article.link);
+        // On the deployed site the feeds are pulled by the /api/news edge function, which
+        // means one same-origin request instead of five cross-origin ones. Opening this file
+        // outside that deployment falls back to reading the publishers through the proxy.
+        async function fetchFromEndpoint() {
+            const response = await fetchFn(NEWS_ENDPOINT, { headers: { accept: 'application/json' } });
+            if (!response.ok) throw new Error(`news endpoint ${response.status}`);
+            const data = await response.json();
+            const articles = Array.isArray(data?.articles) ? data.articles : [];
+            if (!articles.length) throw new Error('news endpoint returned no articles');
+            return articles.map(formatArticle);
+        }
+
+        async function fetchFromPublishers() {
+            const sets = await Promise.all(
+                NEWS_SOURCES.map((source) => fetchRssFeed(source, 20).catch(() => []))
+            );
+            return sets.flat();
+        }
+
+        async function loadFeed() {
+            let articles;
+            try {
+                articles = await fetchFromEndpoint();
+            } catch {
+                articles = await fetchFromPublishers();
+            }
             const deduped = [];
             const seen = new Set();
-            for (const article of merged) {
+            for (const article of articles) {
+                if (!article.title || !article.link) continue;
                 const key = `${article.source}|${article.title}`.toLowerCase();
                 if (seen.has(key)) continue;
                 seen.add(key);
                 deduped.push(article);
             }
             deduped.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
-            return deduped.slice(0, limit);
+            return deduped;
+        }
+
+        // Four panels ask for the same feed on load. Sharing one in-flight promise keeps that
+        // to a single fetch, and holding the result briefly keeps tab switches instant.
+        let feedPromise = null;
+        let feedLoadedAt = 0;
+        const FEED_TTL_MS = 60000;
+
+        function getFeed() {
+            if (!feedPromise || Date.now() - feedLoadedAt > FEED_TTL_MS) {
+                feedLoadedAt = Date.now();
+                feedPromise = loadFeed().catch((error) => {
+                    feedPromise = null;
+                    throw error;
+                });
+            }
+            return feedPromise;
+        }
+
+        function invalidateFeed() {
+            feedPromise = null;
+            feedLoadedAt = 0;
+        }
+
+        async function getAggregatedArticles(limit = 50) {
+            return (await getFeed()).slice(0, limit);
         }
 
         function filterArticlesForEndpoint(articles, endpoint) {
@@ -910,7 +943,7 @@
             }
             if (endpoint === '/api/breaking') {
                 return articles
-                    .filter((article) => article.sentiment !== 'neutral' || article.source === 'CoinGecko')
+                    .filter((article) => article.sentiment !== 'neutral')
                     .slice(0, 10);
             }
             return articles;
@@ -925,6 +958,7 @@
             
             // Auto-refresh every 2 minutes
             setInterval(() => {
+                invalidateFeed();
                 loadNews(currentEndpoint);
                 loadTrending();
             }, 120000);
@@ -1168,6 +1202,7 @@
         function refreshAll() {
             const btn = document.querySelector('.refresh-btn');
             btn.classList.add('loading');
+            invalidateFeed();
             
             Promise.all([
                 loadNews(currentEndpoint),

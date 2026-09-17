@@ -1,5 +1,11 @@
 # analyze-memecoin-socials
 
+**Live: [analyze-memecoin-socials.pages.dev](https://analyze-memecoin-socials.pages.dev)**
+&middot; [chart any token](https://analyze-memecoin-socials.pages.dev/chart)
+&middot; [case study](https://analyze-memecoin-socials.pages.dev/case-study)
+&middot; [news sentiment](https://analyze-memecoin-socials.pages.dev/sentiment)
+&middot; [multi-asset charts](https://analyze-memecoin-socials.pages.dev/tweetcharts)
+
 Plot X (Twitter) posts on a crypto price chart and measure whether the posts actually moved
 the price.
 
@@ -56,9 +62,10 @@ write the same JSON straight from an x.com tab.
 | [`chart/case-study.html`](chart/case-study.html) | the written case study, with eight Chart.js figures and the interactive chart embedded |
 | [`chart/tweetcharts.html`](chart/tweetcharts.html) | a multi-asset front end over the upstream Python pipeline's static export |
 | [`chart/social-sentiment.html`](chart/social-sentiment.html) | an aggregated crypto news feed with per-headline sentiment |
-| [`scripts/`](scripts/) | the browser-console scrapers (cashtag search, profile with replies), the chart verifier, and the XActions client test |
+| [`scripts/`](scripts/) | the browser-console scrapers (cashtag search, profile with replies), the chart verifier, the XActions client test, the site build and the deployed-site verifier |
 | [`data/`](data/) | scraped posts under `data/tweets/`, OHLCV exports for the case-study token, and the self-updating candle archive under `data/ohlcv/` |
 | [`out/`](out/) | generated per asset: `chart.json`, `chart.csv`, `tweets.json`, `chart.html` |
+| [`functions/`](functions/) | the Cloudflare Pages Function behind `/api/news`: pulls every publisher feed at the edge so the sentiment page makes one same-origin request |
 | [`tweet-price-charts/`](tweet-price-charts/) | the upstream Python project ([rohunvora/tweet-price-charts](https://github.com/rohunvora/tweet-price-charts)) |
 
 ## Getting the posts
@@ -115,13 +122,50 @@ version of this analysis overstated its significance, is in
 - 15m / 1h / 1d timeframes, log or linear price scale
 - A sidebar ranking every post by its 24h move
 
-## Live chart and daily refresh
+## The live site
 
-`index.html` at the repo root is a copy of `out/three/chart.html`, so GitHub Pages serves
-the $THREE chart directly (`.nojekyll` stops Pages from rendering this README instead).
+The site is published from this repository to Cloudflare Pages at
+[analyze-memecoin-socials.pages.dev](https://analyze-memecoin-socials.pages.dev).
+
+| Route | Page |
+|---|---|
+| `/` | the $THREE chart, regenerated daily |
+| `/chart` | the interactive chart for any token |
+| `/case-study` | the written case study |
+| `/sentiment` | the news feed with per-headline sentiment |
+| `/tweetcharts` | the multi-asset front end |
+| `/api/news` | the aggregated publisher feed as JSON |
+
+`scripts/build-site.mjs` assembles `_site/` from committed artifacts only, so the same
+input always produces the same site. It copies the upstream project's static export in
+alongside the pages, which is what lets `/tweetcharts` read its data from this origin
+instead of from someone else's deployment. Build and publish:
+
+```bash
+npm run build:site   # assemble _site/
+npm run deploy       # assemble and push to Cloudflare Pages
+```
+
+`npm run deploy` needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` in the
+environment. Check a deployment end to end in a real browser, which fails on any console
+error, any failed request, or any page that rendered none of its content:
+
+```bash
+npm run verify:site                                  # the live site
+npm run verify:site -- --site https://<preview>      # a preview deployment
+```
+
+## Daily refresh
+
 `.github/workflows/refresh.yml` runs `npm run site` every day at 06:00 UTC, which pulls
 fresh candles, recomputes the statistics, and commits `index.html`, `out/three/` and the
-candle archive when anything changed. Run the same thing locally:
+candle archive when anything changed. Publishing is a separate, deliberate step: run
+`npm run deploy` to put a refreshed chart on the live site. The deployed chart still pulls
+its own candles from GeckoTerminal in the browser, so it stays current between publishes;
+what a publish updates is the baked statistics. `index.html` at the repo root is a copy of
+`out/three/chart.html`, so the repository also serves the chart directly if GitHub Pages is
+ever turned on (`.nojekyll` stops Pages from rendering this README instead). Run the
+refresh locally:
 
 ```bash
 npm run site
