@@ -483,7 +483,7 @@ function buildChartHtml(payload) {
   const TEMPLATE = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>three.ws · posts vs price</title>
+<title>posts vs price</title>
 <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
 <style>
   :root{--bg:#0a0b0e;--panel:#12141a;--line:#1e2230;--txt:#e7ecf3;--mut:#8b93a7;--cyan:#22d3ee;--mag:#f472b6;--up:#22c55e;--down:#ef4444}
@@ -572,24 +572,16 @@ function buildChartHtml(payload) {
 </style></head>
 <body>
 <header>
-  <h1>three.ws · <span style="color:var(--mut)">posts vs $THREE</span></h1>
+  <h1>three.ws · <span style="color:var(--mut)">posts vs <span id="sym">-</span></span></h1>
   <span class="price"><span class="live"></span><b id="last">-</b> <span id="chg"></span> · <b id="count">-</b> posts</span>
-  <div class="legend">
-    <span><i style="background:var(--cyan)"></i>@trythreews</span>
-    <span><i style="background:var(--mag)"></i>@nichxbt</span>
-    <span>▲ announce · ⊕N grouped</span>
-  </div>
+  <div class="legend" id="legend"></div>
   <div class="tf" id="scale"><button type="button" data-scale="log" class="on" title="Logarithmic price scale">log</button><button type="button" data-scale="lin" title="Linear price scale">lin</button></div>
 <div class="tf">
     <button data-tf="15m">15m</button>
     <button data-tf="1h" class="on">1h</button>
     <button data-tf="1d">1d</button>
   </div>
-  <div class="acct-filter">
-    <button data-acct="all" class="on" style="color:var(--txt)">All</button>
-    <button data-acct="trythreews" style="color:var(--cyan)">@three</button>
-    <button data-acct="nichxbt" style="color:var(--mag)">@nich</button>
-  </div>
+  <div class="acct-filter" id="acctFilter"></div>
 </header>
 <div class="wrap">
   <div id="chart"><div id="ov"></div><div id="tip"></div></div>
@@ -607,7 +599,13 @@ function buildChartHtml(payload) {
 <script>
 const DATA = __DATA__;
 const AV = DATA.avatars || {};
-const COLORS = { trythreews:'#22d3ee', nichxbt:'#f472b6' };
+// Any handle can appear here, so colors are handed out in order rather than looked up in
+// a fixed map. The first two keep the palette the $THREE chart has always used.
+const PALETTE = ['#22d3ee','#f472b6','#a78bfa','#facc15','#34d399','#fb923c','#60a5fa','#f87171'];
+const ACCOUNTS = DATA.meta.accounts && DATA.meta.accounts.length
+  ? DATA.meta.accounts
+  : [...new Set(DATA.posts.map(p=>p.account).filter(Boolean))];
+const COLORS = Object.fromEntries(ACCOUNTS.map((a,i)=>[a, PALETTE[i % PALETTE.length]]));
 const acctColor = a => COLORS[a] || '#94a3b8';
 const esc = s => (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const fmtRet = v => v==null?'-':(v>=0?'+':'')+v.toFixed(1)+'%';
@@ -778,6 +776,7 @@ function openCluster(items){
 // ---- account filter ----
 let activeAcct = 'all';
 let visiblePosts = posts.slice();
+function wireAcctFilter(){
 document.querySelectorAll('.acct-filter button').forEach(b=>{
   b.onclick=()=>{
     document.querySelectorAll('.acct-filter button').forEach(x=>x.classList.remove('on'));
@@ -788,6 +787,7 @@ document.querySelectorAll('.acct-filter button').forEach(b=>{
     render(); scheduleUpdate();
   };
 });
+}
 
 // ---- top-5 highest |24h| impact posts ----
 function renderTop5(){
@@ -826,7 +826,10 @@ function render(){
 // ---- live price (best-effort, no stale data if fetch fails) ----
 (async()=>{
   try{
-    const r=await fetch('https://api.geckoterminal.com/api/v2/networks/solana/pools/5ByL7MZoLABYnwMPZKPKjf4MGkZ7FeBzrAnos19Pre2z',{headers:{accept:'application/json'}});
+    // This chart's own pool: a hardcoded one here showed $THREE's live price on top of
+    // every other token's chart, silently overwriting the price built into the file.
+    if(!DATA.meta.pool) throw 0;
+    const r=await fetch('https://api.geckoterminal.com/api/v2/networks/'+(DATA.meta.network||'solana')+'/pools/'+DATA.meta.pool,{headers:{accept:'application/json'}});
     if(!r.ok) throw 0;
     const d=await r.json();
     const attrs=d?.data?.attributes;
@@ -844,6 +847,18 @@ function render(){
   }catch(e){ /* keep static price from build time */ }
 })();
 
+// ---- header, legend and filters, built from whatever this chart is about ----
+const SYMBOL = DATA.meta.symbol || 'token';
+document.getElementById('sym').textContent = '$' + SYMBOL;
+document.title = 'posts vs $' + SYMBOL;
+document.getElementById('legend').innerHTML =
+  ACCOUNTS.map(a=>'<span><i style="background:'+acctColor(a)+'"></i>@'+esc(a)+'</span>').join('')
+  + '<span>▲ announce · ⊕N grouped</span>';
+document.getElementById('acctFilter').innerHTML =
+  '<button type="button" data-acct="all" class="on" style="color:var(--txt)">All</button>'
+  + ACCOUNTS.map(a=>'<button type="button" data-acct="'+esc(a)+'" style="color:'+acctColor(a)+'">@'+esc(a)+'</button>').join('');
+
+wireAcctFilter();
 document.getElementById('count').textContent=DATA.posts.length;
 document.getElementById('last').textContent='$'+DATA.meta.lastPrice;
 renderTop5();
@@ -1205,8 +1220,17 @@ setTF('1h'); render();
       if (data) avatars[handle] = data;
       else console.warn(`  avatar missing for @${handle} (${file}); its bubbles fall back to a colored dot`);
     }
+    const postCounts = new Map();
+    for (const p of chartPosts) postCounts.set(p.account, (postCounts.get(p.account) || 0) + 1);
+    const chartAccounts = [...postCounts.entries()].sort((a, b) => b[1] - a[1]).map(([a]) => a).filter(Boolean);
     const payload = {
-      meta: { lastPrice: snapPair?.priceUsd ?? hourly.at(-1)[4].toPrecision(4), symbol: SYMBOL },
+      meta: {
+        lastPrice: snapPair?.priceUsd ?? hourly.at(-1)[4].toPrecision(4),
+        symbol: SYMBOL,
+        accounts: chartAccounts,
+        pool: POOL,
+        network: NETWORK,
+      },
       candles, posts: chartPosts, avatars,
     };
     writeFileSync(outBase + '.html', buildChartHtml(payload));
