@@ -11,6 +11,7 @@
 import { cp, mkdir, rm, writeFile, access, readdir, stat } from 'node:fs/promises';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execFileSync } from 'node:child_process';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const site = join(root, '_site');
@@ -151,6 +152,10 @@ for (const [from, to] of UPSTREAM_COPIES) {
   const copied = await copyInto(join(upstreamPublic, from), join(site, to), { optional: true });
   if (!copied) skippedUpstream.push(from);
 }
+
+// The generated per-asset feed for /tweetcharts, written over the upstream copy so the
+// page shows tokens this repo measures now rather than only the export vendored in 2026.
+execFileSync(process.execPath, [join(root, 'analyze', 'export-static.mjs'), '--out', join(site, 'static')], { stdio: 'inherit' });
 
 await writeFile(join(site, '_redirects'), REDIRECTS);
 await writeFile(join(site, '_headers'), HEADERS);

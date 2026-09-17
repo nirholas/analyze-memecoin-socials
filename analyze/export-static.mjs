@@ -2,7 +2,7 @@
 // Build the static JSON feed the multi-asset front end reads.
 //
 // Usage:
-//   node analyze/export-static.mjs [--out site/static]
+//   node analyze/export-static.mjs [--out _site/static]
 //
 // chart/tweetcharts.html was written against an upstream deployment that has since gone
 // (its host answers 404 for every path), so the page rendered "Failed to load assets" for
@@ -27,7 +27,7 @@ const flag = (name, fallback) => {
   const i = args.indexOf(`--${name}`);
   return i !== -1 && args[i + 1] && !args[i + 1].startsWith('--') ? args[i + 1] : fallback;
 };
-const OUT = resolve(REPO, flag('out', 'site/static'));
+const OUT = resolve(REPO, flag('out', '_site/static'));
 
 const REGISTRY = JSON.parse(readFileSync(join(__dirname, 'assets.json'), 'utf8'));
 
@@ -139,7 +139,17 @@ const assets = exported.map(({ key, chart }) => {
     enabled: true,
   };
 });
-writeFileSync(join(OUT, 'assets.json'), JSON.stringify({ assets }, null, 2));
+// The upstream export ships its own assets.json into the same directory. Merge rather
+// than overwrite: its tokens keep working, ours are added, and a shared id takes the
+// generated entry because that one is rebuilt from current data every run.
+const assetsFile = join(OUT, 'assets.json');
+let merged = assets;
+if (existsSync(assetsFile)) {
+  const existing = JSON.parse(readFileSync(assetsFile, 'utf8')).assets || [];
+  const ours = new Set(assets.map((a) => a.id));
+  merged = [...assets, ...existing.filter((a) => !ours.has(a.id))];
+}
+writeFileSync(assetsFile, JSON.stringify({ assets: merged, generated_at: new Date().toISOString() }, null, 2));
 
 for (const { key, events } of exported) console.log(`  ${key}: ${events} events`);
 console.log(`Wrote ${exported.length} asset(s) to ${OUT.replace(`${REPO}/`, '')}/`);

@@ -45,8 +45,6 @@ Thumbs.db
 !/index.html
 reports/
 
-# Assembled by scripts/build-site.mjs out of out/ and chart/; nothing original lives here
-/site/
 # wrangler's local deploy state
 /.wrangler/
 

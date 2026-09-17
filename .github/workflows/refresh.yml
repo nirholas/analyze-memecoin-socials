@@ -24,8 +24,11 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Regenerate the charts and assemble the site
-        run: npm run site
+      - name: Regenerate every chart from fresh candles
+        run: npm run generate:all && cp out/three/chart.html index.html
+
+      - name: Assemble the site
+        run: npm run build:site
 
       - name: Publish to Cloudflare Pages
         env:
@@ -33,7 +36,14 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         # Without both secrets the refresh still commits; only publishing is skipped.
         if: ${{ env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != '' }}
-        run: npx --yes wrangler@4 pages deploy site --project-name analyze-memecoin-socials --branch main --commit-dirty=true
+        run: npx --yes wrangler@4 pages deploy _site --project-name analyze-memecoin-socials --branch main --commit-dirty=true
+
+      - name: Check the published site in a browser
+        if: ${{ env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != '' }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx --yes playwright@1 install --with-deps chromium && npm run verify:site
 
       - name: Commit and push if anything changed
         run: |
