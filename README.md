@@ -32,7 +32,7 @@ node analyze/generate.mjs --mint <contract address> --accounts <handle> --chart 
 | [`chart/tweetcharts.html`](chart/tweetcharts.html) | a multi-asset front end over the upstream Python pipeline's static export |
 | [`chart/social-sentiment.html`](chart/social-sentiment.html) | an aggregated crypto news feed with per-headline sentiment |
 | [`scripts/`](scripts/) | the browser-console scrapers (cashtag search, profile with replies) and the chart verifier |
-| [`data/`](data/) | scraped posts under `data/tweets/`, and OHLCV exports for the case-study token |
+| [`data/`](data/) | scraped posts under `data/tweets/`, OHLCV exports for the case-study token, and the self-updating candle archive under `data/ohlcv/` |
 | [`out/`](out/) | generated per asset: `chart.json`, `chart.csv`, `tweets.json`, `chart.html` |
 | [`tweet-price-charts/`](tweet-price-charts/) | the upstream Python project ([rohunvora/tweet-price-charts](https://github.com/rohunvora/tweet-price-charts)) |
 
@@ -51,13 +51,14 @@ instance with `--fetch-tweets`.
 Both tables come from `out/<asset>/chart.json`, regenerated from live data.
 
 **$THREE**, 405 original posts from @trythreews and @nichxbt, April 29 to June 15 2026,
-against hourly candles through September 8:
+against hourly candles through September 17 (the live chart below updates daily, so
+its numbers drift a little from this snapshot):
 
 | Window | Post median | Clean baseline | Edge | Win rate | Independent clusters | p |
 |---|---|---|---|---|---|---|
-| +1h | -1.25% | -0.30% | -0.95pp | 46% vs 46% | 153 | 1.00 |
-| +4h | -1.30% | -1.08% | -0.22pp | 45% vs 43% | 102 | 0.64 |
-| +24h | **+9.07%** | -3.34% | **+12.41pp** | **61% vs 40%** | 37 | **0.0005** |
+| +1h | -1.25% | -0.30% | -0.96pp | 46% vs 46% | 153 | 1.00 |
+| +4h | -1.30% | -1.02% | -0.28pp | 45% vs 44% | 102 | 0.70 |
+| +24h | **+9.07%** | -2.95% | **+12.02pp** | **61% vs 41%** | 37 | **0.0005** |
 
 No instant pump. Nothing at four hours. A real effect a day later, which survives a baseline
 that excludes the posts' own hours and a bootstrap run on 37 independent clusters rather
@@ -88,6 +89,27 @@ version of this analysis overstated its significance, is in
 - Click to open the post, or to expand a cluster
 - 15m / 1h / 1d timeframes, log or linear price scale
 - A sidebar ranking every post by its 24h move
+
+## Live chart and daily refresh
+
+`index.html` at the repo root is a copy of `out/three/chart.html`, so GitHub Pages serves
+the $THREE chart directly (`.nojekyll` stops Pages from rendering this README instead).
+`.github/workflows/refresh.yml` runs `npm run site` every day at 06:00 UTC, which pulls
+fresh candles, recomputes the statistics, and commits `index.html`, `out/three/` and the
+candle archive when anything changed. Run the same thing locally:
+
+```bash
+npm run site
+```
+
+GeckoTerminal's public API only serves the last 180 days, so every run also saves the
+candles it fetched to `data/ohlcv/three-1h.csv` and `data/ohlcv/three-15m.csv` and merges
+them back in next time. The earliest $THREE posts stay measurable after the API has
+forgotten their candles. Any asset gets the same archive by setting `archive` in
+[`analyze/assets.json`](analyze/assets.json).
+
+This repo replaces the earlier `tweet-price-charts` repos: their posts, avatars and chart
+features all live here, and their analysis is superseded by the one above.
 
 Verify a generated chart end to end in a real browser:
 

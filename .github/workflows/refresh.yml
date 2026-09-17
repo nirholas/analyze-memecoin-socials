@@ -1,0 +1,40 @@
+name: Daily chart refresh
+
+on:
+  schedule:
+    # 06:00 UTC, after the midnight UTC candles close
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: chart-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Regenerate the $THREE chart (fresh OHLCV, committed posts and candle archive)
+        run: npm run site
+
+      - name: Commit and push if anything changed
+        run: |
+          git add index.html out/three data/ohlcv
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "data(three): refresh candles and chart from GeckoTerminal"
+          git push

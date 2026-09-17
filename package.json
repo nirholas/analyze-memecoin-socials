@@ -9,7 +9,8 @@
     "generate": "node analyze/generate.mjs --asset three --chart",
     "generate:pump-sdk": "node analyze/generate.mjs --asset pump-sdk --chart",
     "generate:all": "npm run generate && npm run generate:pump-sdk",
-    "generate:fetch": "node analyze/generate.mjs --asset three --fetch-tweets --chart"
+    "generate:fetch": "node analyze/generate.mjs --asset three --fetch-tweets --chart",
+    "site": "npm run generate && cp out/three/chart.html index.html"
   },
   "engines": { "node": ">=18" }
 }
