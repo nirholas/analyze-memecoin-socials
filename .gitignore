@@ -8,6 +8,8 @@
 !/data/pump-sdk/
 # The scraped post corpora are inputs to the analysis, not generated output
 !/data/tweets/
+# The candle archive outlives GeckoTerminal's 180-day public window
+!/data/ohlcv/
 *.duckdb
 *.duckdb-wal
 *.duckdb-shm
@@ -39,6 +41,8 @@ Thumbs.db
 !chart/*.html
 # Generated per-asset charts are the deliverable: they open with no server
 !out/**/*.html
+# GitHub Pages root: a copy of out/three/chart.html
+!/index.html
 reports/
 
 # Backup archives

@@ -62,6 +62,7 @@ node analyze/generate.mjs \
 | `--windows 1,4,24` | forward windows in hours |
 | `--prices <file>` | read hourly history from a local CSV instead of the API alone |
 | `--prices-fine <file>` | same, for the fine-grained chart candles |
+| `--archive <prefix>` | load and update a candle archive at `<prefix>-1h.csv` / `<prefix>-15m.csv` |
 | `--out <base>` | output path prefix, default `out/<asset>/chart` |
 | `--chart` | also write the self-contained `chart.html` |
 | `--fetch-tweets` | pull fresh posts from a running XActions instance first |
@@ -108,6 +109,13 @@ begin in July 2026 while its posts are from February, so the API alone can measu
 `--prices` reads one of the CSV exports committed under `data/` and merges it under
 whatever the API still serves, so the analysis survives the pool going quiet. The loader
 detects the column names, which differ between those exports.
+
+The public API also refuses anything older than 180 days, with a 401 whose body says so.
+That 401 is permanent, so the fetcher stops paging at the 180-day horizon and treats it as
+the end of the history rather than a throttle to wait out. An asset with an `archive` prefix
+in `assets.json` (or `--archive <prefix>`) writes every candle it has to `<prefix>-1h.csv`
+and `<prefix>-15m.csv` after each run and loads them first on the next, so history
+accumulates instead of expiring.
 
 ## Rate limits
 

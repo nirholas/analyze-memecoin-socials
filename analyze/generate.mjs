@@ -68,6 +68,8 @@ const WINDOWS = flag('windows', '1,4,24').split(',').map(Number).filter((n) => n
 // Local OHLCV exports, merged under whatever the API can still serve.
 const PRICES = flag('prices', asset.prices || null);
 const PRICES_FINE = flag('prices-fine', asset.pricesFine || null);
+// Path prefix of the self-updating candle archive (<prefix>-1h.csv, <prefix>-15m.csv).
+const ARCHIVE = flag('archive', asset.archive || null);
 
 const outBase = flag('out', assetKey ? `out/${assetKey}/chart` : 'out/chart');
 
@@ -243,9 +245,18 @@ async function getJson(url, tries = 6) {
         signal: AbortSignal.timeout(30000),
       }));
       if (res.ok) { const body = await res.json(); cacheWrite(url, body); return body; }
+      if (res.status === 401) {
+        // The same 401 also means "older than the public history window", which no
+        // amount of cooling down will ever change. Only the body tells them apart.
+        const text = await res.text().catch(() => '');
+        if (/past \d+ days/i.test(text)) {
+          throw Object.assign(new Error('HTTP 401 (outside the public history window)'), { historyWindow: true });
+        }
+      }
       if (!TRANSIENT.has(res.status)) throw new Error(`HTTP ${res.status}`);
       lastErr = new Error(`HTTP ${res.status}`);
     } catch (err) {
+      if (err.historyWindow) throw err;
       if (err.message?.startsWith('HTTP ') && !TRANSIENT.has(Number(err.message.slice(5)))) throw err;
       lastErr = err;
     }
@@ -356,6 +367,25 @@ function loadOhlcvCsv(path) {
   return rows.sort((a, b) => a[0] - b[0]);
 }
 
+// The price archive: every candle ever fetched for an asset, committed beside its posts.
+// GeckoTerminal only serves the last 180 days, so a post older than that can still be
+// measured next year only if its candles were saved while the API still had them.
+const archivePath = (tf) => (ARCHIVE ? resolve(REPO, `${ARCHIVE}-${tf}.csv`) : null);
+
+function loadArchive(tf) {
+  const path = archivePath(tf);
+  return path && existsSync(path) ? loadOhlcvCsv(path) : [];
+}
+
+function saveArchive(tf, candles) {
+  const path = archivePath(tf);
+  if (!path || !candles.length) return;
+  mkdirSync(dirname(path), { recursive: true });
+  const rows = candles.map((c) => c.join(','));
+  writeFileSync(path, `timestamp,open,high,low,close,volume\n${rows.join('\n')}\n`);
+  console.log(`  archived ${candles.length} ${tf} candles to ${ARCHIVE}-${tf}.csv`);
+}
+
 // Local history first, live tail second, deduped by timestamp.
 function mergeCandles(...sets) {
   const map = new Map();
@@ -365,13 +395,24 @@ function mergeCandles(...sets) {
 
 // ---- price history (paginated OHLCV) --------------------------------------
 const PAGE = 1000;
+// GeckoTerminal's public API refuses candles older than this many days.
+const PUBLIC_HISTORY_DAYS = 180;
 
 async function fetchOhlcv(timeframe, aggregate, earliestSec, beforeSec = null) {
   const out = [];
   let before = beforeSec ?? Math.floor(Date.now() / 1000) + 3600;
+  const horizon = Math.floor(Date.now() / 1000) - PUBLIC_HISTORY_DAYS * 86400;
   for (let page = 0; page < 12; page++) {
+    // A page that ends before the public window cannot be served, so it is never asked for.
+    if (before <= horizon) break;
     const url = `${GT}/pools/${POOL}/ohlcv/${timeframe}?aggregate=${aggregate}&limit=${PAGE}&before_timestamp=${before}`;
-    const j = await getJson(url);
+    let j;
+    try {
+      j = await getJson(url);
+    } catch (err) {
+      if (!err.historyWindow) throw err;
+      break;
+    }
     const list = j?.data?.attributes?.ohlcv_list || [];
     if (!list.length) break;
     out.push(...list);
@@ -861,9 +902,9 @@ setTF('1h'); render();
     console.log(`  resolved pool ${POOL} (${pairs[0].dexId}, $${Math.round(pairs[0].liquidity?.usd || 0)} liquidity)`);
   }
 
-  const localHourly = PRICES ? loadOhlcvCsv(PRICES) : [];
+  const localHourly = mergeCandles(PRICES ? loadOhlcvCsv(PRICES) : [], loadArchive('1h'));
   if (localHourly.length) {
-    console.log(`Loaded ${localHourly.length} candles from ${PRICES} `
+    console.log(`Loaded ${localHourly.length} candles from ${[PRICES, ARCHIVE && `${ARCHIVE}-1h.csv`].filter(Boolean).join(' + ')} `
       + `(${new Date(localHourly[0][0] * 1000).toISOString()} → ${new Date(localHourly.at(-1)[0] * 1000).toISOString()})`);
   }
 
@@ -875,6 +916,7 @@ setTF('1h'); render();
       return [];
     });
   const hourly = mergeCandles(localHourly, apiHourly);
+  saveArchive('1h', hourly);
   console.log(`Using ${hourly.length} hourly candles (${new Date(hourly[0][0] * 1000).toISOString()} → ${new Date(hourly.at(-1)[0] * 1000).toISOString()})`);
 
   const snap = MINT
@@ -1157,10 +1199,11 @@ setTF('1h'); render();
       Math.floor(Date.now() / 1000) + 3600,
       lastPostSec + Math.max(...WINDOWS) * 3600 + 7 * 86400,
     );
-    const localFine = PRICES_FINE ? loadOhlcvCsv(PRICES_FINE) : [];
+    const localFine = mergeCandles(PRICES_FINE ? loadOhlcvCsv(PRICES_FINE) : [], loadArchive('15m'));
     const apiFine = await fetchOhlcv('minute', 15, earliestSec, fineBefore)
       .catch((e) => { console.warn(`  15m fetch failed (${e.message}); falling back to what is on hand`); return []; });
     const m15 = mergeCandles(localFine, apiFine);
+    saveArchive('15m', m15);
     console.log(`15m candles: ${m15.length}`);
     const candles = {
       '15m': toBars(m15.length ? m15 : hourly),

@@ -15,6 +15,7 @@
     "posts": [
       "data/tweets/three/*.json"
     ],
+    "archive": "data/ohlcv/three",
     "scrapedAt": "2026-06-15",
     "note": "Timeline scrapes carry every account the two handles interacted with; the accounts filter narrows them to the two studied handles."
   },
